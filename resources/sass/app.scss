@@ -1,0 +1,12 @@
+// src/app.scss
+$primary: grey;
+
+body {
+    display: none;
+
+    background: $primary !important;
+}
+.app {
+    background: $primary;
+}
+
