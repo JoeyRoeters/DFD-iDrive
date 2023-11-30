@@ -1,0 +1,125 @@
+:root, :before, :after {
+
+    @each $color, $value in $colors {
+        --color-#{inspect($color)}: #{$value};
+        --color-#{inspect($color)}-rgb: #{red($value)}, #{green($value)}, #{blue($value)};
+    }
+
+    @each $font, $value in $fonts {
+        // Use `inspect` for lists so that quoted items keep the quotes.
+        --font-family-#{$font}: #{inspect($value)};
+    }
+
+    @each $breakpoint, $value in $breakpoints {
+        --breakpoint-#{$breakpoint}: #{$value};
+    }
+
+    @each $container, $value in $containers {
+        --container-#{$container}: #{$value};
+    }
+
+    // Basics
+    --font-size-base: 1rem;
+    --font-weight-base: 400;
+    --line-height-base: 1.5;
+
+    --body-bg: var(--color-white);
+
+    --default-border-width: thin;
+    --default-border-style: solid;
+    --default-border-color: var(--color-gray-300);
+    --default-border-radius: 10px;
+
+    --default-shadow: 0 5px 20px #{rgba(var(--color-black-rgb), 0.2)};
+    --default-space: 1em;
+
+    // App variables
+    --color-app-background: var(--primary-color);
+    --color-app-background-opacity: 0.5;
+
+    --color-avatar-background: var(--primary-color);
+    --color-avatar-color: var(--color-white);
+
+    --color-accordion-hover: var(--primary-color);
+    --color-accordion-active: var(--primary-color);
+
+    --color-chat-background: var(--secondary-color-rgb);
+    --color-chat-message-background: var(--tertiary-color);
+    --color-chat-message-color: var(--color-white);
+    --color-chat-own-message-background: var(--primary-color);
+    --color-chat-own-message-color: var(--color-white);
+    --color-chat-submit-color: var(--primary-color);
+    --color-chat-input-shadow: var(--primary-color-rgb);
+
+    --color-schedule-tab-background: var(--tertiary-color-rgb);
+    --color-schedule-tab-color: var(--color-white);
+    --color-schedule-tab-active-background: var(--secondary-color-rgb);
+    --color-schedule-tab-active-color: var(--color-white);
+    --color-schedule-program-background: var(--tertiary-color);
+    --color-schedule-program-color: var(--color-white);
+    --color-schedule-program-hover-shadow: var(--primary-color);
+    --color-schedule-program-hover-arrow-background: var(--primary-color);
+    --color-schedule-program-hover-arrow-color: var(--color-white);
+    --color-schedule-program-current-time: #E81D5A;
+
+    --color-lobby-card-blend: luminosity;
+    --color-lobby-card-filter: grayscale(10%);
+    --color-lobby-card-opacity: 0.9;
+    --color-lobby-card-background: var(--secondary-color-rgb);
+    --color-lobby-card-color: var(--color-white);
+
+    --color-modal-header-background: var(--primary-color);
+    --color-modal-header-title-color: var(--color-white);
+    --color-modal-header-tab-background: var(--tertiary-color);
+    --color-modal-header-tab-color: var(--color-white);
+    --color-modal-header-tab-active-background: var(--color-white);
+    --color-modal-header-tab-active-color: var(--tertiary-color);
+
+    --color-button-primary-background: var(--primary-color);
+    --color-button-primary-border: var(--primary-color);
+    --color-button-primary-color: var(--color-white);
+    --color-button-primary-icon: var(--color-white);
+    --color-button-secondary-background: var(--color-white);
+    --color-button-secondary-border: var(--color-gray-300);
+    --color-button-secondary-color: var(--color-gray-700);
+    --color-button-secondary-icon: var(--primary-color);
+    --color-button-accent-background: var(--tertiary-color);
+    --color-button-accent-border: var(--tertiary-color);
+    --color-button-accent-color: var(--secondary-color);
+    --color-button-accent-icon: var(--secondary-color);
+
+    --color-badge-primary-background: var(--primary-color);
+    --color-badge-primary-color: var(--primary-color);
+    --color-badge-secondary-background: var(--color-system-success);
+    --color-badge-secondary-color: var(--color-white);
+
+    --color-favorite-background: var(--color-favorite);
+    --color-favorite-color: var(--color-white);
+
+    --color-alert-primary-background: rgba(var(--primary-color-rgb), 0.1);
+    --color-alert-primary-border: var(--primary-color);
+    --color-alert-primary-color: var(--primary-color);
+    --color-alert-secondary-background: var(--primary-color);
+    --color-alert-secondary-border: var(--primary-color);
+    --color-alert-secondary-color: var(--color-white);
+
+    --color-app-navigation-icon: var(--primary-color);
+    --color-app-navigation-color: var(--tertiary-color);
+    --color-app-navigation-hover-icon: var(--primary-color);
+    --color-app-navigation-hover-color: var(--primary-color);
+    --color-app-navigation-toggle-background: #E81D5A;
+    --color-app-navigation-toggle-color: var(--color-white);
+
+    --color-keycord-front: var(--secondary-color);
+    --color-keycord-back: var(--tertiary-color);
+    --color-keycord-badge-name: var(--tertiary-color);
+    --color-keycord-badge-company: var(--primary-color);
+
+    --color-carousel-button-hover: var(--secondary-color);
+    --color-carousel-countdown-background: rgba(var(--color-gray-700-rgb), 0.2);
+    --color-carousel-countdown-bar: rgba(var(--color-black-rgb), 0.2);
+
+    --color-presentation-notification: rgba(var(--color-gray-700-rgb), 0.6);
+
+    --version: 0.0.76;
+}

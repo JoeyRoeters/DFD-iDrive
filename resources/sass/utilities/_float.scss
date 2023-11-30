@@ -1,0 +1,25 @@
+.float {
+    &-left {
+        float: left;
+    }
+    &-right {
+        float: right;
+    }
+    &-none {
+        float: unset;
+    }
+
+    @each $breakpoint, $value in $breakpoints {
+        @include breakpoint($breakpoint) {
+            &-#{$breakpoint}-left {
+                float: left;
+            }
+            &-#{$breakpoint}-right {
+                float: right;
+            }
+            &-#{$breakpoint}-none {
+                float: unset;
+            }
+        }
+    }
+}

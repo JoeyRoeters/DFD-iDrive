@@ -1,0 +1,5 @@
+$containers: map-get($variables, "containers");
+
+@function container($key: "sm") {
+    @return map-deep-get($variables, "containers", $key);
+}

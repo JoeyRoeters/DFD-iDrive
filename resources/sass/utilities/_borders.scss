@@ -1,0 +1,95 @@
+$sidesY: (
+    top, bottom
+);
+$sidesX: (
+    right, left
+);
+$radiuses: (
+    5, 10, 15, 20
+);
+
+.border {
+    border: var(--default-border-width) var(--default-border-style) var(--default-border-color);
+
+    &-rounded {
+        border-radius: var(--default-border-radius);
+    }
+    &-circle {
+        border-radius: 50%;
+    }
+    &-pill {
+        border-radius: 999px;
+    }
+
+    @each $side, $value in $sidesY {
+        &-#{$side} {
+            border-#{$side}: var(--default-border-width) var(--default-border-style) var(--default-border-color);
+        }
+    }
+    @each $side, $value in $sidesX {
+        &-#{$side} {
+            border-#{$side}: var(--default-border-width) var(--default-border-style) var(--default-border-color);
+        }
+    }
+}
+
+@each $breakpoint, $brvalue in $breakpoints {
+    @include breakpoint($breakpoint) {
+        @each $side, $value in $sidesY {
+            .border-#{$breakpoint}-#{$side} {
+                border-#{$side}: var(--default-border-width) var(--default-border-style) var(--default-border-color);
+            }
+        }
+        @each $side, $value in $sidesX {
+            .border-#{$breakpoint}-#{$side} {
+                border-#{$side}: var(--default-border-width) var(--default-border-style) var(--default-border-color);
+            }
+        }
+    }
+}
+
+@for $radius from 1 through 50 {
+    .border-radius-#{$radius} {
+        border-radius: #{$radius}px;
+    }
+}
+
+// for specific border radius (example: border-top-right-radius)
+@each $sideY, $value in $sidesY {
+    @each $sideX, $value in $sidesX {
+        @for $radius from 1 through 50 {
+            .border-#{$sideY}-#{$sideX}-#{$radius} {
+                border-#{$sideY}-#{$sideX}-radius: #{$radius}px;
+            }
+        }
+    }
+}
+
+@each $color, $value in $colors {
+    .border-#{inspect($color)} {
+        border-color: var(--color-#{$color});
+    }
+}
+
+@each $radius, $value in $radiuses {
+    .radius-top-#{$radius} {
+        border-top-left-radius: #{$radius}px;
+        border-top-right-radius: #{$radius}px;
+    }
+    .radius-bottom-#{$radius} {
+        border-bottom-left-radius: #{$radius}px;
+        border-bottom-right-radius: #{$radius}px;
+    }
+    .radius-right-#{$radius} {
+        border-top-right-radius: #{$radius}px;
+        border-bottom-right-radius: #{$radius}px;
+    }
+    .radius-left-#{$radius} {
+        border-top-left-radius: #{$radius}px;
+        border-bottom-left-radius: #{$radius}px;
+    }
+    .radius-top-left-#{$radius}      { border-top-left-radius: #{$radius}px; }
+    .radius-top-right-#{$radius}     { border-top-right-radius: #{$radius}px; }
+    .radius-bottom-left-#{$radius}   { border-bottom-left-radius: #{$radius}px; }
+    .radius-bottom-right-#{$radius}  { border-bottom-right-radius: #{$radius}px; }
+}

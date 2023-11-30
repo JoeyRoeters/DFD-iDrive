@@ -1,0 +1,88 @@
+// w: width
+// vw: viewport width
+
+// h: height
+// vh: viewport height
+
+// min-w: min-width
+// max-w: max-width
+// min-vw: min-viewport-width
+// max-vw: max-viewport-width
+
+$sizes: ( 25, 50, 75, 100, auto);
+
+@each $size in $sizes {
+
+    // Widths
+    .w-#{$size} {
+        @if( type-of($size) == 'number') {  width: #{ $size * 1%  } !important; }
+        @else {                             width: $size; }
+    }
+    .vw-#{$size} {
+        @if( type-of($size) == 'number') {  width: #{ $size * 1vw  } !important; }
+    }
+
+    // Heights
+    .h-#{$size} {
+        @if( type-of($size) == 'number') {  height: #{ $size * 1%  } !important; }
+        @else {                             height: $size; }
+    }
+    .vh-#{$size} {
+        @if( type-of($size) == 'number') {  height: #{ $size * 1vh  } !important; }
+    }
+}
+
+// height: 100px, 200px, 300px, 400px, 500px
+@for $a from 1 through 5 {
+    $b: $a * 100;
+
+    .h-#{$b}px {
+        height: #{$b * 1px} !important;
+    }
+}
+
+// max-height: 10vh, 20hv, 30vh, ... 100vh
+.max-vh {
+    @for $a from 1 through 10 {
+        $b: $a*10;
+        &-#{$b} {
+            max-height: #{$b * 1vh};
+        }
+    }
+}
+// min-height: 10vh, 20hv, 30vh, ... 100vh
+.min-vh {
+    @for $a from 1 through 10 {
+        $b: $a*10;
+        &-#{$b} {
+            min-height: #{$b * 1vh};
+        }
+    }
+}
+// max-width: 10vh, 20hv, 30vh, ... 100vh
+.max-vw {
+    @for $a from 1 through 10 {
+        $b: $a*10;
+        &-#{$b} {
+            max-width: #{$b * 1vw};
+        }
+    }
+}
+// min-height: 10vh, 20hv, 30vh, ... 100vh
+.min-vw {
+    @for $a from 1 through 10 {
+        $b: $a*10;
+        &-#{$b} {
+            min-width: #{$b * 1vw};
+        }
+    }
+}
+// min-width: 100%;
+// max-width: 100%;
+.min-w-100 { min-width: 100%; }
+.max-w-100 { max-width: 100%; }
+
+// min-height: 100%;
+// max-height: 100%;
+.min-h-100 { min-height: 100%; }
+.max-h-100 { max-height: 100%; }

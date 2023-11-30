@@ -1,0 +1,56 @@
+$variables: (
+
+    breakpoints: (
+        xxs      : 401px,
+        xs       : 576px,
+        sm       : 768px,
+        md       : 960px,
+        lg       : 1024px,
+        xl       : 1360px,
+        xxl      : 1800px,
+        xxxl     : 3000px,
+    ),
+
+
+    colors: (
+
+        white:    #FFFFFF,
+        gray-100: #F5F7FB, // Backgrounds
+        gray-300: #D7DDEF, // Borders
+        gray-500: #A8B3CE,
+        gray-700: #252C44, // Primary text
+        black:    #000000,
+
+        light: #F5F7FB,
+        dark:  #252C44,
+
+        gradient-background-color-1: #656ED3,
+        gradient-background-color-2: #87B5F7,
+
+        system-success: #2EC700,
+        system-info: #0D76B3,
+        system-warning: #FFBC00,
+        system-danger: #FF2626,
+
+        primary-color: #87B5F7,
+        secondary-color: #656ED3,
+        tertiary-color: #f39c12,
+
+        link: #87B5F7,
+        link-hover: darken(#87B5F7, 10%)
+    ),
+
+    containers: (
+         sm: 540px,
+         md: 720px,
+         ml: 760px,
+         lg: 880px,
+         xl: 1080px,
+        xxl: 1200px,
+    ),
+
+    fonts: (
+        body: ("Roboto","Segoe UI","Helvetica Neue","Arial","Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"),
+        heading: ("Montserrat","Segoe UI","Roboto","Helvetica Neue","Arial","Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji")
+    )
+);
