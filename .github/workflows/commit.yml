@@ -26,11 +26,10 @@ jobs:
         uses: aglipanci/laravel-pint-action@0.1.0
         with:
           preset: laravel
-
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
       - name: Run PHP CS Fixer
-        run: vendor/bin/php-cs-fixer fix --config=.php_cs.dist --diff --dry-run
+        run: tools/php-cs-fixer/vendor/bin/php-cs-fixer fix .
       - name: Compile and Minify SCSS for Production
         run: npm install && npm run production
       - name: Generate Code Coverage Report
