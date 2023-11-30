@@ -27,7 +27,7 @@ jobs:
         with:
           preset: laravel
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+        run: php artisan test
       - name: Run PHP CS Fixer
         run: tools/php-cs-fixer/vendor/bin/php-cs-fixer fix .
       - name: Compile and Minify SCSS for Production
