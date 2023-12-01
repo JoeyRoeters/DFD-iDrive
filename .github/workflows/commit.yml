@@ -35,7 +35,7 @@ jobs:
       - name: Generate Code Coverage Report
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Static Code Analysis
-        run: vendor/bin/phpstan analyze
+        run: vendor/bin/phpstan analyze app --level 6
 
       - name: Upload Code Coverage Report
         uses: actions/upload-artifact@v2
