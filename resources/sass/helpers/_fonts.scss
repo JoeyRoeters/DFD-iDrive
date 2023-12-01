@@ -1,0 +1,10 @@
+$fonts: map-get($variables, "fonts");
+
+@function font($key: "body") {
+    @return map-deep-get($variables, "fonts", $key);
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: rem($size);
+}

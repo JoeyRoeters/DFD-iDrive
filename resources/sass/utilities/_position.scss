@@ -1,0 +1,65 @@
+$sizespos: (
+    0: calc( var(--default-space) * 0 ),
+    1: calc( var(--default-space) * 1 ),
+    2: calc( var(--default-space) * 2 ),
+    3: calc( var(--default-space) * 3 ),
+    4: calc( var(--default-space) * 4 ),
+    5: calc( var(--default-space) * 5 ),
+    n1: calc( var(--default-space) * -1 ),
+    n2: calc( var(--default-space) * -2 ),
+    n3: calc( var(--default-space) * -3 ),
+    n4: calc( var(--default-space) * -4 ),
+    n5: calc( var(--default-space) * -5 ),
+    auto: auto,
+);
+
+.pos {
+    &-static {
+        position: static !important;
+    }
+    &-relative {
+        position: relative !important;
+    }
+    &-absolute {
+        position: absolute !important;
+    }
+    &-fixed {
+        position: fixed !important;
+    }
+    &-sticky {
+        position: sticky !important;
+    }
+
+    @each $breakpoint, $value in $breakpoints {
+        @include breakpoint($breakpoint) {
+            &-#{$breakpoint}-static {
+                position: static !important;
+            }
+            &-#{$breakpoint}-relative {
+                position: relative !important;
+            }
+            &-#{$breakpoint}-absolute {
+                position: absolute !important;
+            }
+            &-#{$breakpoint}-fixed {
+                position: fixed !important;
+            }
+            &-#{$breakpoint}-sticky {
+                position: sticky !important;
+            }
+        }
+    }
+}
+
+@each $size, $value in $sizespos {
+    .t-#{$size}   { top: $value !important; }
+    .r-#{$size}   { right: $value !important; }
+    .b-#{$size}   { bottom: $value !important; }
+    .l-#{$size}   { left: $value !important; }
+}
+
+@for $i from 0 through 999 {
+    .zi-#{$i} {
+        z-index: #{$i};
+    }
+}

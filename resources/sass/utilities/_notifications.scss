@@ -1,0 +1,116 @@
+.toastify[class*='notification-'] {
+    max-width: 250px;
+    border-radius: var(--default-border-radius);
+    border: none;
+    box-shadow: none;
+    background-color: var(--color-white);
+    color: var(--color-gray-700);
+    padding: 10px 20px 10px 50px;
+    @include font-size(13px);
+    line-height: 1.4em;
+    font-weight: bold;
+    box-shadow: 0 2px 15px rgba(black, .05);
+
+    &:not(.has-url) {
+        pointer-events: none;
+    }
+
+    .toast-close {
+        width: auto;
+        height: auto;
+        display: inline-block;
+        pointer-events: all;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        font-size: 20px;
+        transform: translate(0,-50%);
+    }
+
+    &:before {
+        font-size: 20px;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translate(-50%, -50%);
+    }
+
+    &.is-closable {
+        padding-right: 50px;
+    }
+}
+
+.toastify.notification {
+    &-success {
+        //@include iconfont('success');
+        &:before {
+            color: var(--color-system-success);
+        }
+    }
+    &-info {
+        //@include iconfont('info');
+        &:before {
+            color: var(--color-system-info);
+        }
+    }
+    &-warning {
+        //@include iconfont('error');
+        &:before {
+            color: var(--color-system-warning);
+        }
+    }
+    &-danger {
+        //@include iconfont('remove');
+        &:before {
+            color: var(--color-system-danger);
+        }
+    }
+    &-presentation {
+        --toastHeight: 38px;
+        right: calc(var(--aside-width) + 20px);
+        padding: 5px 20px 5px 0;
+        height: var(--toastHeight);
+        border-radius: calc( var(--toastHeight) / 2 );
+        color: var(--color-white);
+        background: var(--color-presentation-notification);
+
+        .toastify-avatar {
+            --avatarSize: 28px;
+            width: var(--avatarSize);
+            height: var(--avatarSize);
+            border-radius: calc( var(--avatarSize) / 2 );
+            margin: 0 8px 0 5px;
+        }
+
+        &:before {
+            content: none;
+        }
+
+        .close-aside & {
+            right: calc(16px + 20px);
+        }
+    }
+    &-sidebar {
+        //@include iconfont('success');
+        width: calc(var(--aside-width) - 60px);
+        max-width: calc(var(--aside-width) - 60px);
+        height: auto;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        right: 30px;
+        @include font-size(13px);
+        color: var(--color-white);
+        background: var(--color-system-success);
+
+        &:before {
+            color: var(--color-white);
+        }
+    }
+}
+
+.notification-info {
+    word-break: break-word;
+}

@@ -1,0 +1,14 @@
+$colors: map-get($variables, "colors");
+
+@function color($key: "primary") {
+    @return map-deep-get($variables, "colors", $key);
+}
+
+//usage: color: color-level("secondary", 2);
+$color-interval: 10%;
+@function color-level($color-name: "primary", $level: 0) {
+	$color: color($color-name);
+	$color-base: if($level < 0, black, white);
+
+	@return mix($color-base, $color, $level * $color-interval);
+}

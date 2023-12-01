@@ -1,0 +1,42 @@
+%range-reset {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    background: transparent; /* Otherwise white in Chrome */
+    box-shadow: none;
+    border: none;
+
+    &.form-control {
+        outline: none; /* Removes the blue border */
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    &::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        background: transparent; /* Hides the slider so custom styles can be added */
+        border: none;
+        border-color: transparent; /* Hides the slider so custom styles can be added */
+        color: transparent; /* Hides the slider so custom styles can be added */
+    }
+
+    &::-moz-range-track {
+        background: transparent;
+        border: 0;
+    }
+
+    &::-moz-focus-inner,
+    &::-moz-focus-outer {
+        border: 0;
+    }
+
+    & + [aria-label="hidden"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        visibility: hidden;
+        opacity: 0;
+        margin-left: -1px;
+    }
+}

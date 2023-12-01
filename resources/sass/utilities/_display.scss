@@ -1,0 +1,42 @@
+$displays: (
+    inline,
+    table,
+    table-cell,
+    table-row,
+    flex,
+    inline-flex
+);
+
+$displaybr: (
+    none,
+    inline-block,
+    block,
+);
+
+.d {
+    @each $display in $displays {
+        &-#{$display} {
+            display: $display;
+        }
+    }
+    @each $display in $displaybr {
+        &-#{$display} {
+            display: $display;
+        }
+        @each $breakpoint, $value in $breakpoints {
+            @include breakpoint($breakpoint) {
+                &-#{$breakpoint}-#{$display} {
+                    display: $display;
+                }
+            }
+            @include breakpoint($breakpoint,true) {
+                &-#{$breakpoint}-down-#{$display} {
+                    display: $display;
+                }
+                &-#{$breakpoint}-down-#{$display}-i {
+                    display: $display !important;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,114 @@
+$sizesm: (
+    0: calc( var(--default-space) * 0 ),
+    1: calc( var(--default-space) * 1 ),
+    2: calc( var(--default-space) * 2 ),
+    3: calc( var(--default-space) * 3 ),
+    4: calc( var(--default-space) * 4 ),
+    5: calc( var(--default-space) * 5 ),
+    6: calc( var(--default-space) * 6 ),
+    7: calc( var(--default-space) * 7 ),
+    8: calc( var(--default-space) * 8 ),
+    9: calc( var(--default-space) * 9 ),
+    10: calc( var(--default-space) * 10 ),
+    n1: calc( var(--default-space) * -1 ),
+    n2: calc( var(--default-space) * -2 ),
+    n3: calc( var(--default-space) * -3 ),
+    n4: calc( var(--default-space) * -4 ),
+    n5: calc( var(--default-space) * -5 ),
+    auto: auto,
+);
+
+$sizesp: (
+    0: calc( var(--default-space) * 0 ),
+    1: calc( var(--default-space) * 1 ),
+    2: calc( var(--default-space) * 2 ),
+    3: calc( var(--default-space) * 3 ),
+    4: calc( var(--default-space) * 4 ),
+    5: calc( var(--default-space) * 5 ),
+    6: calc( var(--default-space) * 6 ),
+    7: calc( var(--default-space) * 7 ),
+    8: calc( var(--default-space) * 8 ),
+    9: calc( var(--default-space) * 9 ),
+    10: calc( var(--default-space) * 10 ),
+    auto: auto,
+);
+
+@each $size, $value in $sizesm {
+    .m {
+        &-#{$size}   { margin: $value !important; }
+        &t-#{$size} { margin-top: $value !important; }
+        &r-#{$size} { margin-right: $value !important; }
+        &b-#{$size} { margin-bottom: $value !important; }
+        &l-#{$size} { margin-left: $value !important; }
+
+        &y-#{$size} {
+            margin-top: $value !important;
+            margin-bottom: $value !important;
+        }
+
+        &x-#{$size} {
+            margin-left: $value !important;
+            margin-right: $value !important;
+        }
+
+        @each $breakpoint, $brvalue in $breakpoints {
+            @include breakpoint($breakpoint) {
+                &-#{$breakpoint}-#{$size}   { margin: $value !important; }
+                &t-#{$breakpoint}-#{$size} { margin-top: $value !important; }
+                &r-#{$breakpoint}-#{$size} { margin-right: $value !important; }
+                &b-#{$breakpoint}-#{$size} { margin-bottom: $value !important; }
+                &l-#{$breakpoint}-#{$size} { margin-left: $value !important; }
+
+                &y-#{$breakpoint}-#{$size} {
+                    margin-top: $value !important;
+                    margin-bottom: $value !important;
+                }
+
+                &x-#{$breakpoint}-#{$size} {
+                    margin-left: $value !important;
+                    margin-right: $value !important;
+                }
+            }
+        }
+    }
+}
+
+@each $size, $value in $sizesp {
+    .p {
+        &-#{$size}  { padding: $value !important; }
+        &t-#{$size} { padding-top: $value !important; }
+        &r-#{$size} { padding-right: $value !important; }
+        &b-#{$size} { padding-bottom: $value !important; }
+        &l-#{$size} { padding-left: $value !important; }
+
+        &y-#{$size} {
+            padding-top: $value !important;
+            padding-bottom: $value !important;
+        }
+
+        &x-#{$size} {
+            padding-left: $value !important;
+            padding-right: $value !important;
+        }
+
+        @each $breakpoint, $brvalue in $breakpoints {
+            @include breakpoint($breakpoint) {
+                &-#{$breakpoint}-#{$size}   { padding: $value !important; }
+                &t-#{$breakpoint}-#{$size} { padding-top: $value !important; }
+                &r-#{$breakpoint}-#{$size} { padding-right: $value !important; }
+                &b-#{$breakpoint}-#{$size} { padding-bottom: $value !important; }
+                &l-#{$breakpoint}-#{$size} { padding-left: $value !important; }
+
+                &y-#{$breakpoint}-#{$size} {
+                    padding-top: $value !important;
+                    padding-bottom: $value !important;
+                }
+
+                &x-#{$breakpoint}-#{$size} {
+                    padding-left: $value !important;
+                    padding-right: $value !important;
+                }
+            }
+        }
+    }
+}

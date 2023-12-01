@@ -1,0 +1,38 @@
+%live-dot {
+    --size: 10px;
+    position: relative;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color-system-success);
+    border-radius: var(--size);
+    vertical-align: middle;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        border-radius: var(--size);
+        background: rgba(var(--color-system-success-rgb), .4);
+    }
+
+    &:before {
+        animation: animateDotFirst 2000ms ease-out infinite;
+    }
+    &:after {
+        animation-delay: 1000ms;
+        animation: animateDotSecond 2000ms ease-out infinite;
+    }
+}
+
+@keyframes animateDotFirst {
+    0%     { transform: scale(1); }
+    50%   { transform: scale(3.5); opacity: 0; }
+    100%   { transform: scale(3.5); opacity: 0; }
+}
+@keyframes animateDotSecond {
+    0%     { transform: scale(1); }
+    100%   { transform: scale(3.5); opacity: 0; }
+}
