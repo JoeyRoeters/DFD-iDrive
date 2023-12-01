@@ -31,7 +31,7 @@ jobs:
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix .
       - name: Compile and Minify SCSS for Production
-        run: npm install && npm run production
+        run: npm install && npm run build
       - name: Generate Code Coverage Report
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Static Code Analysis
