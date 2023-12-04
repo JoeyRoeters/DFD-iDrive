@@ -9,5 +9,7 @@ interface DateTimeInterface
 
     public function value(): string;
 
+    public function getTimestamp(): int;
+
     public static function fromPrimitives(string $datetime): static;
 }
