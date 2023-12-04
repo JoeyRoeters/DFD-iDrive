@@ -1,0 +1,20 @@
+.auth {
+    background-color: #7195CE;
+    height: inherit;
+
+    #imageSide {
+        background-color: #87B5F7;
+    }
+
+    #logo {
+        height: 100%;
+        width: 100%;
+        object-fit: none;
+        object-position: center center;
+    }
+
+    #loginBtn {
+        width: 100%;
+        background-color: #656ED3;
+    }
+}
