@@ -6,21 +6,44 @@ Developer docs iDrive Driver Feedback Dashboard.
 2. [How to use Sentry (error tracking)](#how-to-use-sentry-error-tracking)
 
 # How to use design & development
-## 1. Install Node.js 
-- npm install 
+## 1. Install Node.js
+- npm install
 - npm run build (production, minifies the code)
 - npm run dev (development, makes browser refresh automatically when you change something in the code)
 
 ## 2. How to work with the directory structure
-All design & resources files are located in the `resources` directory.
-- `resources/js` - all javascript files
-- `resources/sass` - all sass files
-- `resources/views` - all blade files
+We follow a Domain Driven Design (DDD) approach. This means that we have a directory for each domain within the application. E.g. `resources/feedback` or `resources/vehicle`.
+In our project the structure is as follows:
+- `app/Domains` - contains all the domains within the application
+  - `app/Domains/Shared` - contains all that is not specific to a domain but is shared between multiple domains
+  - `app/Domains/{domain}` - contains all the files that are specific to a domain
+    - `app/Domains/{domain}/Model` - contains all the models that are specific to a domain
+    - `app/Domains/{domain}/Exception` - contains all the exceptions that are specific to a domain
+    - `app/Domains/{domain}/ValueObject` - contains all the value objects (DTOs) that are specific to a domain
+    - `app/Domains/{domain}/Interface` - contains all the interfaces that are specific to a domain
+    - `app/Domains/{domain}/Trait` - contains all the traits that are specific to a domain
+    - `app/Domains/{domain}/Repository` - contains all the repositories that are specific to a domain
+    - `app/Domains/{domain}/Enum` - contains all the enums that are specific to a domain
+- `app/Intrastructure/{domain}` - contains infrastructure required for the app. Like laravel.
+- `app/UserInterface/Domain/{domain}` - contains all the controllers, requests, middleware, etc. that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Controllers` - contains all the controllers that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Requests` - contains all the requests that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Middlewares` - contains all the middleware that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Resources` - contains all the resources that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Jobs` - contains all the jobs that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Listeners` - contains all the listeners that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Events` - contains all the events that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Notifications` - contains all the notifications that are specific to a domain
+  - `app/UserInterface/Domain/{domain}/Mails` - contains all the mails that are specific to a domain
+
+Generic design & resources files are located in the `resources` directory.
+- `resources/js` - generic javascript files
+- `resources/sass` - generic sass files
+- `resources/views` - generic blade files
 
 
 in each directory you should work structured and create logical subdirectories for each component.
 E.g:
-- For the authentication page you should create a directory `resources/sass/pages/auth` and put all sass files related to the authentication page in this directory.
 - For an utility like sweetalert you should create a directory `resources/js/utilities/sweetalert` and put all javascript files related to sweetalert in this directory.
 
 ## 3. How to work with the blade files
@@ -32,9 +55,9 @@ When running the `npm run dev` command, and you change something in the blade fi
 ## 4. How to work with assets (images, fonts, etc.)
 All image assets should be put in the `resources/{asset-type}` directory. E.g. `resources/images` or `resources/fonts`.
 
-When you want to use an asset you can use the `View::asset()` helper function. This function will automatically generate the correct url to the asset. E.g. `View::asset('images/logo.png')` will generate the url `/images/logo.png`. 
+When you want to use an asset you can use the `View::asset()` helper function. This function will automatically generate the correct url to the asset. E.g. `View::asset('images/logo.png')` will generate the url `/images/logo.png`.
 
-E.g: 
+E.g:
 ```php
 <img src="{{ Vite::asset('resources/images/logo.png') }}">
 ```
