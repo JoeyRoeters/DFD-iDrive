@@ -2,20 +2,23 @@
 
 namespace App\Helpers\SweetAlert;
 
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Session;
+
 class SweetAlert
 {
     public static ?self $message = null;
 
     private SweetAlertType $alertType;
     private string $text;
-    private ?string $title;
-    private ?string $confirmButtonText;
-    private ?string $confirmButtonColor;
-    private ?string $cancelButtonText;
-    private ?string $cancelButtonColor;
+    private ?string $title = null;
+    private ?string $confirmButtonText = null;
+    private ?string $confirmButtonColor = null;
+    private ?string $cancelButtonText = null;
+    private ?string $cancelButtonColor = null;
     private bool $showCancelButton = false;
-    private ?string $url;
-    private ?int $timer;
+    private ?string $url = null;
+    private ?int $timer = null;
     private ?int $defaultTimer = 1500;
 
     public function __construct(SweetAlertType $alertType, string $text)
@@ -23,7 +26,14 @@ class SweetAlert
         $this->alertType = $alertType;
         $this->text = $text;
 
-        self::$message = $this;
+        $this->update();
+    }
+
+    private function update(): self
+    {
+        session()->flash('swalData', $this->toArray());
+
+        return $this;
     }
 
     public static function create(SweetAlertType $type, string $text): self
@@ -67,9 +77,11 @@ class SweetAlert
         return $this->alertType;
     }
 
-    public function setAlertType(SweetAlertType $alertType): void
+    public function setAlertType(SweetAlertType $alertType): self
     {
         $this->alertType = $alertType;
+
+        return $this->update();
     }
 
     public function getText(): string
@@ -77,9 +89,11 @@ class SweetAlert
         return $this->text;
     }
 
-    public function setText(string $text): void
+    public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this->update();
     }
 
     public function getTitle(): ?string
@@ -91,7 +105,8 @@ class SweetAlert
     {
         $this->title = $title;
 
-        return $this;
+
+        return $this->update();
     }
 
     public function getUrl(): ?string
@@ -103,7 +118,7 @@ class SweetAlert
     {
         $this->url = $url;
 
-        return $this;
+        return $this->update();
     }
 
     public function getTimer(): ?int
@@ -115,7 +130,7 @@ class SweetAlert
     {
         $this->timer = $timer;
 
-        return $this;
+        return $this->update();
     }
 
     public function getDefaultTimer(): ?int
@@ -127,14 +142,14 @@ class SweetAlert
     {
         $this->defaultTimer = $defaultTimer;
 
-        return $this;
+        return $this->update();
     }
 
     public function dontClose(): self
     {
         $this->setDefaultTimer(null);
 
-        return $this;
+        return $this->update();
     }
 
     public function getConfirmButtonText(): ?string
@@ -146,7 +161,7 @@ class SweetAlert
     {
         $this->confirmButtonText = $confirmButtonText;
 
-        return $this;
+        return $this->update();
     }
 
     public function getConfirmButtonColor(): ?string
@@ -158,7 +173,7 @@ class SweetAlert
     {
         $this->confirmButtonColor = $confirmButtonColor;
 
-        return $this;
+        return $this->update();
     }
 
     public function getCancelButtonText(): ?string
@@ -171,7 +186,7 @@ class SweetAlert
         $this->cancelButtonText = $cancelButtonText;
         $this->setShowCancelButton(!empty($cancelButtonText));
 
-        return $this;
+        return $this->update();
     }
 
     public function getCancelButtonColor(): ?string
@@ -183,7 +198,7 @@ class SweetAlert
     {
         $this->cancelButtonColor = $cancelButtonColor;
 
-        return $this;
+        return $this->update();
     }
 
     public function isShowCancelButton(): bool
@@ -195,7 +210,7 @@ class SweetAlert
     {
         $this->showCancelButton = $showCancelButton;
 
-        return $this;
+        return $this->update();
     }
 
     public function toArray(): array
@@ -241,20 +256,8 @@ class SweetAlert
         return $data;
     }
 
-//    public static function appendToUrl($url): string
-//    {
-//        $sweetAlert = self::$message;
-//        $url = CSRFHelper::addCSRFToUrl($url);
-//
-//        if ($sweetAlert instanceof self) {
-//            $url = Utils::addParamsToUrl($url, ['swal' => base64_encode(json_encode($sweetAlert->toArray()))]);
-//        }
-//
-//        return $url;
-//    }
-
     public static function hasMessage(): bool
     {
-        return self::$message instanceof self;
+        return self::$message instanceof self || session()->has('swalData');
     }
 }

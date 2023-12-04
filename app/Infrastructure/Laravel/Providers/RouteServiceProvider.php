@@ -63,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function loadRoutesFromDirectory(string $directory)
     {
         // base name of 1 dir back
-        $directoryName = basename(dirname($directory));
+        $directoryName = strtolower(basename(dirname($directory)));
 
         $webRouteFile = $directory . '/web.php';
         $apiRouteFile = $directory . '/api.php';
