@@ -42,11 +42,13 @@ E.g:
 ### Aliases
 It is common in JavaScript applications to create aliases to regularly referenced directories. But, you may also create aliases to use in Blade by using the macro method on the Illuminate\Support\Facades\Vite class. Typically, "macros" should be defined within the boot method of a service provider:
 ```php
-use Illuminate\Support\Facades\Vite;
-
-Vite::macro('asset', function ($path) {
-    return asset(Vite::get($path));
-});
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
+}
 ```
 
 Once a macro has been defined, it can be invoked within your templates. For example, we can use the image macro defined above to reference an asset located at `resources/images/logo.png`:
