@@ -55,7 +55,7 @@
 
 
                                         <p class=" pb-lg-2">Don't have an account?
-                                            <a href="#!"><b>Register here</b></a></p>
+                                            <a href="{{route("register")}}"><b>Register here</b></a></p>
 
                                     </form>
 

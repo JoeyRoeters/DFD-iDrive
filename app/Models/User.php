@@ -2,15 +2,28 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Auth\User as AuthenticateUser;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use AuthenticatableTrait;
+    use Authorizable;
+    use \Illuminate\Auth\Authenticatable;
+    use Notifiable;
+    use HasApiTokens;
+    use \Illuminate\Auth\MustVerifyEmail;
+
+
+    protected $primaryKey = '_id';
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +31,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
     ];
@@ -32,6 +46,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
 
     /**
      * The attributes that should be cast.
