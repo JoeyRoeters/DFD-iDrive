@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
 
 
 
 Route::middleware(['auth'])->group(function () {
-    //cal function from class
     Route::get('/', [HomeController::class, 'index'])->name('/');
 });
 

@@ -14,26 +14,42 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form>
+                                    <form method="POST" action="{{ route('postLogin') }}">
+                                        @csrf
 
                                         <h1 class="fw-normal pb-1" style="letter-spacing: 1px;">Welcome back</h1>
 
                                         <div class="form-outline ">
                                             <label class="form-label" for="form2Example17">Email</label>
-                                            <input type="email" id="form2Example17"
-                                                   class="form-control form-control-lg"/>
+                                            <input id="email" type="email"
+                                                   class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                                   name="email" value="{{ old('email') }}" required autocomplete="email"
+                                                   autofocus>
+
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-outline ">
                                             <label class="form-label" for="form2Example27">Password</label>
-                                            <input type="password" id="form2Example27"
-                                                   class="form-control form-control-lg"/>
+                                            <input id="password" type="password"
+                                                   class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                                   name="password" required autocomplete="current-password">
                                         </div>
+
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                         <a class="small text-muted" href="#!">Forgot password?</a>
 
                                         <div class="pt-1 ">
                                             <button id="loginBtn" class="btn text-white btn-lg btn-block rounded-3"
-                                                    type="button">Login
+                                                    type="submit">Login
                                             </button>
                                         </div>
 
