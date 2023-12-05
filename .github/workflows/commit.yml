@@ -32,7 +32,11 @@ jobs:
 
       - name: Copy .env
         run: |
+          ls
+          cat
           cd $GITHUB_WORKSPACE
+          ls
+          cat
           php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Install Composer Dependencies
