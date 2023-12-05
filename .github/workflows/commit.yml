@@ -28,8 +28,6 @@ jobs:
 
   compile-production-files:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Compile and Minify SCSS for Production
@@ -38,6 +36,7 @@ jobs:
           npm run build
       - name: Commit Changes
         run: |
+          git pull
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
@@ -46,8 +45,6 @@ jobs:
 
   code-styling-fixer:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
@@ -60,6 +57,7 @@ jobs:
         run: vendor/bin/php-cs-fixer fix .
       - name: Commit Changes
         run: |
+          git pull
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
