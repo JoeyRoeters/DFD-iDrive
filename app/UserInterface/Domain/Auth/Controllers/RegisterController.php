@@ -1,7 +1,7 @@
 <?php
 
 namespace App\UserInterface\Domain\Auth\Controllers;
-use App\Models\User;
+use App\Domain\User\Model\User;
 use App\UserInterface\Domain\Auth\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;

@@ -1,6 +1,10 @@
-@extends('layouts.app')
-@section('content')
+@extends('base')
 
+@section('head')
+    @vite('app/UserInterface/Domain/Auth/Resources/sass/auth.scss')
+@endsection
+
+@section('content')
     <div class="auth">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
