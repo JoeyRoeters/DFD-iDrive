@@ -36,10 +36,11 @@ jobs:
           npm run build
       - name: Commit Changes
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "noreply@idrive.nl"
+          git config --global user.name "iDrive actions"
           git add .
           git commit -m "Compile and minify production files" || echo "No changes to commit"
+          git push
 
   code-styling-fixer:
     runs-on: ubuntu-latest
@@ -53,7 +54,8 @@ jobs:
         run: vendor/bin/php-cs-fixer fix .
       - name: Commit Changes
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "noreply@idrive.nl"
+          git config --global user.name "iDrive actions"
           git add .
           git commit -m "Apply code styling fixes" || echo "No changes to commit"
+          git push
