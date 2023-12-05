@@ -30,11 +30,14 @@ jobs:
           restore-keys: |
             composer-${{ runner.os }}-
 
-      - name: Install Composer Dependencies
+      - name: Copy .env
         run: |
           cd $GITHUB_WORKSPACE
           php -r "file_exists('.env') || copy('.env.example', '.env');"
-          composer install --no-scripts --no-progress --prefer-dist --no-interaction
+
+      - name: Install Composer Dependencies
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Generate Key
         run: php artisan key:generate
 
