@@ -62,14 +62,14 @@ return [
     'providers' => [
 //        'users' => [
 //            'driver' => 'eloquent',
-//            'model' => App\Models\User::class,
+//            'model' => \App\Domain\User\Model\User::class,
 //        ],
 
          'users' => [
              'driver' => 'eloquent',
              'table' => 'users',
              'hash' => true,
-             'model' => App\Models\User::class,
+             'model' => \App\Domain\User\Model\User::class,
          ],
     ],
 

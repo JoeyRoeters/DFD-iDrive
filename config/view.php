@@ -1,5 +1,7 @@
 <?php
 
+$viewDirectories = glob(base_path('app/UserInterface/Domain/**/Resources/views'), GLOB_ONLYDIR);
+
 return [
 
     /*
@@ -13,8 +15,8 @@ return [
     |
     */
 
-    'paths' => [
-        resource_path('views'),
+    'paths' => [...$viewDirectories,
+        resource_path('views')
     ],
 
     /*
