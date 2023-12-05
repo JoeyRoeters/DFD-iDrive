@@ -7,7 +7,7 @@ use App\Domain\Shared\Interface\ValueObjectInterface;
 
 class FloatValueObject extends AbstractValueObject
 {
-    const PRECISION = 10;
+    public const PRECISION = 10;
 
     public static function fromString(string $value): self
     {

@@ -20,7 +20,7 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public function equals(ValueObjectInterface $valueObject): bool
     {
-        if (! $valueObject instanceof DateTimeInterface) {
+        if (!$valueObject instanceof DateTimeInterface) {
             return false;
         }
 
@@ -79,7 +79,7 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public function isWeekday(): bool
     {
-        return ! $this->isWeekend();
+        return !$this->isWeekend();
     }
 
     public function isCurrentWeek(): bool
