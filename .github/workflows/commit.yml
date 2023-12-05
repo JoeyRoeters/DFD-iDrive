@@ -38,9 +38,8 @@ jobs:
           npm run build
       - name: Commit Changes
         run: |
-          git config --global user.email "noreply@idrive.nl"
-          git config --global user.name "iDrive actions"
-          git remote set-url --push origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/Zhyltix/DPD-iDrive
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "Compile and minify production files" || echo "No changes to commit"
           git push
@@ -61,9 +60,8 @@ jobs:
         run: vendor/bin/php-cs-fixer fix .
       - name: Commit Changes
         run: |
-          git config --global user.email "noreply@idrive.nl"
-          git config --global user.name "iDrive actions"
-          git remote set-url --push origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/Zhyltix/DPD-iDrive
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "Apply code styling fixes" || echo "No changes to commit"
           git push
