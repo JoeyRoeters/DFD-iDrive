@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\SweetAlert\SweetAlert;
 use Illuminate\Support\Facades\Route;
 
 /*
