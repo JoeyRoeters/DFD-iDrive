@@ -11,7 +11,7 @@ class FloatValueObject extends AbstractValueObject
 
     public static function fromString(string $value): static
     {
-        return new static((float) $value);
+        return new self((float) $value);
     }
 
     public function __toString(): string

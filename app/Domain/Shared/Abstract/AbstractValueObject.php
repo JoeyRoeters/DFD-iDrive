@@ -6,7 +6,7 @@ use App\Domain\Shared\Interface\ValueObjectInterface;
 
 abstract class AbstractValueObject implements ValueObjectInterface
 {
-    protected $value;
+    protected mixed $value;
 
     public function __construct(mixed $value)
     {

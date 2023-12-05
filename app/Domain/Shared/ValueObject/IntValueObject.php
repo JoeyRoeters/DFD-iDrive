@@ -8,7 +8,7 @@ class IntValueObject extends AbstractValueObject
 {
     public static function fromString(string $value): static
     {
-        return new static((int) $value);
+        return new self((int) $value);
     }
 
     public function __toString(): string

@@ -20,6 +20,10 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public function equals(ValueObjectInterface $valueObject): bool
     {
+        if (! $valueObject instanceof DateTimeInterface) {
+            return false;
+        }
+
         return $this->getTimestamp() === $valueObject->getTimestamp();
     }
 

@@ -10,11 +10,11 @@ class BooleanValueObject extends AbstractValueObject
     public static function fromString(string $value): static
     {
         if ('true' === $value) {
-            return new static(true);
+            return new self(true);
         }
 
         if ('false' === $value) {
-            return new static(false);
+            return new self(false);
         }
 
         throw new InvalidArgumentException('Invalid boolean value');
