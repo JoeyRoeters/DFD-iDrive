@@ -1,5 +1,9 @@
 @extends('base')
 
+@section('head')
+    @vite('app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss')
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">

@@ -4,11 +4,15 @@ import sassGlobImports from 'vite-plugin-sass-glob-import';
 import glob from "glob";
 import path from 'path';
 
+let domainFiles = glob.sync('app/UserInterface/Domain/**/Resources/**/*').filter(file => {
+    return file.match(/\.(css|js|scss)$/);
+});
+
 const files = [
     'resources/css/app.css',
     'resources/js/app.js',
     'resources/sass/app.scss',
-    ...glob.sync('app/UserInterface/Domain/**/Resources/**/*.(scss|js)')
+    ...domainFiles
 ];
 
 export default defineConfig({

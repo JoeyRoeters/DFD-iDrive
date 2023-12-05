@@ -17,17 +17,6 @@ export default class SweetAlert {
 
     init() {
         const swalData = window._swal;
-        if (!swalData) {
-            const url = new URL(window.location.href);
-            const swalParams = url.searchParams.get('swal');
-            if (swalParams) {
-                swalData = JSON.parse(decodeURIComponent(window.atob(swalParams)));
-
-                history.replaceState && history.replaceState(
-                    null, '', location.pathname + location.search.replace(/[\?&]swal=[^&]+/, '').replace(/^&/, '?') + location.hash
-                );
-            }
-        }
 
         if (swalData) {
             SweetAlert.fire(swalData).then(r => {
