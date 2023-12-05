@@ -2,7 +2,9 @@
 
 namespace App\UserInterface\Domain\Auth\Controllers;
 use App\Domain\User\Model\User;
+use App\Helpers\SweetAlert\SweetAlert;
 use App\UserInterface\Domain\Auth\Requests\RegisterRequest;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -39,13 +41,9 @@ class RegisterController extends BaseController
         ]);
 
         if ($user->save()) {
-//            event(new Registered($user));
-            $credentials = [
-                'username' => $request->input('email'),
-                'password' => $request->input('password')
-            ];
-
+            event(new Registered($user));
             Auth::login($user);
+            SweetAlert::createInfo("There is a verification link sent to your email. Please verify your email to continue.");
             return redirect()->intended('/');
         } else {
             throw ValidationException::withMessages(['error' => 'Something went wrong']);

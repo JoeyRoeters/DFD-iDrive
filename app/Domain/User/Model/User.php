@@ -13,15 +13,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends AuthenticateUser implements Authenticatable
-//                                               MustVerifyEmail
+class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail
 {
     use AuthenticatableTrait;
     use Authorizable;
     use \Illuminate\Auth\Authenticatable;
     use Notifiable;
     use HasApiTokens;
-//    use \Illuminate\Auth\MustVerifyEmail;
+    use \Illuminate\Auth\MustVerifyEmail;
 
 
     protected $primaryKey = '_id';

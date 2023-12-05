@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware(['auth'])->group(function () {
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/', function () {
-        // you can use this to test the sweet alert
-        // you will be redirected to the homepage with a sweet alert
-        SweetAlert::createError('Test')->setTimer(null);
 
         return Redirect::to('/home/test');
     });
