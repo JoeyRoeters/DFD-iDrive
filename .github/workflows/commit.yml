@@ -1,7 +1,6 @@
 name: Laravel CI
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -175,7 +174,7 @@ jobs:
 
   cleanup:
     runs-on: ubuntu-latest
-    needs: [test, php-cs-fixer, static-analysis]
+    needs: [test, php-cs-fixer, compile-front-end, static-analysis]
     steps:
       - name: Remove .env
         run: rm -f .env
