@@ -27,7 +27,7 @@ class LoginController extends BaseController
 
         if (!$userExists) {
             // Geen gebruiker gevonden met het opgegeven e-mailadres
-            throw ValidationException::withMessages(['email' => 'Geen gebruiker gevonden met dit e-mailadres']);
+            throw ValidationException::withMessages(['email' => 'No user found with this email']);
         }
 
         // Probeer de gebruiker in te loggen
@@ -37,6 +37,6 @@ class LoginController extends BaseController
         }
 
         // Onjuist wachtwoord
-        throw ValidationException::withMessages(['password' => 'Onjuist wachtwoord']);
+        throw ValidationException::withMessages(['password' => 'Invalid password']);
     }
 }
