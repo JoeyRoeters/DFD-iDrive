@@ -1,3 +1,4 @@
+
 import jQuery from "jquery";
 window.$ = jQuery;
 
@@ -5,6 +6,11 @@ import {popper} from "@popperjs/core";
 window.popper = popper;
 
 import Swal from "sweetalert2";
+import * as Sentry from "@sentry/browser";
+
+Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
+});
 
 import './bootstrap';
 

@@ -3,8 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "watch": "vite build --watch"
+        "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.6.1",
@@ -20,6 +19,7 @@
         "jquery": "^3.7.1",
         "path": "^0.12.7",
         "popper.js": "^1.16.1",
-        "sweetalert2": "^11.10.1"
+        "sweetalert2": "^11.10.1",
+        "@sentry/browser": "^7.40.0"
     }
 }
