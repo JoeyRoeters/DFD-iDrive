@@ -41,6 +41,9 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - - name: Checkout Repository
+          uses: actions/checkout@v2
+
       - name: Run PHPUnit Tests
         run: php artisan test
 
@@ -51,6 +54,9 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - - name: Checkout Repository
+          uses: actions/checkout@v2
+
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix --diff --dry-run -v
 
@@ -58,6 +64,9 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Static Code Analysis with PHPStan
         run: vendor/bin/phpstan analyze app --level 6
 
