@@ -53,7 +53,7 @@
                                         </div>
 
 
-                                        <a class="small text-muted" href="#!">Forgot password?</a>
+                                        <a class="small text-muted" href="{{route("forgot-password")}}">Forgot password?</a>
 
                                         <div class="pt-1 ">
                                             <button id="loginBtn" class="btn text-white btn-lg btn-block rounded-3"

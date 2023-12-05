@@ -2,6 +2,7 @@
 
 namespace App\Domain\User\Model;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Auth\User as AuthenticateUser;
@@ -13,7 +14,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail
+class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail, CanResetPassword
 {
     use AuthenticatableTrait;
     use Authorizable;
