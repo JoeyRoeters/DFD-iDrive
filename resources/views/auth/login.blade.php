@@ -38,13 +38,16 @@
                                             <input id="password" type="password"
                                                    class="form-control form-control-lg @error('password') is-invalid @enderror"
                                                    name="password" required autocomplete="current-password">
-                                        </div>
 
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
-                                        @enderror
+                                            @enderror
+
+                                        </div>
+
+
                                         <a class="small text-muted" href="#!">Forgot password?</a>
 
                                         <div class="pt-1 ">

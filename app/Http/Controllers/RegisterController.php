@@ -43,18 +43,14 @@ class RegisterController extends BaseController
         ]);
 
         if ($user->save()) {
-            event(new Registered($user));
+//            event(new Registered($user));
             $credentials = [
                 'username' => $request->input('email'),
                 'password' => $request->input('password')
             ];
-            //login function for mongoDB
 
-            if (Auth::attempt($credentials)) {
-                return redirect()->intended('/');
-            } else {
-                throw ValidationException::withMessages(['password' => 'Wrong password']);
-            }
+            Auth::login($user);
+            return redirect()->intended('/');
         } else {
             throw ValidationException::withMessages(['error' => 'Something went wrong']);
         }
