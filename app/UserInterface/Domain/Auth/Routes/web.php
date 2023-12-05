@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\UserInterface\Domain\Auth\Controllers\LoginController;
+use App\UserInterface\Domain\Auth\Controllers\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use App\Helpers\SweetAlert\SweetAlert;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +17,10 @@ use App\Helpers\SweetAlert\SweetAlert;
 |
 */
 
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
 
-Route::get('/', function () {
-    // you can use this to test the sweet alert
-    // you will be redirected to the homepage with a sweet alert
-    SweetAlert::createError('Test')->setTimer(null);
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'postRegister'])->name('postRegister');
 
-    return Redirect::to('/home');
-});
+

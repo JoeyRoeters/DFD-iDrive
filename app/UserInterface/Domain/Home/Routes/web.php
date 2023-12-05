@@ -20,7 +20,7 @@ Route::get('/', function () {
     // you will be redirected to the homepage with a sweet alert
     SweetAlert::createError('Test')->setTimer(null);
 
-    return Redirect::to('/homepage/test');
+    return Redirect::to('/home/test');
 });
 
 Route::get('/test', function () {

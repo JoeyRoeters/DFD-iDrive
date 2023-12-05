@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+namespace App\UserInterface\Domain\Auth\Controllers;
+use App\UserInterface\Domain\Auth\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends BaseController
@@ -16,7 +15,7 @@ class LoginController extends BaseController
 
     public function login()
     {
-        return view('auth/login');
+        return view('login');
     }
 
     public function postLogin(LoginRequest $request)

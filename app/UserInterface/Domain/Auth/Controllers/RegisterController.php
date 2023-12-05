@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+namespace App\UserInterface\Domain\Auth\Controllers;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\UserInterface\Domain\Auth\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
 class RegisterController extends BaseController
@@ -20,7 +16,7 @@ class RegisterController extends BaseController
 
     public function register()
     {
-        return view('auth/register');
+        return view('register');
     }
 
     public function postRegister(RegisterRequest $request)

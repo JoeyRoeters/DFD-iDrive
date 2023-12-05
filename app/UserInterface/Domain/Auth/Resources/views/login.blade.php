@@ -1,4 +1,9 @@
-@extends('auth.layouts.app')
+@extends('base')
+
+@section('head')
+    @vite('app/UserInterface/Domain/Auth/Resources/sass/auth.scss')
+@endsection
+
 @section('content')
 
     <div class="auth">
