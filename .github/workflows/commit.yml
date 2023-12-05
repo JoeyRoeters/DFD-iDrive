@@ -44,6 +44,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor
+          key: composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
       - name: Run PHPUnit Tests
         run: php artisan test
 
@@ -57,6 +66,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor
+          key: composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix --diff --dry-run -v
 
@@ -66,6 +84,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor
+          key: composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
 
       - name: Static Code Analysis with PHPStan
         run: vendor/bin/phpstan analyze app --level 6
