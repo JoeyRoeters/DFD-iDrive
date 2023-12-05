@@ -28,6 +28,8 @@ jobs:
 
   compile-production-files:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Compile and Minify SCSS for Production
@@ -38,16 +40,21 @@ jobs:
         run: |
           git config --global user.email "noreply@idrive.nl"
           git config --global user.name "iDrive actions"
+          git remote set-url --push origin https://your_username:$GITHUB_TOKEN@github.com/Zhyltix/DPD-iDrive
           git add .
           git commit -m "Compile and minify production files" || echo "No changes to commit"
           git push
 
   code-styling-fixer:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Run PHP Stan
         run: vendor/bin/phpstan analyze app --level 6
       - name: Run PHP CS Fixer
@@ -56,6 +63,7 @@ jobs:
         run: |
           git config --global user.email "noreply@idrive.nl"
           git config --global user.name "iDrive actions"
+          git remote set-url --push origin https://your_username:$GITHUB_TOKEN@github.com/Zhyltix/DPD-iDrive
           git add .
           git commit -m "Apply code styling fixes" || echo "No changes to commit"
           git push
