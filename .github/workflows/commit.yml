@@ -2,7 +2,6 @@ name: Commit
 
 on:
   push: {}
-  pull_request: {}
 
 jobs:
   laravel-tests:
@@ -46,6 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
       - name: Run PHP Stan
         run: vendor/bin/phpstan analyze app --level 6
       - name: Run PHP CS Fixer
