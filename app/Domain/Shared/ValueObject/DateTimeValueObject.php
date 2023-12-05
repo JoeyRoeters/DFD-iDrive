@@ -8,9 +8,9 @@ use DateTimeZone;
 
 final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjectInterface, DateTimeInterface
 {
-    public static function fromString(string $value): static
+    public static function fromString(string $value): self
     {
-        return new static($value);
+        return new self($value);
     }
 
     public function __toString(): string

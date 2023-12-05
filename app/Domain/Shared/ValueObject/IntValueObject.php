@@ -6,7 +6,7 @@ use App\Domain\Shared\Abstract\AbstractValueObject;
 
 class IntValueObject extends AbstractValueObject
 {
-    public static function fromString(string $value): static
+    public static function fromString(string $value): self
     {
         return new self((int) $value);
     }

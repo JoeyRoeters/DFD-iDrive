@@ -9,7 +9,7 @@ class FloatValueObject extends AbstractValueObject
 {
     const PRECISION = 10;
 
-    public static function fromString(string $value): static
+    public static function fromString(string $value): self
     {
         return new self((float) $value);
     }
