@@ -11,9 +11,26 @@
 |
 */
 
+use App\Helpers\SweetAlert\SweetAlert;
+use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\View;
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
+
+// Share data with all views
+View::composer('*', function ($view) {
+    if (!SweetAlert::hasMessage()) {
+        return;
+    }
+
+    $view->with([
+        'swal' => SweetAlert::$message?->toArray() ?? session()->get('swalData'),
+    ]);
+});
 
 /*
 |--------------------------------------------------------------------------
