@@ -1,9 +1,11 @@
-.auth {
-    background-color: #7195CE;
+#auth {
+    background: rgb(112,151,206);
+    background: linear-gradient(90deg, rgba(112,151,206,1) 0%, rgba(133,136,196,1) 100%);
     height: inherit;
 
     #imageSide {
         background-color: #87B5F7;
+        border-radius: 1rem;
     }
 
     #logo {
@@ -16,5 +18,28 @@
     #loginBtn {
         width: 100%;
         background-color: #656ED3;
+        z-index: 1;
+        position: relative;
     }
+
+    p {
+        z-index: 1;
+        position: relative;
+    }
+
+    #rectangleLogin {
+        position: absolute;
+        top: 64%;
+        transform: rotate(270deg);
+        right: 1%;
+    }
+
+    #rectangleRegister{
+        position: absolute;
+        top: 72.6%;
+        transform: rotate(270deg);
+        right: 1%;
+
+    }
+
 }

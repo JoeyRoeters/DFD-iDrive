@@ -25,9 +25,23 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email',
             'firstname' => 'required',
             'lastname' => 'required',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+                'confirmed',
+            ],
             'terms' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'password.regex' => 'Het wachtwoord moet minimaal 8 tekens lang zijn en ten minste één kleine letter, één hoofdletter, één cijfer en één speciaal teken bevatten.',
+        ];
+    }
+
+
 }

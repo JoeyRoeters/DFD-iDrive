@@ -6,14 +6,14 @@
 
 @section('content')
 
-    <div class="auth">
+    <div id="auth">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
                             <div id="imageSide" class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img id="logo" src="{{ asset('assets/images/auth/logo.png') }}"
+                                <img id="logo" src="{{ Vite::asset('resources/images/auth/logo.png') }}"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -27,7 +27,7 @@
                                         <div class="form-outline ">
                                             <label class="form-label" for="form2Example17">Email</label>
                                             <input id="email" type="email"
-                                                   class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                                   class="form-control rounded-4 form-control-lg @error('email') is-invalid @enderror"
                                                    name="email" value="{{ old('email') }}" required autocomplete="email"
                                                    autofocus>
 
@@ -41,7 +41,7 @@
                                         <div class="form-outline ">
                                             <label class="form-label" for="form2Example27">Password</label>
                                             <input id="password" type="password"
-                                                   class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                                   class="form-control rounded-4 form-control-lg @error('password') is-invalid @enderror"
                                                    name="password" required autocomplete="current-password">
 
                                             @error('password')
@@ -53,14 +53,17 @@
                                         </div>
 
 
-                                        <a class="small text-muted" href="{{route("forgot-password")}}">Forgot password?</a>
+                                        <a class="small text-muted" href="{{route("forgot-password")}}">Forgot
+                                            password?</a>
 
                                         <div class="pt-1 ">
-                                            <button id="loginBtn" class="btn text-white btn-lg btn-block rounded-3"
+                                            <button id="loginBtn" class="btn text-white btn-lg btn-block rounded-4"
                                                     type="submit">Login
                                             </button>
                                         </div>
 
+                                        <img id="rectangleLogin"  src="{{ Vite::asset('resources/images/auth/Rectangle5.png') }}"
+                                             alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
 
                                         <p class=" pb-lg-2">Don't have an account?
                                             <a href="{{route("register")}}"><b>Register here</b></a></p>

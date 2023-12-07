@@ -1,13 +1,23 @@
 {
-  "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
+  "app/UserInterface/Domain/Auth/Resources/sass/auth.scss": {
+    "file": "assets/auth-54ff7007.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Auth/Resources/sass/auth.scss"
+  },
+  "app/UserInterface/Domain/Home/Resources/js/homepage.js": {
     "file": "assets/homepage-129624fe.js",
     "isEntry": true,
-    "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
+    "src": "app/UserInterface/Domain/Home/Resources/js/homepage.js"
   },
-  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
-    "file": "assets/_homepage-c5f9c697.css",
+  "app/UserInterface/Domain/Home/Resources/sass/_homepage.scss": {
+    "file": "assets/_homepage-4ed993c7.js",
     "isEntry": true,
-    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
+    "src": "app/UserInterface/Domain/Home/Resources/sass/_homepage.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 2.scss": {
+    "file": "assets/_homepage 2-c5f9c697.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 2.scss"
   },
   "resources/css/app.css": {
     "file": "assets/app-4ed993c7.js",
@@ -15,7 +25,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-62ae2171.js",
+    "file": "assets/app-4597ef9c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
