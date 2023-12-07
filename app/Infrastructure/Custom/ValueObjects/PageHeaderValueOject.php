@@ -33,7 +33,7 @@ class PageHeaderValueOject
     }
 
     /**
-     * @return array
+     * @return ButtonValueObject[]
      */
     public function getButtons(): array
     {

@@ -8,11 +8,17 @@ use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
 
 class Main extends AbstractViewController
 {
+    /**
+     * @inheritdoc
+     */
     protected function view(): string
     {
         return 'homepage';
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function pageHeader(): PageHeaderValueOject
     {
         return new PageHeaderValueOject(
@@ -23,6 +29,9 @@ class Main extends AbstractViewController
         );
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function appendViewData(): array
     {
         return [];

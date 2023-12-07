@@ -4,11 +4,15 @@ namespace App\Infrastructure\Custom;
 
 use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
 use App\Infrastructure\Laravel\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
+use Illuminate\View\View;
 
 abstract class AbstractViewController extends Controller
 {
+    /**
+     * @return array
+     */
     private function defaultViewData(): array
     {
         return [
@@ -16,12 +20,21 @@ abstract class AbstractViewController extends Controller
         ];
     }
 
+    /**
+     * @param Request $request
+     */
     protected function loadData(Request $request): void
     {
     }
 
+    /**
+     * @return string
+     */
     abstract protected function view(): string;
 
+    /**
+     * @return PageHeaderValueOject
+     */
     abstract protected function pageHeader(): PageHeaderValueOject;
 
     /**
@@ -37,11 +50,15 @@ abstract class AbstractViewController extends Controller
     /**
      * return data array to append to view. Override this method if you want to append data to view.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     abstract protected function appendViewData(): array;
 
-    public function run(Request $request)
+    /**
+     * @param Request $request
+     * @return View|RedirectResponse
+     */
+    public function run(Request $request): View|RedirectResponse
     {
         $this->loadData($request);
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\UserInterface\Domain\Homepage\Controllers\Main;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
