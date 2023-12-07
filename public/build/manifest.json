@@ -5,7 +5,7 @@
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
   },
   "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
-    "file": "assets/_homepage-c5f9c697.css",
+    "file": "assets/_homepage-ed0cff5d.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
   },
@@ -15,13 +15,61 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-4597ef9c.js",
+    "file": "assets/app-a78c34f9.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-fd6c2665.css",
+    "file": "assets/app-81b8a10e.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
+  },
+  "resources/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-824e7f57.ttf",
+    "src": "resources/webfonts/fa-brands-400.ttf"
+  },
+  "resources/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-5127b133.woff2",
+    "src": "resources/webfonts/fa-brands-400.woff2"
+  },
+  "resources/webfonts/fa-duotone-900.ttf": {
+    "file": "assets/fa-duotone-900-6c0cb98a.ttf",
+    "src": "resources/webfonts/fa-duotone-900.ttf"
+  },
+  "resources/webfonts/fa-duotone-900.woff2": {
+    "file": "assets/fa-duotone-900-73a3f577.woff2",
+    "src": "resources/webfonts/fa-duotone-900.woff2"
+  },
+  "resources/webfonts/fa-light-300.ttf": {
+    "file": "assets/fa-light-300-11a475ce.ttf",
+    "src": "resources/webfonts/fa-light-300.ttf"
+  },
+  "resources/webfonts/fa-light-300.woff2": {
+    "file": "assets/fa-light-300-3b89a6a3.woff2",
+    "src": "resources/webfonts/fa-light-300.woff2"
+  },
+  "resources/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-ba3c4db3.ttf",
+    "src": "resources/webfonts/fa-regular-400.ttf"
+  },
+  "resources/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-9ac06ddb.woff2",
+    "src": "resources/webfonts/fa-regular-400.woff2"
+  },
+  "resources/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-cbb0ea37.ttf",
+    "src": "resources/webfonts/fa-solid-900.ttf"
+  },
+  "resources/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-25b8df94.woff2",
+    "src": "resources/webfonts/fa-solid-900.woff2"
+  },
+  "resources/webfonts/fa-thin-100.ttf": {
+    "file": "assets/fa-thin-100-4976bfaa.ttf",
+    "src": "resources/webfonts/fa-thin-100.ttf"
+  },
+  "resources/webfonts/fa-thin-100.woff2": {
+    "file": "assets/fa-thin-100-c21c52eb.woff2",
+    "src": "resources/webfonts/fa-thin-100.woff2"
   }
 }
