@@ -39,12 +39,12 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public static function fromPrimitives(string $datetime): static
     {
-        return new static($datetime);
+        return new self($datetime);
     }
 
     public static function create(): static
     {
-        return new static();
+        return new self();
     }
 
     public function isFuture(): bool
