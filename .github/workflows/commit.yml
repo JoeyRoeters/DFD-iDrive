@@ -34,7 +34,7 @@ jobs:
       - name: Compile and Minify SCSS for Production
         run: |
           npm install
-          npm run build
+          vite build
       - name: Commit Changes
         run: |
           git pull
