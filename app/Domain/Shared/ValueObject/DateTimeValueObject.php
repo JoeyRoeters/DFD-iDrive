@@ -8,9 +8,9 @@ use DateTimeZone;
 
 final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjectInterface, DateTimeInterface
 {
-    public static function fromString(string $value): static
+    public static function fromString(string $value): self
     {
-        return new static($value);
+        return new self($value);
     }
 
     public function __toString(): string
@@ -20,6 +20,10 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public function equals(ValueObjectInterface $valueObject): bool
     {
+        if (!$valueObject instanceof DateTimeInterface) {
+            return false;
+        }
+
         return $this->getTimestamp() === $valueObject->getTimestamp();
     }
 
@@ -35,12 +39,12 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public static function fromPrimitives(string $datetime): static
     {
-        return new static($datetime);
+        return new self($datetime);
     }
 
     public static function create(): static
     {
-        return new static();
+        return new self();
     }
 
     public function isFuture(): bool
@@ -75,7 +79,7 @@ final class DateTimeValueObject extends \DateTimeImmutable implements ValueObjec
 
     public function isWeekday(): bool
     {
-        return ! $this->isWeekend();
+        return !$this->isWeekend();
     }
 
     public function isCurrentWeek(): bool

@@ -6,5 +6,4 @@ use App\Infrastructure\Laravel\Controller;
 
 class Main extends Controller
 {
-
 }
