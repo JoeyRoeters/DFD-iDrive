@@ -4,14 +4,14 @@ namespace App\Infrastructure\Custom;
 
 use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
 use App\Infrastructure\Laravel\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 abstract class AbstractViewController extends Controller
 {
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     private function defaultViewData(): array
     {
