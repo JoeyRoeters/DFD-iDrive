@@ -1,9 +1,7 @@
 <?php
 
-use App\Helpers\SweetAlert\SweetAlert;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-
+use App\UserInterface\Domain\Homepage\Controllers\Main;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // you can use this to test the sweet alert
-    // you will be redirected to the homepage with a sweet alert
-    SweetAlert::createError('Test')->setTimer(null);
-
-    return Redirect::to('/homepage/test');
-});
-
-Route::get('/test', function () {
-    return view('homepage');
-});
+Route::get('/', [Main::class, 'run'])->name('homepage');
