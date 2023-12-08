@@ -1,6 +1,7 @@
 <?php
 
 namespace App\UserInterface\Domain\Auth\Controllers;
+
 use App\Domain\User\Model\User;
 use App\Helpers\SweetAlert\SweetAlert;
 use App\UserInterface\Domain\Auth\Requests\RegisterRequest;
@@ -14,7 +15,8 @@ use Illuminate\Validation\ValidationException;
 
 class RegisterController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 
     public function register()
     {

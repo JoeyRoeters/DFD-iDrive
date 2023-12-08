@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\UserInterface\Domain\Auth\Controllers;
 
 use App\Domain\User\Model\User;
@@ -20,7 +19,8 @@ use Illuminate\Validation\ValidationException;
 
 class PasswordResetController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 
 
     public function resetPasswordView(Request $request)

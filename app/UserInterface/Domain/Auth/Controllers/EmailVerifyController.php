@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\UserInterface\Domain\Auth\Controllers;
 
 use App\Helpers\SweetAlert\SweetAlert;
@@ -15,7 +14,8 @@ use Illuminate\Validation\ValidationException;
 
 class EmailVerifyController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 
 
     public function noticeVerify()
