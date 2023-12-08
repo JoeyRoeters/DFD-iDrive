@@ -14,4 +14,8 @@ use App\UserInterface\Domain\Homepage\Controllers\Main;
 |
 */
 
+Route::middleware(['auth', 'verified'])->group(function () {
+
 Route::get('/', [Main::class, 'run'])->name('homepage');
+
+});

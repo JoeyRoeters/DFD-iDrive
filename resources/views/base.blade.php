@@ -35,7 +35,7 @@
             </div>
             <div>
                 <hr>
-                <a href="#" class="nav_link">
+                <a href="{{route("logout")}}" class="nav_link">
                     <i class='fa-regular fa-arrow-right-from-bracket'></i>
                     <span class="nav_name" style="margin-left: 3px;">Sign Out</span>
                 </a>
@@ -43,10 +43,12 @@
         </nav>
     </div>
 
+
+
     @includeWhen(
-    isset($pageHeader) && $pageHeader instanceof \App\Infrastructure\Custom\ValueObjects\PageHeaderValueObject,
+    isset($pageHeader) && $pageHeader instanceof App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject,
     'components.page_header',
-    ['pageHeader' => $pageHeader]
+    ['pageHeader' => isset($pageHeader) ? $pageHeader : null]
    )
     <!--Container Main start-->
     <div class="h-100">

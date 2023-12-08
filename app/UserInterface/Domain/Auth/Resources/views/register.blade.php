@@ -1,4 +1,4 @@
-@extends('base')
+@extends('auth.base')
 
 @section('head')
     @vite('app/UserInterface/Domain/Auth/Resources/sass/auth.scss')
@@ -12,7 +12,7 @@
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
                             <div id="imageSide" class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img id="logo" src="{{ Vite::asset('resources/images/auth/logo.png') }}"
+                                <img id="logo" src="{{ Vite::image('logos/logo_red.png') }}"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -118,8 +118,8 @@
                                         </div>
 
 
-                                        <img id="rectangleLogin"
-                                             src="{{ Vite::asset('resources/images/auth/Rectangle5.png') }}"
+                                        <img id="rectangleRegister"
+                                             src="{{ Vite::image('auth/Rectangle5.png') }}"
                                              alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
 
                                         <p class="">Already have an account?

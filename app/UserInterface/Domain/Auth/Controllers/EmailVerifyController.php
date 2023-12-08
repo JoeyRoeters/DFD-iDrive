@@ -41,7 +41,7 @@ class EmailVerifyController extends BaseController
 
         $request->fulfill();
         SweetAlert::createSuccess("Email is verified successfully!");
-
+        Auth::logout();
         return redirect()->intended('/');
     }
 

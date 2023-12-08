@@ -13,7 +13,7 @@
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
                             <div id="imageSide" class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img id="logo" src="{{ Vite::image('auth/logo.png') }}"
+                                <img id="logo" src="{{ Vite::image('logos/logo_red.png') }}"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center justify-content-space-even flex-direction">
