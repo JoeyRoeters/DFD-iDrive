@@ -15,12 +15,12 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-a78c34f9.js",
+    "file": "assets/app-4e03bc58.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-81b8a10e.css",
+    "file": "assets/app-945f6b41.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
