@@ -11,7 +11,7 @@ use App\Helpers\Overview\Column\ValueObject\Column;
 use App\Helpers\Overview\Table\ValueObject\TableConfiguration;
 use App\Helpers\Overview\Traits\FeedModelDataTrait;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
-use \Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Main extends AbstractOverviewController

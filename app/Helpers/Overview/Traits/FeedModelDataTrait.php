@@ -7,7 +7,7 @@ use App\Domain\Trip\Model\Trip;
 use App\Helpers\Overview\Table\Enum\TableDataRequestEnum;
 use App\Helpers\Overview\Table\ValueObject\TableDataRequest;
 use Illuminate\Database\Eloquent\Model;
-use \Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 trait FeedModelDataTrait
 {
