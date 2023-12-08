@@ -8,7 +8,8 @@ use Illuminate\Routing\Controller as BaseController;
 
 class HomeController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 
 
     public function index()

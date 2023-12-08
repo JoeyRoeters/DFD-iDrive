@@ -1,7 +1,7 @@
 <?php
 
-
 namespace App\UserInterface\Domain\Auth\Controllers;
+
 use App\UserInterface\Domain\Auth\Requests\LoginRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,7 +11,8 @@ use Illuminate\Validation\ValidationException;
 
 class LogoutController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 
     public function logout()
     {

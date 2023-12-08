@@ -68,7 +68,8 @@ Route::prefix('password')->group(function () {
     Route::get('/reset/{token}', [PasswordResetController::class, 'setNewPasswordView'])->name(
         'password.reset'
     );
-    Route::post('/resets', [PasswordResetController::class, 'handlePasswordReset'])->name('password.update');;
+    Route::post('/resets', [PasswordResetController::class, 'handlePasswordReset'])->name('password.update');
+    ;
 });
 
 //logout:
