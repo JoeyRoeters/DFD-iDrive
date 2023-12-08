@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use App\Helpers\SweetAlert\SweetAlert;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +13,6 @@ use App\Helpers\SweetAlert\SweetAlert;
 |
 */
 
-
 Route::get('/', function () {
-
-
-    return Redirect::to('/home');
+    return view('base');
 });

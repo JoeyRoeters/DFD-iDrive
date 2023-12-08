@@ -6,9 +6,9 @@ use App\Domain\Shared\Abstract\AbstractValueObject;
 
 class IntValueObject extends AbstractValueObject
 {
-    public static function fromString(string $value): static
+    public static function fromString(string $value): self
     {
-        return new static((int) $value);
+        return new self((int) $value);
     }
 
     public function __toString(): string

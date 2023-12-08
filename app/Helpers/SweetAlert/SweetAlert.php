@@ -2,9 +2,6 @@
 
 namespace App\Helpers\SweetAlert;
 
-use Illuminate\Session\Store;
-use Illuminate\Support\Facades\Session;
-
 class SweetAlert
 {
     public static ?self $message = null;
@@ -213,6 +210,9 @@ class SweetAlert
         return $this->update();
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         $data = [

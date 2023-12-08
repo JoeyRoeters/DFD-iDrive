@@ -20,15 +20,13 @@
             window._swal = @json($swal);
         @endif
     </script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', ...glob('resources/webfonts/*')])
 
     @yield('head')
 </head>
-<body>
+<body id="body-pd">
     @yield('body')
 </body>
 
-<script>
-
-</script>
+@yield('script')
 </html>

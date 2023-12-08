@@ -6,7 +6,7 @@ interface ValueObjectInterface
 {
     public function __toString(): string;
 
-    public static function fromString(string $value): static;
+    public static function fromString(string $value): self;
 
     public function value(): mixed;
 

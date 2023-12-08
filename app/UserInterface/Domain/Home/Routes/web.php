@@ -1,8 +1,7 @@
 <?php
 
-use App\Helpers\SweetAlert\SweetAlert;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use App\UserInterface\Domain\Homepage\Controllers\Main;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
-Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/', function () {
-
-        return Redirect::to('/home/test');
-    });
-
-    Route::get('/test', function () {
-        return view('homepage');
-    });
-});
-
-
+Route::get('/', [Main::class, 'run'])->name('homepage');

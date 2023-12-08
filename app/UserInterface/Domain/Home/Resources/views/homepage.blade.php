@@ -5,11 +5,14 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Homepage</h1>
+    <div class="homepage-under-construction">
+        <div class="homepage-under-construction_image">
+            <img src="{{ Vite::image('Illustrations/coming_soon.svg') }}" alt="Under Construction">
+        </div>
+
+        <div class="homepage-under-construction_text">
             <p>
-                This is the homepage.
+                This page is under construction. Please check back later.
             </p>
         </div>
     </div>

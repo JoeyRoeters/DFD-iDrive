@@ -1,0 +1,19 @@
+parameters:
+    level: 2
+    bootstrapFiles:
+        - .env
+    paths:
+        - database/*
+        - app/*
+        - tests/*
+    reportUnmatchedIgnoredErrors: false
+    excludePaths:
+        - app/Infrastructure/Laravel/*
+        - bootstrap/*
+        - config/*
+        - storage/*
+    ignoreErrors:
+        - '#Constant [a-zA-Z0-9\\_]+ not found#'
+        - '#PHPDoc#'
+        - '#PHPUnit#'
+        - '#Propel#'
