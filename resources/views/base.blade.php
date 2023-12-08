@@ -44,7 +44,7 @@
     </div>
 
     @includeWhen(
-    isset($pageHeader) && $pageHeader instanceof \App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject,
+    isset($pageHeader) && $pageHeader instanceof \App\Infrastructure\Custom\ValueObjects\PageHeaderValueObject,
     'components.page_header',
     ['pageHeader' => $pageHeader]
    )
