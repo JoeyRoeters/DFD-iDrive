@@ -2,10 +2,10 @@
 
 @section('body')
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
         <div class="d-flex align-items-center justify-content-around">
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-            <div class="header_name ml-1">Hello,  {{ Auth::user()?->name ?? "John Doe" }} </div>
+            <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
+            <div class="header_name ml-1">Hello, {{ Auth::user()?->name ?? "John Doe" }} </div>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -18,11 +18,11 @@
             </div>
 
             <div class="nav_list">
-                <a href="#" class="nav_link active">
+                <a href="{{ route('homepage') }}" class="nav_link active">
                     <i class="fa-regular fa-house"></i>
                     <span class="nav_name">Dashboard</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="{{ route('trip.main') }}" class="nav_link">
                     <i class="fa-regular fa-road"></i>
                     <span class="nav_name">Trips</span>
                 </a>
@@ -44,7 +44,7 @@
     </div>
 
     @includeWhen(
-    isset($pageHeader) && $pageHeader instanceof \App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject,
+    isset($pageHeader) && $pageHeader instanceof \App\Helpers\View\ValueObject\PageHeaderValueOject,
     'components.page_header',
     ['pageHeader' => $pageHeader]
    )
