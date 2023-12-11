@@ -67,8 +67,9 @@ class PasswordResetController extends BaseController
             $email = $request->email;
         }
         $token = $request->route('token');
+        $data['email'] = $token;
 
-        return view('password.password-set-new', compact('email', 'token'));
+        return view('password.password-set-new', $data);
     }
 
     public function handlePasswordReset(Request $request): RedirectResponse
