@@ -2,9 +2,10 @@
 
 namespace App\UserInterface\Domain\Devices\Controllers;
 
-use App\Infrastructure\Custom\AbstractViewController;
-use App\Infrastructure\Custom\ValueObjects\ButtonValueObject;
-use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
+
+use App\Helpers\View\Abstract\AbstractViewController;
+use App\Helpers\View\ValueObject\ButtonValueObject;
+use App\Helpers\View\ValueObject\PageHeaderValueOject;
 
 class OverviewController extends AbstractViewController
 {
