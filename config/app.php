@@ -168,6 +168,7 @@ return [
         // App\Infrastructure\Laravel\Providers\BroadcastServiceProvider::class,
         \App\Infrastructure\Laravel\Providers\EventServiceProvider::class,
         \App\Infrastructure\Laravel\Providers\RouteServiceProvider::class,
+        MongoDB\Laravel\MongoDBServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -182,7 +183,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
 ];

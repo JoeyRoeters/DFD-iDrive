@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('base');
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/', function () {
+        return Redirect::route("homepage");
+    });
+
 });

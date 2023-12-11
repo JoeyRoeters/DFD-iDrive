@@ -2,18 +2,53 @@
 
 namespace App\Domain\User\Model;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Domain\Trips\Model\Trip;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Auth\User as AuthenticateUser;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * User Model
+ *
+ * @property string $_id
+ * @property string $firstname
+ * @property string $lastname
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|User where($column, $operator = null, $value = null, $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFirstname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLastname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ *
+ */
+class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail, CanResetPassword
 {
-    use HasApiTokens;
-    use HasFactory;
+    use AuthenticatableTrait;
+    use Authorizable;
+    use \Illuminate\Auth\Authenticatable;
     use Notifiable;
+    use HasApiTokens;
+    use \Illuminate\Auth\MustVerifyEmail;
+
+
+    protected $primaryKey = '_id';
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +56,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
     ];
@@ -36,6 +72,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+
     /**
      * The attributes that should be cast.
      *
@@ -45,9 +83,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function trips()
-    {
-        return $this->hasMany(Trip::class);
-    }
 }

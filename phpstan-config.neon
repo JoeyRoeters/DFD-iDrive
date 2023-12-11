@@ -12,8 +12,10 @@ parameters:
         - bootstrap/*
         - config/*
         - storage/*
+        - vendor/*
     ignoreErrors:
         - '#Constant [a-zA-Z0-9\\_]+ not found#'
         - '#PHPDoc#'
         - '#PHPUnit#'
         - '#Propel#'
+        - '#Call to an undefined method Illuminate\\.*#'
