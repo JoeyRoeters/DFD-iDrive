@@ -25,7 +25,7 @@
                                         <input type="hidden" name="token" value="{{$token}}">
 
 
-                                        <label class="form-label">Email</label>
+                                        <label for="email" class="form-label">Email</label>
                                         <input id="email" type="email" readonly
                                                class="disabled form-control form-control-lg @error('email') is-invalid @enderror"
                                                name="email" value="{{$email}}">
@@ -36,7 +36,7 @@
                                             </span>
                                         @enderror
 
-                                        <label class="form-label">Password</label>
+                                        <label for="password" class="form-label">Password</label>
                                         <input id="password" type="password"
                                                class="form-control form-control-lg @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="current-password">
@@ -49,7 +49,7 @@
 
 
                                         <div class="form-outline">
-                                            <label class="form-label">Confirm Password</label>
+                                            <label for="password_confirmation" class="form-label">Confirm Password</label>
                                             <input id="password_confirmation" type="password"
                                                    class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror"
                                                    name="password_confirmation" required

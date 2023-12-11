@@ -8,21 +8,26 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class LoginController extends BaseController
 {
     use AuthorizesRequests;
     use ValidatesRequests;
 
-    public function login()
+    public function login(): View|RedirectResponse
     {
         if (Auth::check()) {
-            return redirect()->intended('/');
+            return redirect()->intended();
         }
         return view('login');
     }
 
-    public function postLogin(LoginRequest $request)
+    /**
+     * @throws ValidationException
+     */
+    public function postLogin(LoginRequest $request): RedirectResponse| ValidationException
     {
         $credentials = $request->only('email', 'password');
 
@@ -37,7 +42,7 @@ class LoginController extends BaseController
         // Probeer de gebruiker in te loggen
         if (Auth::attempt($credentials)) {
             // Succesvol ingelogd
-            return redirect()->intended('/');
+            return redirect()->intended();
         }
 
         // Onjuist wachtwoord

@@ -24,7 +24,7 @@
                                         <h1 class="fw-normal pb-1" style="letter-spacing: 1px;">Welcome to VAR!</h1>
 
                                         <div class="form-outline ">
-                                            <label class="form-label">Email</label>
+                                            <label for="email" class="form-label">Email</label>
                                             <input id="email" type="email"
                                                    class="form-control rounded-4 form-control-lg @error('email') is-invalid @enderror"
                                                    name="email" value="{{ old('email') }}" required
@@ -40,7 +40,7 @@
 
                                         {{--                                        firstname--}}
                                         <div class="form-outline">
-                                            <label class="form-label">First Name</label>
+                                            <label for="firstname" class="form-label">First Name</label>
                                             <input id="firstname" type="text"
                                                    class="form-control rounded-4 form-control-lg @error('firstname') is-invalid @enderror"
                                                    name="firstname" value="{{ old('firstname') }}" required
@@ -57,7 +57,7 @@
 
                                         {{--                                        lastname--}}
                                         <div class="form-outline">
-                                            <label class="form-label">Last Name</label>
+                                            <label for="lastname" class="form-label">Last Name</label>
                                             <input id="lastname" type="text"
                                                    class="form-control rounded-4 form-control-lg @error('lastname') is-invalid @enderror"
                                                    name="lastname" value="{{ old('lastname') }}" required
@@ -73,7 +73,7 @@
 
 
                                         <div class="form-outline ">
-                                            <label class="form-label">Password</label>
+                                            <label for="password" class="form-label">Password</label>
                                             <input id="password" type="password"
                                                    class="form-control rounded-4 form-control-lg @error('password') is-invalid @enderror"
                                                    name="password" required autocomplete="current-password">
@@ -86,7 +86,7 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label">Confirm Password</label>
+                                            <label for="password_confirmation" class="form-label">Confirm Password</label>
                                             <input id="password_confirmation" type="password"
                                                    class="form-control form-control-lg rounded-4 @error('password_confirmation') is-invalid @enderror"
                                                    name="password_confirmation" required
@@ -98,7 +98,7 @@
                                         </div>
 
                                         <div class="form-outline">
-                                            <label class="form-label">Terms</label>
+                                            <label for="terms" class="form-label">Terms</label>
                                             <input id="terms" type="checkbox"
                                                    class="form-check rounded-4 @error('terms') is-invalid @enderror"
                                                    name="terms" required

@@ -6,8 +6,10 @@ use App\Domain\User\Model\User;
 use App\Helpers\SweetAlert\SweetAlert;
 use App\UserInterface\Domain\Auth\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,12 +20,15 @@ class RegisterController extends BaseController
     use AuthorizesRequests;
     use ValidatesRequests;
 
-    public function register()
+    public function register(): View
     {
         return view('register');
     }
 
-    public function postRegister(RegisterRequest $request)
+    /**
+     * @throws ValidationException
+     */
+    public function postRegister(RegisterRequest $request): RedirectResponse|ValidationException
     {
         $credentials = $request->only('email', 'password', 'firstname', 'lastname');
 
@@ -46,7 +51,7 @@ class RegisterController extends BaseController
             event(new Registered($user));
             Auth::login($user);
             SweetAlert::createInfo("There is a verification link sent to your email. Please verify your email to continue.");
-            return redirect()->intended('/');
+            return redirect()->intended();
         } else {
             throw ValidationException::withMessages(['error' => 'Something went wrong']);
         }

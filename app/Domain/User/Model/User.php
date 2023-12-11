@@ -14,6 +14,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static where(string $string, mixed $email)
+ */
 class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail, CanResetPassword
 {
     use AuthenticatableTrait;

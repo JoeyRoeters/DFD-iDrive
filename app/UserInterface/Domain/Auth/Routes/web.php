@@ -5,9 +5,6 @@ use App\UserInterface\Domain\Auth\Controllers\LoginController;
 use App\UserInterface\Domain\Auth\Controllers\LogoutController;
 use App\UserInterface\Domain\Auth\Controllers\PasswordResetController;
 use App\UserInterface\Domain\Auth\Controllers\RegisterController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -69,7 +66,6 @@ Route::prefix('password')->group(function () {
         'password.reset'
     );
     Route::post('/resets', [PasswordResetController::class, 'handlePasswordReset'])->name('password.update');
-    ;
 });
 
 //logout:

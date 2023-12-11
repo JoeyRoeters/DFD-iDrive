@@ -25,10 +25,11 @@
                                         <h1 class="fw-normal pb-1" style="letter-spacing: 1px;">Welcome back</h1>
 
                                         <div class="form-outline ">
-                                            <label class="form-label" for="form2Example17">Email</label>
+                                            <label class="form-label" for="email">Email</label>
                                             <input id="email" type="email"
                                                    class="form-control rounded-4 form-control-lg @error('email') is-invalid @enderror"
-                                                   name="email" value="{{ old('email') }}" required autocomplete="email"
+                                                   name="email" value="{{ old('email') }}"
+                                                   required autocomplete="email"
                                                    autofocus>
 
                                             @error('email')
@@ -39,7 +40,7 @@
                                         </div>
 
                                         <div class="form-outline ">
-                                            <label class="form-label" for="form2Example27">Password</label>
+                                            <label class="form-label" for="password">Password</label>
                                             <input id="password" type="password"
                                                    class="form-control rounded-4 form-control-lg @error('password') is-invalid @enderror"
                                                    name="password" required autocomplete="current-password">
@@ -62,7 +63,7 @@
                                             </button>
                                         </div>
 
-                                        <img id="rectangleLogin"  src="{{ Vite::image('auth/Rectangle5.png') }}"
+                                        <img id="rectangleLogin" src="{{ Vite::image('auth/Rectangle5.png') }}"
                                              alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/>
 
                                         <p class=" pb-lg-2">Don't have an account?

@@ -22,7 +22,7 @@
                                     <form method="post">
                                         @csrf
                                         <h3>Reset Password</h3>
-                                        <label class="form-label" for="form2Example17">Email</label>
+                                        <label class="form-label" for="email">Email</label>
                                         <input id="email" type="email"
                                                class="form-control form-control-lg @error('email') is-invalid @enderror"
                                                name="email" value="{{ old('email') }}" required autocomplete="email"
