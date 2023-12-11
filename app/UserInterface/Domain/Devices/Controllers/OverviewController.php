@@ -2,7 +2,6 @@
 
 namespace App\UserInterface\Domain\Devices\Controllers;
 
-
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
