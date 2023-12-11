@@ -3,6 +3,7 @@
 namespace App\Domain\User\Model;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Domain\Trips\Model\Trip;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,4 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }

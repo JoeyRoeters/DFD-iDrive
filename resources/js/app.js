@@ -5,7 +5,8 @@ window.$ = jQuery;
 import {popper} from "@popperjs/core";
 window.popper = popper;
 
-import Swal from "sweetalert2";
+import "sweetalert2";
+
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
@@ -19,3 +20,15 @@ const utils = import.meta.globEager("./*/*.js");
 for (const path in utils) {
     window[path.split('/').pop().replace(/\.\w+$/, '')] = utils[path].default;
 }
+
+const $nav = $('#nav-bar');
+
+$nav.on('mouseenter', function(){
+    $(this).addClass('show');
+    $('.nav_logo').addClass('show');
+});
+
+$nav.on('mouseleave', function(){
+    $('.nav_logo').removeClass('show');
+    $(this).removeClass('show');
+});
