@@ -2,6 +2,7 @@
 
 namespace App\UserInterface\Domain\Auth\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -17,7 +18,7 @@ class RegisterRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
@@ -36,7 +37,12 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
     {
         return [
             'password.regex' => 'Het wachtwoord moet minimaal 8 tekens lang zijn en ten minste één kleine letter, één hoofdletter, één cijfer en één speciaal teken bevatten.',

@@ -4,18 +4,17 @@ namespace App\UserInterface\Domain\Auth\Controllers;
 
 use App\Domain\User\Model\User;
 use App\Helpers\SweetAlert\SweetAlert;
-use App\UserInterface\Domain\Auth\Requests\LoginRequest;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 
 class PasswordResetController extends BaseController
 {
@@ -23,7 +22,7 @@ class PasswordResetController extends BaseController
     use ValidatesRequests;
 
 
-    public function resetPasswordView(Request $request)
+    public function resetPasswordView(): RedirectResponse|View
     {
         if (Auth::check()) {
             return redirect()->route('homepage');
@@ -32,18 +31,20 @@ class PasswordResetController extends BaseController
         return view('password.password-reset');
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => 'required|email',
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            SweetAlert::createError('Email not found');
-            return redirect()->back();
+        if (isset($request->email)) {
+            $user = User::where('email', $request->email)->first();
+            if (!$user) {
+                SweetAlert::createError('Email not found');
+                return redirect()->back();
+            }
         }
+
 
         $status = Password::sendResetLink(
             $request->only('email')
@@ -51,26 +52,30 @@ class PasswordResetController extends BaseController
 
         if ($status === Password::RESET_LINK_SENT) {
             SweetAlert::createSuccess('Password reset link sent to your email');
-            return redirect(route('login'));
         } else {
             SweetAlert::createError($status);
-            return redirect(route('login'));
         }
+        return redirect(route('login'));
     }
 
-    public function setNewPasswordView(Request $request)
+    public function setNewPasswordView(Request $request): RedirectResponse|View
     {
         if (Auth::check()) {
-            return redirect()->intended('/');
+            return redirect()->intended();
         }
         //get email and sent to view
-        $email = $request->email;
-        $token = $request->route('token');
+        if (isset($request->email)) {
+            $email = $request->email;
+            $data['email'] = $email;
+        }
 
-        return view('password.password-set-new', compact('email', 'token'));
+
+        $data['token'] = $request->route('token');
+
+        return view('password.password-set-new', $data);
     }
 
-    public function handlePasswordReset(Request $request)
+    public function handlePasswordReset(Request $request): RedirectResponse
     {
         $request->validate([
             'token' => 'required',
@@ -93,11 +98,10 @@ class PasswordResetController extends BaseController
 
         if ($status === Password::PASSWORD_RESET) {
             SweetAlert::createSuccess('Password reset successfully');
-            return redirect(route('login'));
         } else {
             SweetAlert::createError($status);
-            return redirect(route('login'));
         }
+        return redirect(route('login'));
     }
 
 
