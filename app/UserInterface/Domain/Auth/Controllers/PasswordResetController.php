@@ -45,6 +45,7 @@ class PasswordResetController extends BaseController
             }
         }
 
+
         $status = Password::sendResetLink(
             $request->only('email')
         );
@@ -66,8 +67,11 @@ class PasswordResetController extends BaseController
         if (isset($request->email)) {
             $email = $request->email;
         }
-        $token = $request->route('token');
-        $data['email'] = $token;
+
+        $data['email'] = $email;
+        $data['token'] = $request->route('token');
+
+
 
         return view('password.password-set-new', $data);
     }
