@@ -11,9 +11,7 @@ class TableConfiguration
         private bool $searching = true,
         private bool $ordering = true,
         private int $pageLength = 10,
-
-    )
-    {
+    ) {
     }
 
     public function toArray(): array
