@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container mt-2">
         <div class="row mt-xl-4">
             <div class="col-12">
-                <table id="datatable"></table>
+                <table id="datatable" class="w-100"></table>
             </div>
         </div>
     </div>
@@ -23,8 +23,7 @@
                 fetchUrl: "{{ request()->path() }}",
                 csrf: "{{ csrf_token() }}",
                 columns: @JSON($columns),
-                totalRecords: {{ $totalRecords }},
-                options: {}
+                configuration: @JSON($tableConfiguration->toArray())
             })
         }
     </script>

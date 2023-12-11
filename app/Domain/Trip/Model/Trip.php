@@ -27,6 +27,7 @@ use MongoDB\Laravel\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Trip newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Trip newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Trip query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Trip where()
  * @method static \Illuminate\Database\Eloquent\Builder|Trip whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Trip whereTripNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Trip whereUserId($value)
