@@ -33,7 +33,14 @@ class Main extends AbstractOverviewController
 
     protected function getTableConfiguration(): TableConfiguration
     {
-        return new TableConfiguration();
+        return new TableConfiguration(
+            showHeaders: false,
+            info: false,
+            paging: true,
+            searching: false,
+            ordering: false,
+            pageLength: 10,
+        );
     }
 
     protected function getColumns(): array

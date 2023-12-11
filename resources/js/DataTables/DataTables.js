@@ -7,28 +7,23 @@ class DataTable {
             selector = null,
             fetchUrl = null,
             csrf = null,
-            totalRecords = 0,
-            tableOptions = {},
             columns = [],
-            options = {}
+            configuration = {}
         }
     ) {
-
         this.csrf = csrf;
         this.selector = selector;
-        this.tableOptions = tableOptions;
         this.columns = columns.map(column => new Column(column));
-        this.options = options;
+        this.configuration = configuration;
         this.fetchUrl = fetchUrl;
-        this.totalRecords = totalRecords;
 
         this.init();
     }
 
     init() {
         this.table = $(this.selector).DataTable({
-            ...this.tableOptions,
-            columns: this.columns.map(column => column.export()),
+            ...this.configuration.tableOptions,
+            columns: this.columns.map(column => column.export(this.configuration.configuration.showHeaders)),
             ajax: {
                 url: this.fetchUrl,
                 headers: {
@@ -37,7 +32,8 @@ class DataTable {
                 type: "POST"
             },
             serverSide: true,
-            deferRender: true
+            deferRender: true,
+            bLengthChange: false
         });
     }
 }

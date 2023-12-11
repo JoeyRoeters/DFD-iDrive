@@ -17,9 +17,9 @@ export default class Column {
         return this.renderType;
     }
 
-    export() {
+    export(showLabel = true) {
         return {
-            title: this.getLabel(),
+            title: showLabel ? this.getLabel() : '',
             render: (data, type, row) => this.getRenderCallback(data, type, row),
         };
     }

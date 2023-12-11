@@ -53,8 +53,7 @@ abstract class AbstractOverviewController extends AbstractViewController
     {
         return [
             'tableConfiguration' => $this->getTableConfiguration(),
-            'columns' => array_map(fn (Column $column) => $column->toArray(), $this->getColumns()),
-            'totalRecords' => $this->getModelQuery()->count()
+            'columns' => array_map(fn (Column $column) => $column->toArray(), $this->getColumns())
         ];
     }
 
