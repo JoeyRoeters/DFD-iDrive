@@ -21,8 +21,6 @@ for (const path in utils) {
     window[path.split('/').pop().replace(/\.\w+$/, '')] = utils[path].default;
 }
 
-import $ from 'jquery';
-
 const $nav = $('#nav-bar');
 
 $nav.on('mouseenter', function(){

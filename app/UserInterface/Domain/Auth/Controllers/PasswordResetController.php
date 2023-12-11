@@ -71,8 +71,6 @@ class PasswordResetController extends BaseController
         $data['email'] = $email;
         $data['token'] = $request->route('token');
 
-
-
         return view('password.password-set-new', $data);
     }
 

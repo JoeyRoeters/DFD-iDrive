@@ -1,9 +1,4 @@
 {
-  "app/UserInterface/Domain/Auth/Resources/sass/auth.scss": {
-    "file": "assets/auth-db8669f8.css",
-    "isEntry": true,
-    "src": "app/UserInterface/Domain/Auth/Resources/sass/auth.scss"
-  },
   "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
     "file": "assets/homepage-129624fe.js",
     "isEntry": true,
@@ -20,12 +15,12 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-a78c34f9.js",
+    "file": "assets/app-c1d86b96.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-21d6911f.css",
+    "file": "assets/app-ca6889ff.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },

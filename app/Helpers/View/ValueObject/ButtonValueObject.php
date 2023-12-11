@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Custom\ValueObjects;
+namespace App\Helpers\View\ValueObject;
 
 class ButtonValueObject
 {

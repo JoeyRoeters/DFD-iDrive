@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\Custom;
+namespace App\Helpers\View\Abstract;
 
-use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
+use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use App\Infrastructure\Laravel\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -56,9 +56,9 @@ abstract class AbstractViewController extends Controller
 
     /**
      * @param Request $request
-     * @return View|RedirectResponse
+     * @return mixed
      */
-    public function run(Request $request): View|RedirectResponse
+    public function run(Request $request): mixed
     {
         $this->loadData($request);
 
