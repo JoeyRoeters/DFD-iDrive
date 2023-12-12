@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="container mt-2">
-        <div class="row mt-xl-4">
+    <div class="container">
+        <div class="row">
             <div class="col-12">
                 <table id="datatable" class="w-100"></table>
             </div>
