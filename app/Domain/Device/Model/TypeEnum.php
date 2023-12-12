@@ -10,7 +10,7 @@ use Illuminate\Validation\Rules\Enum;
  */
 class TypeEnum extends Enum
 {
-    const SIM = 'sim';
-    const COMMA = 'comma';
+    public const SIM = 'sim';
+    public const COMMA = 'comma';
 
 }
