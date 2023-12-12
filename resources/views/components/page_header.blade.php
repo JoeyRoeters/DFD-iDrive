@@ -6,7 +6,7 @@
         <div class="col-md-6 button-container">
             @foreach($pageHeader->getButtons() as $button)
                 <div>
-                    <a href="{{ route($button->getRoute()) }}" class="btn btn-{{ $button->getColor() }}">
+                    <a href="{{ route($button->getRoute()) }}" class="btn mr-1 btn-{{ $button->getColor() }}">
                         <i class="{{$button->getIcon() }}"></i>
                         <span>{{ $button->getLabel() }}</span>
                     </a>

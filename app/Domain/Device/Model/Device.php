@@ -15,6 +15,7 @@ use MongoDB\Laravel\Eloquent\Model;
  *
  * @property int $id
  * @property string $user_id
+ * @property string $name
  * @property TypeEnum $type
  * @property Carbon $lastActive
  * @property Carbon $created_at
@@ -34,6 +35,7 @@ class Device extends Model implements SearchableModelInterface
 {
     protected $fillable = [
         'user_id',
+        'name',
         'type',
         'lastActive',
         'created_at',
@@ -52,17 +54,23 @@ class Device extends Model implements SearchableModelInterface
 
     protected $casts = [
         'user_id' => 'string',
-         'type' => TypeEnum::class,
+        'name' => 'string',
+        'type' => TypeEnum::class,
         'lastActive' => 'datetime',
     ];
 
     public static function getSearchableFields(): array
     {
         return [
-            'Device_number',
             'user_id',
-            'device_id',
+            'name',
+            'lastActive',
         ];
+    }
+
+    public function getDateFormatted(): string
+    {
+        return $this->lastActive?->format('d.m.Y') ?? '';
     }
 
     public function user()

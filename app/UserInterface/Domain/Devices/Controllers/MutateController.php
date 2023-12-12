@@ -2,9 +2,9 @@
 
 namespace App\UserInterface\Domain\Devices\Controllers;
 
-use App\Infrastructure\Custom\AbstractViewController;
-use App\Infrastructure\Custom\ValueObjects\ButtonValueObject;
-use App\Infrastructure\Custom\ValueObjects\PageHeaderValueOject;
+use App\Helpers\View\Abstract\AbstractViewController;
+use App\Helpers\View\ValueObject\ButtonValueObject;
+use App\Helpers\View\ValueObject\PageHeaderValueOject;
 
 class MutateController extends AbstractViewController
 {
@@ -24,7 +24,8 @@ class MutateController extends AbstractViewController
         return new PageHeaderValueOject(
             title: 'Devices',
             buttons: [
-                ButtonValueObject::make('Add new', 'homepage', 'fa-solid fa-wand-magic-sparkles'),
+                ButtonValueObject::make('Cancel', 'homepage', 'fa-solid fa-xmark', 'danger'),
+                ButtonValueObject::make('Save', 'homepage', 'fa-solid fa-wand-magic-sparkles', 'success'),
             ]
         );
     }

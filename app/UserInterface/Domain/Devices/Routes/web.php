@@ -1,5 +1,6 @@
 <?php
 
+use App\UserInterface\Domain\Devices\Controllers\MutateController;
 use App\UserInterface\Domain\Devices\Controllers\OverviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/', [OverviewController::class, 'run'])->name('devices.overview');
-    Route::get('/edit', [OverviewController::class, 'run'])->name('devices.mutate');
+    Route::match(['post', 'get'], '/', [OverviewController::class, 'run'])->name('devices.overview');
+    Route::get('/edit', [MutateController::class, 'run'])->name('devices.mutate');
 
 });
