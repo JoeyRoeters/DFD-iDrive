@@ -44,7 +44,6 @@ use MongoDB\Laravel\Relations\HasOne;
  */
 class Trip extends Model implements SearchableModelInterface
 {
-
     use HasFactory;
 
     protected $fillable = [
