@@ -8,6 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\HasMany;
+use MongoDB\Laravel\Relations\HasOne;
 
 /**
  * Class Trip
@@ -41,6 +44,9 @@ use MongoDB\Laravel\Eloquent\Model;
  */
 class Trip extends Model implements SearchableModelInterface
 {
+
+    use HasFactory;
+
     protected $fillable = [
         'trip_number',
         'user_id',
@@ -90,8 +96,23 @@ class Trip extends Model implements SearchableModelInterface
         return $this->start_time?->format('d.m.Y') ?? '';
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function events(): HasMany
+    {
+        return $this->hasMany(TripEvent::class);
+    }
+
+    public function data(): HasMany
+    {
+        return $this->hasMany(TripData::class);
+    }
+
+    public function statistics(): HasMany
+    {
+        return $this->hasMany(TripStatistics::class);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Domain\User\Model;
 
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Support\Str;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Auth\User as AuthenticateUser;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
@@ -60,6 +62,7 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'lastname',
         'email',
         'password',
+        'api_token'
     ];
 
     /**
@@ -72,8 +75,6 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'remember_token',
     ];
 
-
-
     /**
      * The attributes that should be cast.
      *
@@ -83,4 +84,14 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($tripStatistics) {
+            $tripStatistics->api_token = Str::random(60);
+        });
+    }
 }

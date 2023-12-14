@@ -19,8 +19,20 @@
     "isEntry": true,
     "src": "resources/css/app.css"
   },
+  "resources/images/Illustrations/coming_soon.svg": {
+    "file": "assets/coming_soon-0db13ae8.svg",
+    "src": "resources/images/Illustrations/coming_soon.svg"
+  },
+  "resources/images/auth/Rectangle5.png": {
+    "file": "assets/Rectangle5-d676aca9.png",
+    "src": "resources/images/auth/Rectangle5.png"
+  },
+  "resources/images/logos/logo_red.png": {
+    "file": "assets/logo_red-f4efd83d.png",
+    "src": "resources/images/logos/logo_red.png"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-c1d86b96.js",
+    "file": "assets/app-c31c7961.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

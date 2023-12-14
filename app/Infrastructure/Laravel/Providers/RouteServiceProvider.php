@@ -65,6 +65,9 @@ class RouteServiceProvider extends ServiceProvider
         // base name of 1 dir back
         $directoryName = strtolower(basename(dirname($directory)));
 
+        // make sure the directory name is plural
+        $directoryName = str_ends_with($directoryName, 's') ? $directoryName : $directoryName . 's';
+
         $webRouteFile = $directory . '/web.php';
         $apiRouteFile = $directory . '/api.php';
 
