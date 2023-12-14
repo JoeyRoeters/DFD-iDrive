@@ -29,7 +29,7 @@ class OverviewController extends AbstractOverviewController
         return new PageHeaderValueOject(
             title: 'Devices',
             buttons: [
-                ButtonValueObject::make('Add new', 'devices.mutate', 'fa-solid fa-plus', "success"),
+                ButtonValueObject::make('Add new', 'devices.mutate.new', 'fa-solid fa-plus', "success"),
             ]
         );
     }
@@ -54,7 +54,7 @@ class OverviewController extends AbstractOverviewController
             new Column(
                 key: 'name',
                 label: 'Name',
-                renderType: RenderTypeEnum::TRIP_DEVICE_LABEL,
+                renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
                 key: 'lastActive',
@@ -86,10 +86,11 @@ class OverviewController extends AbstractOverviewController
      */
     protected function processModel(Model $model): array
     {
+
         return [
             'name' => $model->name,
             'lastActive' => $model->getDateFormatted(),
-            'type' => $model->getTimeFormatted(),
+            'type' => $model->type,
             'actions' => new ActionRenderType(
                 route: 'trip.show',
                 buttonEnum: ActionButtonEnum::ARROW,

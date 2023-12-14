@@ -7,7 +7,6 @@ use App\Domain\User\Model\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Validation\Rules\Enum;
 use MongoDB\Laravel\Eloquent\Model;
 
 /**
@@ -16,7 +15,7 @@ use MongoDB\Laravel\Eloquent\Model;
  * @property int $id
  * @property string $user_id
  * @property string $name
- * @property TypeEnum $type
+ * @property string $type
  * @property Carbon $lastActive
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -42,20 +41,11 @@ class Device extends Model implements SearchableModelInterface
         'updated_at'
     ];
 
-    public function setTypeAttribute($value)
-    {
-        $this->attributes['type'] = TypeEnum::getValue($value);
-    }
-
-    public function getTypeAttribute($value)
-    {
-        return TypeEnum::getDescription($value);
-    }
 
     protected $casts = [
         'user_id' => 'string',
         'name' => 'string',
-        'type' => TypeEnum::class,
+        'type' => 'string',
         'lastActive' => 'datetime',
     ];
 
@@ -64,6 +54,7 @@ class Device extends Model implements SearchableModelInterface
         return [
             'user_id',
             'name',
+            'type',
             'lastActive',
         ];
     }
@@ -73,6 +64,10 @@ class Device extends Model implements SearchableModelInterface
         return $this->lastActive?->format('d.m.Y') ?? '';
     }
 
+    public function getTimeFormatted(): string
+    {
+        return $this->lastActive?->format('H:i') ?? '';
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

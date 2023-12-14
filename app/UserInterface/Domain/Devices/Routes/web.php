@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::match(['post', 'get'], '/', [OverviewController::class, 'run'])->name('devices.overview');
-    Route::get('/edit', [MutateController::class, 'run'])->name('devices.mutate');
+    Route::get('/edit/:id', [MutateController::class, 'run'])->name('devices.mutate.edit');
+    Route::get('/new', [MutateController::class, 'run'])->name('devices.mutate.new');
+
+    Route::post('/save', [MutateController::class, 'save'])->name('devices.mutate.save');
+
 
 });
