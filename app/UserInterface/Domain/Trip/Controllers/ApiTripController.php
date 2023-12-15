@@ -47,9 +47,7 @@ class ApiTripController extends Controller
             throw new ApiValidationException($validator);
         }
 
-        $data = array_filter($request->all(), function ($key) {
-            return in_array($key, ['state', 'start_time', 'end_time']);
-        }, ARRAY_FILTER_USE_KEY);
+        $data = $request->only(['state', 'start_time', 'end_time']);
 
         if (isset($data['state']) && $data['state'] === TripStateEnum::FINISHED->value) {
             $data['end_time'] = Carbon::now();
@@ -87,6 +85,43 @@ class ApiTripController extends Controller
                 'data' => $eventData,
             ]);
         }
+
+        return new ApiEloquentSucessResponse($trip);
+    }
+
+    public function createDataEntry(Request $request, string $id): ApiEloquentSucessResponse
+    {
+        // Retrieve the trip
+        $trip = $this->getTrip($request, $id);
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'data' => 'required|array',
+            'data.*' => 'required|array|size:3',
+            'data.*.*' => 'required',
+            'data.*.0' => 'required|array|size:3',
+            'data.*.1' => 'required|array|size:3',
+            'data.*.2' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ApiValidationException($validator);
+        }
+
+        // Extract and validate the 'data' field
+        $dataEntries = $request->get('data');
+
+        // Create data entries for the trip
+        foreach ($dataEntries as $dataEntry) {
+            list ($accelero, $gyroscope, $speed) = $dataEntry;
+
+            $trip->data()->create([
+                'accelero' => $accelero,
+                'gyroscope' => $gyroscope,
+                'speed' => $speed,
+            ]);
+        }
+
 
         return new ApiEloquentSucessResponse($trip);
     }

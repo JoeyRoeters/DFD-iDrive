@@ -9,4 +9,5 @@ Route::post('/', [ApiTripController::class, 'create']);
 Route::group(['prefix' => '/{id}'], function () {
     Route::patch('/', [ApiTripController::class, 'update']);
     Route::post('/events', [ApiTripController::class, 'createEvents']);
+    Route::post('/data_entries', [ApiTripController::class, 'createDataEntry']);
 });
