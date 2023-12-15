@@ -19,7 +19,7 @@ class ApiTokenUtils
             'device_id' => $deviceId,
         ];
 
-        return JWT::encode($payload,self::KEY, 'HS256');
+        return JWT::encode($payload, self::KEY, 'HS256');
     }
 
     public static function decodeToken(string $token): ?array
