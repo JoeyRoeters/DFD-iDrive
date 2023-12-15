@@ -2,6 +2,9 @@
 
 namespace App\Domain\User\Model;
 
+use App\Domain\Device\Model\Device;
+use App\Domain\Trip\Model\Trip;
+use App\Helpers\ApiToken\ApiTokenUtils;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -15,6 +18,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use MongoDB\Laravel\Relations\HasMany;
 
 /**
  * User Model
@@ -62,7 +66,7 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'lastname',
         'email',
         'password',
-        'api_token'
+        'api_key'
     ];
 
     /**
@@ -91,7 +95,28 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
     protected static function booted()
     {
         static::creating(function ($tripStatistics) {
-            $tripStatistics->api_token = Str::random(60);
+            $tripStatistics->api_key = Str::random(60);
         });
+    }
+
+    /**
+     * Get the trips for the user.
+     */
+    public function trips(): HasMany
+    {
+        return $this->hasMany(Trip::class);
+    }
+
+    /**
+     * Get the devices for the user.
+     */
+    public function devices(): HasMany
+    {
+        return $this->hasMany(Device::class);
+    }
+
+    public function getApiToken(Device $device): string
+    {
+        return ApiTokenUtils::generateToken($this->api_key, $device->_id);
     }
 }
