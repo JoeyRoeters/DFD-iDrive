@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "9724ca44-1237-4b45-884b-058f0512f177",
+		"name": "iDrive - RESTfull API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7241622",
+		"_collection_link": "https://idrive-hanze.postman.co/workspace/iDrive~94880b95-5049-4a2d-bfd4-66c22b8fc235/collection/7241622-9724ca44-1237-4b45-884b-058f0512f177?action=share&source=collection_link&creator=7241622"
+	},
+	"item": [
+		{
+			"name": "create new Trip",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/trips",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"trips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Trip data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "state",
+							"value": "finished",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/trips/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"trips",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new trip event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "events[0][0]",
+							"value": "start",
+							"type": "text"
+						},
+						{
+							"key": "events[0][1]",
+							"value": "\"test\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/trips/{{id}}/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"trips",
+						"{{id}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Trip data entry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data[0][0][0]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][0][1]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][0][2]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][1][0]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][1][1]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][1][2]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "data[0][2]",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/trips/{{id}}/data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"trips",
+						"{{id}}",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "X-API-TOKEN",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8000/api"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

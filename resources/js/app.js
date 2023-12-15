@@ -15,6 +15,10 @@ Sentry.init({
 
 import './bootstrap';
 
+import.meta.glob([
+    '../images/**'
+]);
+
 // global import for js files in folder
 const utils = import.meta.globEager("./*/*.js");
 for (const path in utils) {

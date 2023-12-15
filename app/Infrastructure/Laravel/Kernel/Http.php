@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Laravel\Kernel;
 
+use App\UserInterface\Domain\Shared\Middleware\ApiTokenMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Http extends HttpKernel
@@ -42,6 +43,7 @@ class Http extends HttpKernel
             // \Laravel\Sanctum\Domain\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            ApiTokenMiddleware::class
         ],
     ];
 
