@@ -7,12 +7,14 @@
         background-color: transparent;
         padding: 1px;
         margin-bottom: 10px;
+
         //box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
         td {
             height: 5em;
             background-color: white;
             box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            padding: 1em 2em;
             &:first-child {
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
@@ -23,6 +25,14 @@
                 border-bottom-right-radius: 10px;
             }
         }
+    }
+
+    .r-type-inline-d {
+        font-size: 1.5rem;
+    }
+
+    .r-type-inline-l {
+        color: grey;
     }
 
 }

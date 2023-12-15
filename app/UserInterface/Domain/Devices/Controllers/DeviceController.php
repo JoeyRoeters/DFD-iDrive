@@ -11,16 +11,17 @@ use App\UserInterface\Domain\Devices\Requests\DeviceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class MutateController extends AbstractViewController
+class DeviceController extends AbstractViewController
 {
     public Request $request;
+    public Device $device;
 
     /**
      * @inheritdoc
      */
     protected function view(): string
     {
-        return 'devices_mutate';
+        return 'devices_show';
     }
 
     protected function loadData(Request $request): void
@@ -47,7 +48,7 @@ class MutateController extends AbstractViewController
     {
         if ($this->request->route()->getName() === 'devices.mutate.edit') {
             return [
-                'device' => Device::find($this->request->route()->parameter('id')),
+                'device' => $this->request->route()->parameter('id'),
             ];
         }
 
@@ -60,8 +61,8 @@ class MutateController extends AbstractViewController
      */
     public function save(DeviceRequest $request)
     {
-        if ($request->post("device_id") !== null) {
-            $device = Device::find($request->post("device_id"));
+        if ($request->route()->parameter('id') !== null) {
+            $device = Device::find($request->route()->parameter('id'));
             $device->name = $request->input('devicename');
             $device->type = $request->input('devicetype');
 

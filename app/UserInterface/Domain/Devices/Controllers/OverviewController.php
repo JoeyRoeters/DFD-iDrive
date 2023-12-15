@@ -67,8 +67,13 @@ class OverviewController extends AbstractOverviewController
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'actions',
-                label: 'Actions',
+                key: 'show',
+                label: 'Show',
+                renderType: RenderTypeEnum::ACTION_BUTTON,
+            ),
+            new Column(
+                key: 'edit',
+                label: 'Edit',
                 renderType: RenderTypeEnum::ACTION_BUTTON,
             ),
         ];
@@ -89,12 +94,21 @@ class OverviewController extends AbstractOverviewController
 
         return [
             'name' => $model->name,
-            'lastActive' => $model->getDateFormatted(),
+            'lastActive' => $model->getDateFormatted() ?: 'Never',
             'type' => $model->type,
-            'actions' => new ActionRenderType(
-                route: 'trip.show',
-                buttonEnum: ActionButtonEnum::ARROW,
+            'show' => new ActionRenderType(
+                route: 'devices.show',
+                buttonEnum: ActionButtonEnum::BUTTON,
                 routeParam: ['id' => $model->id],
+                label: 'Show',
+                color: 'primary',
+            ),
+            'edit' => new ActionRenderType(
+                route: 'devices.mutate.edit',
+                buttonEnum: ActionButtonEnum::BUTTON,
+                routeParam: ['id' => $model->id],
+                label: 'Edit',
+                color: 'success',
             )
         ];
     }

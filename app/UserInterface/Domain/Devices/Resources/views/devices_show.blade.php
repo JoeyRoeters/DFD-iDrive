@@ -14,14 +14,14 @@
                         @csrf
 
 						@if(isset($device))
-							<input type="hidden" name="device_id" value="{{ $device->_id}}">
+							<input type="hidden" name="device_id" value="{{ $device->getId() }}">
 						@endif
 
                         <div class="form-outline">
                             <label class="form-label" for="devicename">Device name</label>
                             <input id="devicename" type="text"
                                    class="form-control rounded-4 form-control-lg @error('devicename') is-invalid @enderror"
-                                   name="devicename" value="{{ old('devicename') ?? $device->name ?? '' }}"
+                                   name="devicename" value="{{ old('devicename') }}"
                                    required autocomplete="devicename"
                                    autofocus>
 
@@ -33,13 +33,12 @@
                         </div>
                         <div class="form-outline pt-2">
                             <label class="form-label" for="devicetype">Device type</label>
+
                             <select class="form-select @error('devicetype') is-invalid @enderror" name="devicetype" aria-label="Default select example">
-                                <option {{ (!isset($device) || !$device->type) ? 'selected' : '' }}>Device type</option>
-                                <option value="{{ \App\Domain\Device\Model\TypeEnum::COMMA }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Model\TypeEnum::COMMA) ? 'selected="selected"' : '' }}>Comma</option>
-                                <option value="{{ \App\Domain\Device\Model\TypeEnum::SIM }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Model\TypeEnum::SIM) ? 'selected="selected"' : '' }}>Simulator</option>
+                                <option selected>Device type</option>
+                                <option value="{{\App\Domain\Device\Model\TypeEnum::COMMA}}">Comma</option>
+                                <option value="{{\App\Domain\Device\Model\TypeEnum::SIM}}">Simulator</option>
                             </select>
-
-
 
                             @error('devicetype')
                             <span class="invalid-feedback" role="alert">
