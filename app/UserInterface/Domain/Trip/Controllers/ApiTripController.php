@@ -113,7 +113,7 @@ class ApiTripController extends Controller
 
         // Create data entries for the trip
         foreach ($dataEntries as $dataEntry) {
-            list ($accelero, $gyroscope, $speed) = $dataEntry;
+            list($accelero, $gyroscope, $speed) = $dataEntry;
 
             $trip->data()->create([
                 'accelero' => $accelero,
