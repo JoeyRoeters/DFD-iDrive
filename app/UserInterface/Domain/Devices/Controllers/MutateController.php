@@ -85,6 +85,7 @@ class MutateController extends AbstractViewController
                 SweetAlert::createError("Device could not be created!");
                 throw ValidationException::withMessages(['error' => 'Something went wrong']);
             }
+
         }
     }
 
