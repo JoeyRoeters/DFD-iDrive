@@ -73,4 +73,3 @@ class Device extends Model implements SearchableModelInterface
         return $this->belongsTo(User::class);
     }
 }
-

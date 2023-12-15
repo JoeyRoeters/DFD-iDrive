@@ -2,7 +2,6 @@
 
 namespace App\UserInterface\Domain\Devices\Controllers;
 
-
 use App\Domain\Device\Model\Device;
 use App\Domain\Trip\Model\Trip;
 use App\Helpers\Overview\AbstractOverviewController;
