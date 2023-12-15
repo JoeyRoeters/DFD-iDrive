@@ -6,7 +6,6 @@ use Illuminate\Validation\Validator;
 
 class ApiValidationException extends ApiException
 {
-
     public function __construct(protected Validator $validator)
     {
         $this->appendMessageData($this->validator->errors()->toArray());
