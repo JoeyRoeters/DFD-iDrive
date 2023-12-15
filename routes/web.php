@@ -24,7 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         $user = auth()->user();
         $devices = $user->devices()->get();
 
-        $items = [];;
+        $items = [];
+        ;
         foreach ($devices as $device) {
             $items[$device->name] = $user->getApiToken($device);
         }
