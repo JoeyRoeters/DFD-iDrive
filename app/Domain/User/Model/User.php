@@ -2,23 +2,20 @@
 
 namespace App\Domain\User\Model;
 
+use App\Domain\Api\Util\ApiTokenUtils;
 use App\Domain\Device\Model\Device;
 use App\Domain\Trip\Model\Trip;
-use App\Helpers\ApiToken\ApiTokenUtils;
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Support\Str;
-use MongoDB\Laravel\Eloquent\Model;
-use MongoDB\Laravel\Auth\User as AuthenticateUser;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use MongoDB\Laravel\Auth\User as AuthenticateUser;
 use MongoDB\Laravel\Relations\HasMany;
+
 
 /**
  * User Model

@@ -2,10 +2,11 @@
 
 namespace App\UserInterface\Domain\Shared\Middleware;
 
+use App\Domain\Api\Exception\InvalidCredentialsException;
+use App\Domain\Api\Exception\NoAccessException;
+use App\Domain\Api\Util\ApiTokenUtils;
 use App\Domain\User\Model\User;
-use App\Helpers\ApiToken\ApiTokenUtils;
 use Closure;
-use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 
 class ApiTokenMiddleware
@@ -14,7 +15,7 @@ class ApiTokenMiddleware
     {
         // Validate if X-API-TOKEN exists in the request headers
         if (!$request->hasHeader('X-API-TOKEN')) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            throw new InvalidCredentialsException();
         }
 
         // Extract and decode the token
@@ -23,28 +24,31 @@ class ApiTokenMiddleware
 
         // Validate the token structure
         if (!$decodedToken || !isset($decodedToken['api_key']) || !isset($decodedToken['device_id'])) {
-            return response()->json(['error' => 'Invalid token'], 401);
+            throw new InvalidCredentialsException();
         }
 
         // Validate the token against the user's API key and hashed device_id
         $user = User::where('api_key', $decodedToken['api_key'])->first();
         if (!$user) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            throw new InvalidCredentialsException();
         }
 
         auth()->setUser($user);
 
         $hashedDeviceId = hash('sha256', $decodedToken['device_id']);
         if ($decodedToken['hashed_device_id'] !== $hashedDeviceId) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            throw new InvalidCredentialsException();
         }
 
         $deviceAccess = $user->devices()->where('_id', $decodedToken['device_id']);
         if (!$deviceAccess->exists()) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            throw new NoAccessException();
         }
 
-        $request->merge(['device', $deviceAccess->first()]);
+        $request->merge([
+            'user' => $user,
+            'device' => $deviceAccess->first()
+        ]);
 
         return $next($request);
     }

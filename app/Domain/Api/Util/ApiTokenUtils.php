@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\ApiToken;
+namespace App\Domain\Api\Util;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

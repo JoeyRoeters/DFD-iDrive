@@ -3,10 +3,12 @@
 namespace App\Domain\Trip\Model;
 
 use App\Domain\Shared\Interface\SearchableModelInterface;
+use App\Domain\Trip\Enum\TripStateEnum;
 use App\Domain\User\Model\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 use MongoDB\Laravel\Relations\HasMany;
@@ -50,6 +52,7 @@ class Trip extends Model implements SearchableModelInterface
         'trip_number',
         'user_id',
         'device_id',
+        'state',
         'start_time',
         'end_time',
         'distance',
@@ -62,6 +65,7 @@ class Trip extends Model implements SearchableModelInterface
         'trip_number' => 'integer',
         'user_id' => 'string',
         'device_id' => 'string',
+        'state' => TripStateEnum::class,
         'start_time' => 'datetime',
         'end_time' => 'datetime',
         'distance' => 'float',
@@ -69,6 +73,17 @@ class Trip extends Model implements SearchableModelInterface
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($trip) {
+            $trip->state = TripStateEnum::IN_PROGRESS;
+            $trip->start_time = Carbon::now();
+        });
+    }
 
     public static function getSearchableFields(): array
     {
