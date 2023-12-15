@@ -6,7 +6,6 @@ use App\Domain\Api\Exception\ApiException;
 
 class TripNotFoundExecption extends ApiException
 {
-
     protected function getDefaultMessage(): string
     {
         return 'Trip not found';
