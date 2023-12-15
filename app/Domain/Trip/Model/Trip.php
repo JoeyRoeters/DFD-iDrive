@@ -129,4 +129,9 @@ class Trip extends Model implements SearchableModelInterface
     {
         return $this->hasMany(TripStatistics::class);
     }
+
+    public function hasAccess(User $user): bool
+    {
+        return $this->user_id === $user->id;
+    }
 }

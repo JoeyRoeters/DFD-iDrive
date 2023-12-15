@@ -7,6 +7,8 @@ use Throwable;
 
 abstract class ApiException extends Exception
 {
+    private array $messageData = [];
+
     abstract protected function getDefaultMessage(): string;
 
     abstract protected function getDefaultCode(): int;
@@ -22,8 +24,19 @@ abstract class ApiException extends Exception
             ]
         ];
 
+        if (!empty($this->messageData)) {
+            $json['error']['data'] = $this->messageData;
+        }
+
         response()->json($json, $code)->send();
 
         exit;
+    }
+
+    protected function appendMessageData(array $data): self
+    {
+        $this->messageData = $data;
+
+        return $this;
     }
 }

@@ -2,11 +2,15 @@
 
 namespace App\Domain\Trip\Enum;
 
-enum TripStateEnum
+use App\Domain\Shared\Trait\EnumToArray;
+
+enum TripStateEnum: String
 {
-    case IN_PROGRESS;
-    case FINISHED;
-    case CANCELLED;
+    use EnumToArray;
+
+    case IN_PROGRESS = 'in_progress';
+    case FINISHED = 'finished';
+    case CANCELLED = 'cancelled';
 
     public function getTranslation(): string
     {

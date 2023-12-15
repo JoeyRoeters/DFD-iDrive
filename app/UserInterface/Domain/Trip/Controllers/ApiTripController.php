@@ -2,10 +2,18 @@
 
 namespace App\UserInterface\Domain\Trip\Controllers;
 
+use App\Domain\Api\Exception\ApiValidationException;
+use App\Domain\Api\Exception\NoAccessException;
+use App\Domain\Trip\Enum\TripEventTypeEnum;
+use App\Domain\Trip\Enum\TripStateEnum;
+use App\Domain\Trip\Exception\TripNotFoundExecption;
+use App\Domain\Trip\Jobs\PostTripJob;
 use App\Domain\Trip\Model\Trip;
 use App\Infrastructure\Laravel\Controller;
 use App\UserInterface\Domain\Shared\Responses\ApiEloquentSucessResponse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ApiTripController extends Controller
 {
@@ -23,5 +31,78 @@ class ApiTripController extends Controller
         $trip->save();
 
         return new ApiEloquentSucessResponse($trip);
+    }
+
+    public function update(Request $request, string $id): ApiEloquentSucessResponse
+    {
+        $trip = $this->getTrip($request, $id);
+
+        $validator = Validator::make($request->all(), [
+            'state' => 'nullable|in:' . implode(',', TripStateEnum::values()),
+            'start_time' => 'nullable|date_format:Y-m-d H:i:s',
+            'end_time' => 'nullable|date_format:Y-m-d H:i:s',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ApiValidationException($validator);
+        }
+
+        $data = array_filter($request->all(), function ($key) {
+            return in_array($key, ['state', 'start_time', 'end_time']);
+        }, ARRAY_FILTER_USE_KEY);
+
+        if (isset($data['state']) && $data['state'] === TripStateEnum::FINISHED->value) {
+            $data['end_time'] = Carbon::now();
+
+            PostTripJob::dispatch($trip);
+        }
+
+        $trip->update($data);
+
+        return new ApiEloquentSucessResponse($trip);
+    }
+
+    public function createEvents(Request $request, string $id): ApiEloquentSucessResponse
+    {
+        $trip = $this->getTrip($request, $id);
+
+        $validator = Validator::make($request->all(), [
+            'events' => 'required|array',
+            'events.*' => 'required|array|size:2',
+            'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
+            'events.*.1' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ApiValidationException($validator);
+        }
+
+        $events = $request->get('events');
+
+        foreach ($events as $eventData) {
+            list($eventType, $eventData) = $eventData;
+
+            $trip->events()->create([
+                'type' => $eventType,
+                'data' => $eventData,
+            ]);
+        }
+
+        return new ApiEloquentSucessResponse($trip);
+    }
+
+    private function getTrip(Request $request, string $id): Trip
+    {
+        $trip = Trip::find($id);
+        if (!$trip) {
+            throw new TripNotFoundExecption();
+        }
+
+        $user = $request->get('user');
+        if (!$trip->hasAccess($user)) {
+            throw new NoAccessException();
+        }
+
+        return $trip;
     }
 }
