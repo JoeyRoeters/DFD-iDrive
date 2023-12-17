@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-9 mx-auto">
                 <div class="card">
-                    <h3 class="pb-1">Add new device</h3>
+                    <h3 class="pb-1">Device: </h3>
                     <form method="POST" action="{{ route('devices.mutate.save') }}">
                         @csrf
 
