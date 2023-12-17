@@ -20,4 +20,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Redirect::route("homepage");
     });
 
+    Route::get('/tokens', function () {
+        $user = auth()->user();
+        $devices = $user->devices()->get();
+
+        $items = [];
+        ;
+        foreach ($devices as $device) {
+            $items[$device->name] = $user->getApiToken($device);
+        }
+
+        return response()->json([
+            'tokens' => $items,
+        ], 200);
+    });
+
 });

@@ -2,7 +2,9 @@
 
 namespace App\Infrastructure\Laravel\Exceptions;
 
+use App\Domain\Api\Exception\ApiException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -24,6 +26,10 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
+            if ($e instanceof ApiException) {
+                $e->handle();
+            }
+
             if (app()->bound('sentry')) {
                 app('sentry')->captureException($e);
             }

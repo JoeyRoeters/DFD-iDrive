@@ -30,12 +30,10 @@
                     <i class="fa-regular fa-webhook"></i>
                     <span class="nav_name">Devices</span>
                 </a>
-                <a href="#" class="nav_link">
-                </a>
             </div>
             <div>
                 <hr>
-                <a href="#" class="nav_link">
+                <a href="{{ route('logout') }}" class="nav_link">
                     <i class='fa-regular fa-arrow-right-from-bracket'></i>
                     <span class="nav_name" style="margin-left: 3px;">Sign Out</span>
                 </a>
