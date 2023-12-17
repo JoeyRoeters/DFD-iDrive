@@ -69,8 +69,7 @@ class DeviceController extends AbstractViewController
             if ($device->save()) {
                 SweetAlert::createInfo("Device updated!");
                 return redirect()->route('devices.overview');
-            }
-            else{
+            } else {
                 SweetAlert::createError("Device could not be updated!");
                 throw ValidationException::withMessages(['error' => 'Something went wrong']);
             }
@@ -81,8 +80,7 @@ class DeviceController extends AbstractViewController
             if ($device->save()) {
                 SweetAlert::createInfo("Device created!");
                 return redirect()->route('devices.overview');
-            }
-            else{
+            } else {
                 SweetAlert::createError("Device could not be created!");
                 throw ValidationException::withMessages(['error' => 'Something went wrong']);
             }
