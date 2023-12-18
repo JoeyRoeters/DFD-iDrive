@@ -2,8 +2,16 @@
 
 namespace App\Domain\Device\Enum;
 
-enum DeviceTypeEnum
+enum DeviceTypeEnum: string
 {
-    case SIMULATOR;
-    case COMMA3X;
+    case SIMULATOR = 'sim';
+    case COMMA3X = 'comma';
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::SIMULATOR => 'Simulator',
+            self::COMMA3X => 'Comma 3x',
+        };
+    }
 }

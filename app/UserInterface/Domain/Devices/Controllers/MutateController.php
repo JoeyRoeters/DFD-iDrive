@@ -13,7 +13,6 @@ use Illuminate\Validation\ValidationException;
 
 class MutateController extends AbstractViewController
 {
-    public Request $request;
 
     /**
      * @inheritdoc
@@ -23,31 +22,24 @@ class MutateController extends AbstractViewController
         return 'devices_mutate';
     }
 
-    protected function loadData(Request $request): void
-    {
-        $this->request = $request;
-    }
-
     /**
      * @inheritdoc
      */
     protected function pageHeader(): PageHeaderValueOject
     {
         return new PageHeaderValueOject(
-            title: 'Devices',
-            buttons: [
-            ]
+            title: 'Devices'
         );
     }
 
     /**
      * @inheritdoc
      */
-    protected function appendViewData(): array
+    protected function appendViewData(Request $request): array
     {
-        if ($this->request->route()->getName() === 'devices.mutate.edit') {
+        if ($request->route()->getName() === 'devices.mutate.edit') {
             return [
-                'device' => Device::find($this->request->route()->parameter('id')),
+                'device' => Device::find($request->route()->parameter('id')),
             ];
         }
 
@@ -60,32 +52,25 @@ class MutateController extends AbstractViewController
      */
     public function save(MutateDeviceRequest $request)
     {
-        if ($request->post("device_id") !== null) {
-            $device = Device::find($request->post("device_id"));
-            $device->name = $request->input('devicename');
-            $device->type = $request->input('devicetype');
-
-            if ($device->save()) {
-                SweetAlert::createInfo("Device updated!");
-                return redirect()->route('devices.overview');
-            } else {
-                SweetAlert::createError("Device could not be updated!");
-                throw ValidationException::withMessages(['error' => 'Something went wrong']);
-            }
-        } else {
+        $device = Device::find($request->post("device_id"));
+        if (!$device instanceof Device) {
             $device = new Device();
-            $device->name = $request->input('devicename');
-            $device->type = $request->input('devicetype');
             $device->user_id = auth()->user()->id;
-            if ($device->save()) {
-                SweetAlert::createInfo("Device created!");
-                return redirect()->route('devices.overview');
-            } else {
-                SweetAlert::createError("Device could not be created!");
-                throw ValidationException::withMessages(['error' => 'Something went wrong']);
-            }
-
         }
+
+        $device->name = $request->input('devicename');
+        $device->type = $request->input('devicetype');
+
+        $type = $device->id === null ? "created" : "updated";
+        if (!$device->save()) {
+            SweetAlert::createError("Device could not be $type!");
+
+            throw ValidationException::withMessages(['error' => 'Something went wrong']);
+        }
+
+        SweetAlert::createSuccess("Device $type!");
+
+        return redirect()->route('devices.overview');
     }
 
 }

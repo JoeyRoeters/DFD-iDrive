@@ -43,11 +43,11 @@
                                     aria-label="Default select example">
                                 <option {{ (!isset($device) || !$device->type) ? 'selected' : '' }}>Device type</option>
                                 <option
-                                    value="{{ \App\Domain\Device\Model\TypeEnum::COMMA }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Model\TypeEnum::COMMA) ? 'selected="selected"' : '' }}>
+                                    value="{{ \App\Domain\Device\Enum\DeviceTypeEnum::COMMA3X }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Enum\DeviceTypeEnum::COMMA3X) ? 'selected="selected"' : '' }}>
                                     Comma
                                 </option>
                                 <option
-                                    value="{{ \App\Domain\Device\Model\TypeEnum::SIM }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Model\TypeEnum::SIM) ? 'selected="selected"' : '' }}>
+                                    value="{{ \App\Domain\Device\Enum\DeviceTypeEnum::SIMULATOR }}" {{ (isset($device) && old('devicetype', $device->type) == \App\Domain\Device\Enum\DeviceTypeEnum::SIMULATOR) ? 'selected="selected"' : '' }}>
                                     Simulator
                                 </option>
                             </select>

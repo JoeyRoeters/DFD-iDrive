@@ -10,7 +10,7 @@ class PageHeaderValueOject
      */
     public function __construct(
         private string $title,
-        private array $buttons
+        private array $buttons = []
     ) {
     }
 

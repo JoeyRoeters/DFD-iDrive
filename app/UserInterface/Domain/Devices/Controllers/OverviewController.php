@@ -90,11 +90,10 @@ class OverviewController extends AbstractOverviewController
      */
     protected function processModel(Model $model): array
     {
-
         return [
             'name' => $model->name,
             'lastActive' => $model->getDateFormatted() ?: 'Never',
-            'type' => $model->type,
+            'type' => $model->type?->getLabel() ?: 'Unknown',
             'show' => new ActionRenderType(
                 route: 'devices.show',
                 buttonEnum: ActionButtonEnum::BUTTON,

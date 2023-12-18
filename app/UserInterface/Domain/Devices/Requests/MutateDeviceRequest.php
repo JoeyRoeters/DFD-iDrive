@@ -2,10 +2,10 @@
 
 namespace App\UserInterface\Domain\Devices\Requests;
 
-use App\Domain\Device\Model\TypeEnum;
-use Illuminate\Contracts\Validation\ValidationRule;
+use App\Domain\Device\Enum\DeviceTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class MutateDeviceRequest extends FormRequest
 {
@@ -26,8 +26,8 @@ class MutateDeviceRequest extends FormRequest
     {
         return [
             'devicename' => 'required',
-            'devicetype' => Rule::in(['comma','sim']),
-            ];
+            'devicetype' => Rule::enum(DeviceTypeEnum::class),
+        ];
     }
 
     /**

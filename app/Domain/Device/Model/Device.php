@@ -2,14 +2,14 @@
 
 namespace App\Domain\Device\Model;
 
+use App\Domain\Device\Enum\DeviceTypeEnum;
 use App\Domain\Shared\Interface\SearchableModelInterface;
 use App\Domain\Trip\Model\Trip;
 use App\Domain\User\Model\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\HasMany;
 
 /**
  * Class Device
@@ -47,7 +47,7 @@ class Device extends Model implements SearchableModelInterface
     protected $casts = [
         'user_id' => 'string',
         'name' => 'string',
-        'type' => 'string',
+        'type' => DeviceTypeEnum::class,
         'lastActive' => 'datetime',
     ];
 
@@ -76,8 +76,13 @@ class Device extends Model implements SearchableModelInterface
         return $this->belongsTo(User::class);
     }
 
-    public function trips(): \Illuminate\Database\Eloquent\Relations\HasMany|\MongoDB\Laravel\Relations\HasMany
+    public function trips(): HasMany
     {
         return $this->hasMany(Trip::class, 'user_id', 'user_id');
+    }
+
+    public function hasAccess(?User $user): bool
+    {
+        return $this->user_id === $user?->id;
     }
 }

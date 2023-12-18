@@ -28,7 +28,6 @@ class DeviceController extends AbstractOverviewController
 {
     use FeedModelDataTrait;
 
-    public Request $request;
     public Device $device;
 
     /**
@@ -45,7 +44,6 @@ class DeviceController extends AbstractOverviewController
      */
     protected function loadData(Request $request): void
     {
-        $this->request = $request;
         $this->device = Device::where('_id', $request->route('id'))
             ->where('user_id', auth()->id())
             ->with("user")
@@ -59,23 +57,26 @@ class DeviceController extends AbstractOverviewController
     protected function pageHeader(): PageHeaderValueOject
     {
         return new PageHeaderValueOject(
-            title: 'Devices',
-            buttons: [
-            ]
+            title: 'Devices'
         );
     }
 
     /**
      * @inheritdoc
      */
-    protected function appendViewData(): array
+    protected function appendViewData(Request $request): array
     {
-
-
         return [
             'api_token' => auth()->user()->getApiToken($this->device),
             'device' => $this->device,
             'tableConfiguration' => $this->getTableConfiguration(),
+            'deleteButton'  => ButtonValueObject::make(
+                label: 'Delete',
+                route: route("devices.delete.confirm", ["id" => $request->route('id')]),
+                icon: 'fa-solid fa-trash',
+                color: 'danger',
+                confirmMessage: "Are you sure you want to delete this device?",
+            ),
             'columns' => array_map(fn (Column $column) => $column->toArray(), $this->getColumns())
         ];
 

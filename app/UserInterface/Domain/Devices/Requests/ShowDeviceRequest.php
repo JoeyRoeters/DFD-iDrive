@@ -12,7 +12,6 @@ class ShowDeviceRequest extends FormRequest
      */
     public function authorize(): \Illuminate\Http\RedirectResponse|bool
     {
-        dd("hoi");
         $id = $this->route('id');
         $device = Device::where('_id', $id)
             ->where('user_id', auth()->id())
@@ -20,9 +19,9 @@ class ShowDeviceRequest extends FormRequest
 
         if ($device == null) {
             return redirect()->route('devices.overview');
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 

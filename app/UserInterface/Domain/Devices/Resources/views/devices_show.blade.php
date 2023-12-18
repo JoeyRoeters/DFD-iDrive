@@ -42,10 +42,7 @@
                             </button>
                         </div>
                         <div class="col-2 d-flex align-items-center justify-content-start">
-                            <button href="" class="btn btn-lg btn-danger">
-                                <a class="text-white"
-                                   href="{{route("devices.delete.message", ["id" => $device->id])}}">Delete</a>
-                            </button>
+                            @include('components.button_value_object', ['button' => $deleteButton])
                         </div>
                     </div>
                 </div>

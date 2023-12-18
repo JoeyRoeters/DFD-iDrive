@@ -18,34 +18,41 @@ class DeleteController extends Controller
     {
         $device = Device::find($request->route('id'));
 
-        if ($device != null && $device->user_id != auth()->id()) {
+        if (!$this->hasDeviceAccess($device)) {
             SweetAlert::createError("Device could not be deleted!");
+
             return redirect()->back('devices.overview');
-        } else {
-            SweetAlert::createConfirm(
-                "Are you sure you want to delete this device?",
-                route("devices.delete.confirm", ["id" => $request->route('id')])
-            );
-            return redirect()->back();
         }
+
+        SweetAlert::createConfirm(
+            "Are you sure you want to delete this device?",
+            route("devices.delete.confirm", ["id" => $request->route('id')])
+        );
+
+        return redirect()->back();
     }
 
     public function deleteDevice(Request $request)
     {
         $device = Device::find($request->route('id'));
-        if ($device->user_id != auth()->id()) {
+
+        if (!$this->hasDeviceAccess($device) || !$device->delete()) {
             SweetAlert::createError("Device could not be deleted!");
+
             throw ValidationException::withMessages(['error' => 'Something went wrong']);
         }
 
-        if ($device->delete()) {
-            SweetAlert::createSuccess("Device deleted!");
-            return redirect()->route('devices.overview');
-        } else {
-            SweetAlert::createError("Device could not be deleted!");
-            throw ValidationException::withMessages(['error' => 'Something went wrong']);
-        }
+        SweetAlert::createSuccess("Device deleted!");
+        return redirect()->route('devices.overview');
     }
 
+    private function hasDeviceAccess(mixed $device): bool
+    {
+        if (!$device instanceof Device) {
+            return false;
+        }
+
+        return $device->hasAccess(auth()->user());
+    }
 
 }

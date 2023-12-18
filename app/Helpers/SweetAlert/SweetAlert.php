@@ -18,16 +18,23 @@ class SweetAlert
     private ?int $timer = null;
     private ?int $defaultTimer = 1500;
 
-    public function __construct(SweetAlertType $alertType, string $text)
+    private bool $update = true;
+
+    public function __construct(SweetAlertType $alertType, string $text, bool $update = true)
     {
         $this->alertType = $alertType;
         $this->text = $text;
+        $this->update = $update;
 
         $this->update();
     }
 
     private function update(): self
     {
+        if (!$this->update) {
+            return $this;
+        }
+
         session()->flash('swalData', $this->toArray());
 
         return $this;
