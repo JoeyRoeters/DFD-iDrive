@@ -23,7 +23,6 @@ use Illuminate\Validation\ValidationException;
 
 class DeviceController extends AbstractOverviewController
 {
-
     use FeedModelDataTrait;
 
     public Request $request;
