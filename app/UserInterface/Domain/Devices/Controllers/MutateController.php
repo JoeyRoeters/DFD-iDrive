@@ -13,7 +13,6 @@ use Illuminate\Validation\ValidationException;
 
 class MutateController extends AbstractViewController
 {
-
     /**
      * @inheritdoc
      */
