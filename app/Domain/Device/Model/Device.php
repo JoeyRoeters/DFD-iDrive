@@ -3,6 +3,7 @@
 namespace App\Domain\Device\Model;
 
 use App\Domain\Shared\Interface\SearchableModelInterface;
+use App\Domain\Trip\Model\Trip;
 use App\Domain\User\Model\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -73,5 +74,10 @@ class Device extends Model implements SearchableModelInterface
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function trips(): \Illuminate\Database\Eloquent\Relations\HasMany|\MongoDB\Laravel\Relations\HasMany
+    {
+        return $this->hasMany(Trip::class);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class DeviceRequest extends FormRequest
+class MutateDeviceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

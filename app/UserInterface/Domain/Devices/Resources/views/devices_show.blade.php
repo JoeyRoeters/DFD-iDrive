@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Domain\Device\Model\Device $device
+ */
+
+?>
 @extends('base')
 
 @section('head')
@@ -5,56 +11,37 @@
 @endsection
 
 @section('content')
-    <div class="container pt-4">
+
+    <div class="container-fluid pt-4">
         <div class="row">
-            <div class="col-9 mx-auto">
+            <div class="col-11 mx-auto">
                 <div class="card">
-                    <h3 class="pb-1">Device: </h3>
-                    <form method="POST" action="{{ route('devices.mutate.save') }}">
-                        @csrf
-
-						@if(isset($device))
-							<input type="hidden" name="device_id" value="{{ $device->getId() }}">
-						@endif
-
-                        <div class="form-outline">
-                            <label class="form-label" for="devicename">Device name</label>
-                            <input id="devicename" type="text"
-                                   class="form-control rounded-4 form-control-lg @error('devicename') is-invalid @enderror"
-                                   name="devicename" value="{{ old('devicename') }}"
-                                   required autocomplete="devicename"
-                                   autofocus>
-
-                            @error('devicename')
-                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                            @enderror
+                    <div class="row">
+                        <div class="col-4">
+                            <span class="d-block r-type-inline-d">{{$device->name}}</span> <span
+                                class="r-type-inline-l">Name</span>
                         </div>
-                        <div class="form-outline pt-2">
-                            <label class="form-label" for="devicetype">Device type</label>
-
-                            <select class="form-select @error('devicetype') is-invalid @enderror" name="devicetype" aria-label="Default select example">
-                                <option selected>Device type</option>
-                                <option value="{{\App\Domain\Device\Model\TypeEnum::COMMA}}">Comma</option>
-                                <option value="{{\App\Domain\Device\Model\TypeEnum::SIM}}">Simulator</option>
-                            </select>
-
-                            @error('devicetype')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                            @enderror
+                        <div class="col-2">
+                        <span class="d-block r-type-inline-d">
+                            @if($device->lastActive)
+                                {{ $device->lastActive }}
+                            @else
+                                never
+                            @endif
+                            </span>
+                            <span class="r-type-inline-l">Last Seen</span>
                         </div>
-
-                        <div class="form-outline pt-2">
-                            <input type="submit" value="Save" class="btn btn-success btn-lg btn-block rounded-4">
+                        <div class="col-2">
+                            <span class="d-block r-type-inline-d">{{$device->type}}</span> <span
+                                class="r-type-inline-l">Model</span>
                         </div>
-
-
-
-                    </form>
-
+                        <div class="col-2 d-flex align-items-center justify-content-end">
+                            <button href="" class="btn btn-lg btn-primary"><a class="text-white" href="http://localhost:8000/devices/show/657f0bb2fa2af9ea170a9a12">Edit</a></button>
+                        </div>
+                        <div class="col-2 d-flex align-items-center justify-content-start">
+                            <button href="" class="btn btn-lg btn-danger"><a class="text-white" href="http://localhost:8000/devices/show/657f0bb2fa2af9ea170a9a12">Delete</a></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

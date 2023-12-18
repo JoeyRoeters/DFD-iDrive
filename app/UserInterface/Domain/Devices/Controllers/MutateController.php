@@ -7,7 +7,7 @@ use App\Helpers\SweetAlert\SweetAlert;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
-use App\UserInterface\Domain\Devices\Requests\DeviceRequest;
+use App\UserInterface\Domain\Devices\Requests\MutateDeviceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -58,7 +58,7 @@ class MutateController extends AbstractViewController
     /**
      * @throws ValidationException
      */
-    public function save(DeviceRequest $request)
+    public function save(MutateDeviceRequest $request)
     {
         if ($request->post("device_id") !== null) {
             $device = Device::find($request->post("device_id"));
@@ -76,6 +76,7 @@ class MutateController extends AbstractViewController
             $device = new Device();
             $device->name = $request->input('devicename');
             $device->type = $request->input('devicetype');
+            $device->user_id = auth()->user()->id;
             if ($device->save()) {
                 SweetAlert::createInfo("Device created!");
                 return redirect()->route('devices.overview');
