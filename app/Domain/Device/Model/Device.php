@@ -78,6 +78,6 @@ class Device extends Model implements SearchableModelInterface
 
     public function trips(): \Illuminate\Database\Eloquent\Relations\HasMany|\MongoDB\Laravel\Relations\HasMany
     {
-        return $this->hasMany(Trip::class);
+        return $this->hasMany(Trip::class, 'user_id', 'user_id');
     }
 }
