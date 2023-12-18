@@ -43,6 +43,10 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card">
+                    @include("overview/data_tables_clean")
+                </div>
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/save', [MutateController::class, 'save'])->name('devices.mutate.save');
 
-    Route::get('/show/{id}', [DeviceController::class, 'run'])->name('devices.show');
+    Route::match(['post', 'get'], '/show/{id}', [DeviceController::class, 'run'])->name('devices.show');
 
 
 
