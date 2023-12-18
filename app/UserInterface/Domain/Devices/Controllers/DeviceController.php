@@ -26,7 +26,6 @@ use MongoDB\Laravel\Eloquent\Model;
 
 class DeviceController extends AbstractOverviewController
 {
-
     use FeedModelDataTrait;
 
     public Request $request;
