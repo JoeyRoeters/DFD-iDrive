@@ -3,6 +3,8 @@
 namespace App\UserInterface\Domain\Devices\Controllers;
 
 use App\Domain\Device\Model\Device;
+use App\Domain\Trip\Model\Trip;
+use App\Domain\User\Model\User;
 use App\Helpers\Overview\AbstractOverviewController;
 use App\Helpers\Overview\Column\Enum\ActionButtonEnum;
 use App\Helpers\Overview\Column\Enum\RenderTypeEnum;
@@ -20,6 +22,7 @@ use App\UserInterface\Domain\Devices\Requests\ShowDeviceRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use MongoDB\Laravel\Eloquent\Model;
 
 class DeviceController extends AbstractOverviewController
 {
@@ -68,7 +71,10 @@ class DeviceController extends AbstractOverviewController
      */
     protected function appendViewData(): array
     {
+
+
         return [
+            'api_token' => auth()->user()->getApiToken($this->device),
             'device' => $this->device,
             'tableConfiguration' => $this->getTableConfiguration(),
             'columns' => array_map(fn (Column $column) => $column->toArray(), $this->getColumns())
@@ -78,7 +84,7 @@ class DeviceController extends AbstractOverviewController
 
     protected function getModelQuery(): Builder
     {
-        return Device::query();
+        return Trip::query();
     }
 
     protected function getTableConfiguration(): TableConfiguration
@@ -97,60 +103,49 @@ class DeviceController extends AbstractOverviewController
     {
         return [
             new Column(
-                key: 'name',
-                label: 'Name',
+                key: 'id',
+                label: 'ID',
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'lastActive',
-                label: 'Last seen',
+                key: 'date',
+                label: 'Date',
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'type',
-                label: 'Model',
+                key: 'time',
+                label: 'Time',
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'show',
-                label: 'Show',
-                renderType: RenderTypeEnum::ACTION_BUTTON,
+                key: 'distance',
+                label: 'Distance',
+                renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'edit',
-                label: 'Edit',
-                renderType: RenderTypeEnum::ACTION_BUTTON,
+                key: 'score',
+                label: 'Score',
+                renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
         ];
     }
 
 
     /**
-     * @param Device $model
+     * @param Trip $model
      * @return array
      */
     protected function processModel(Model|\Illuminate\Database\Eloquent\Model $model): array
     {
 
         return [
-            'name' => $model->name,
-            'lastActive' => $model->getDateFormatted() ?: 'Never',
-            'type' => $model->type,
-            'show' => new ActionRenderType(
-                route: 'devices.show',
-                buttonEnum: ActionButtonEnum::BUTTON,
-                routeParam: ['id' => $model->id],
-                label: 'Show',
-                color: 'primary',
-            ),
-            'edit' => new ActionRenderType(
-                route: 'devices.mutate.edit',
-                buttonEnum: ActionButtonEnum::BUTTON,
-                routeParam: ['id' => $model->id],
-                label: 'Edit',
-                color: 'success',
-            )
+            'id' => $model->trip_number,
+            'date' => $model->getDateFormatted() ?: 'Never',
+            'time' => ($model->start_time ? $model->start_time->format('H:i') : 'N/A') . ' - ' . ($model->end_time ? $model->start_time->format('H:i') : 'N/A'),
+            'distance' => $model->distance ?: '0 KM',
+            'score' => $model->score ?: '0.0',
         ];
+
     }
 
 

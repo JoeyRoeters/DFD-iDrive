@@ -1,5 +1,6 @@
 <?php
 
+use App\UserInterface\Domain\Devices\Controllers\DeleteController;
 use App\UserInterface\Domain\Devices\Controllers\DeviceController;
 use App\UserInterface\Domain\Devices\Controllers\MutateController;
 use App\UserInterface\Domain\Devices\Controllers\OverviewController;
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/save', [MutateController::class, 'save'])->name('devices.mutate.save');
 
     Route::match(['post', 'get'], '/show/{id}', [DeviceController::class, 'run'])->name('devices.show');
+
+    Route::get('/delete/{id}', [DeleteController::class, 'deleteMessage'])->name('devices.delete.message');
+    Route::get('/delete/confirm/{id}', [DeleteController::class, 'deleteDevice'])->name('devices.delete.confirm');
 
 
 
