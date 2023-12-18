@@ -14,7 +14,6 @@ use Illuminate\Validation\ValidationException;
 
 class DeleteController extends Controller
 {
-
     public function deleteMessage(Request $request)
     {
         $device = Device::find($request->route('id'));
