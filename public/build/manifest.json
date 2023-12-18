@@ -5,7 +5,7 @@
     "src": "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss"
   },
   "app/UserInterface/Domain/Devices/Resources/js/homepage.js": {
-    "file": "assets/homepage-129624fe.js",
+    "file": "assets/homepage-aeb3769b.js",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Devices/Resources/js/homepage.js"
   },
@@ -15,7 +15,7 @@
     "src": "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss"
   },
   "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
-    "file": "assets/homepage-aeb3769b.js",
+    "file": "assets/homepage-129624fe.js",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
   },
@@ -57,7 +57,7 @@
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-e5c7eb17.css",
+    "file": "assets/app-2ece812a.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
