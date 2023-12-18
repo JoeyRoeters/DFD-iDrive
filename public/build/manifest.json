@@ -1,13 +1,33 @@
 {
-  "app/UserInterface/Domain/Auth/Resources/sass/auth.scss": {
-    "file": "assets/auth-db8669f8.css",
+  "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss": {
+    "file": "assets/_auth-db8669f8.css",
     "isEntry": true,
-    "src": "app/UserInterface/Domain/Auth/Resources/sass/auth.scss"
+    "src": "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss"
   },
-  "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
+  "app/UserInterface/Domain/Devices/Resources/js/homepage.js": {
     "file": "assets/homepage-129624fe.js",
     "isEntry": true,
+    "src": "app/UserInterface/Domain/Devices/Resources/js/homepage.js"
+  },
+  "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss": {
+    "file": "assets/_devices-2fa01f3c.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
+    "file": "assets/homepage-aeb3769b.js",
+    "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 2.scss": {
+    "file": "assets/_homepage 2-c5f9c697.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss": {
+    "file": "assets/_homepage 2-c5f9c697.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
   },
   "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
     "file": "assets/_homepage-ed0cff5d.css",
@@ -32,12 +52,12 @@
     "src": "resources/images/logos/logo_red.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-c1d86b96.js",
+    "file": "assets/app-463b621e.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-21d6911f.css",
+    "file": "assets/app-2ece812a.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },

@@ -5,12 +5,7 @@
         </div>
         <div class="col-md-6 button-container">
             @foreach($pageHeader->getButtons() as $button)
-                <div>
-                    <a href="{{ route($button->getRoute()) }}" class="btn btn-{{ $button->getColor() }}">
-                        <i class="{{$button->getIcon() }}"></i>
-                        <span>{{ $button->getLabel() }}</span>
-                    </a>
-                </div>
+                @include('components.button_value_object', ['button' => $button])
             @endforeach
 
         </div>

@@ -5,6 +5,7 @@ namespace App\UserInterface\Domain\Homepage\Controllers;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
+use Illuminate\Http\Request;
 
 class Main extends AbstractViewController
 {
@@ -32,7 +33,7 @@ class Main extends AbstractViewController
     /**
      * @inheritdoc
      */
-    protected function appendViewData(): array
+    protected function appendViewData(Request $request): array
     {
         return [];
     }

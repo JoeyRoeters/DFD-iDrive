@@ -37,11 +37,17 @@ export default class SweetAlert {
         }
     }
 
-    static fire(data = {}) {
-        return swal.fire({
+    static async fire(data = {}) {
+        const popup = await swal.fire({
             ...SweetAlert.getDefaultSwalData(),
             ...data
         });
+
+        if (data.url !== undefined && popup.isConfirmed) {
+            window.location.href = data.url;
+        }
+
+        return popup;
     }
 }
 

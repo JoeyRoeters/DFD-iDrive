@@ -2,6 +2,7 @@
 
 @import 'variables';
 @import "~bootstrap/scss/bootstrap";
+@import "~datatables/css/dataTables.bootstrap5.min.css";
 
 @import "./helpers/*.scss";
 @import 'utilities/*.scss';
@@ -16,3 +17,5 @@
 @import "./fontawesome/regular.scss";
 @import "./fontawesome/duotone.scss";
 @import "./fontawesome/thin.scss";
+
+@import "./datatables.scss";

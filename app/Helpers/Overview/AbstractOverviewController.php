@@ -49,7 +49,7 @@ abstract class AbstractOverviewController extends AbstractViewController
     /**
      * @inheritdoc
      */
-    protected function appendViewData(): array
+    protected function appendViewData(Request $request): array
     {
         return [
             'tableConfiguration' => $this->getTableConfiguration(),

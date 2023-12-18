@@ -46,7 +46,7 @@ export default class Column {
 
     renderInlineColumnNameWithText(data, type, row) {
         if (type === 'display') {
-            return `${this.getLabel()}: ${data}`;
+            return `<span class="d-block r-type-inline-d">${data}</span> <span class="r-type-inline-l">${this.getLabel()}</span>`;
         }
 
         return data;
@@ -62,12 +62,11 @@ export default class Column {
     renderActionButton(data, type, row) {
         data = JSON.parse(data);
         if (type === 'display') {
-            console.log(data)
             if (data.buttonEnum === 'arrow') {
-                return `<a href="${data.link}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i></a>`;
+                return `<a href="${data.link}" class="btn btn-lg btn-primary float-end"><i class="fa fa-arrow-right"></i></a>`;
             }
 
-            return `<button class="btn btn-sm btn-primary">${data.label}</button>`;
+            return `<button href="${data.link}" class="btn btn-lg btn-primary float-end"><a class="text-white" href="${data.link}">${data.label}</a></button>`;
         }
         return '';
     }
