@@ -9,7 +9,7 @@ use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use Illuminate\Http\Request;
 
-class TripController extends AbstractViewController
+class TripReviewController extends AbstractViewController
 {
     protected Trip $trip;
 
@@ -38,12 +38,11 @@ class TripController extends AbstractViewController
     {
         return new PageHeaderValueOject(
             title: 'Trip',
-            subtitle: "Details",
+            subtitle: "Review",
             buttons: [
                 ButtonValueObject::make('Go back', 'trip.main', 'fa-solid fa-backward'),
-                ButtonValueObject::make('Case review', 'trip.main', 'fa-solid fa-list-check', "secondary"),
-                ButtonValueObject::make('Overview', 'trip.main', 'fa-solid fa-file', color: "success"),
-
+                ButtonValueObject::make('Case review', 'trip.show.review', 'fa-solid fa-list-check', "secondary", routeParameters: ['id' => $this->trip->id]),
+                ButtonValueObject::make('Overview', 'trip.show.overview', 'fa-solid fa-file', "success", routeParameters: ['id' => $this->trip->id]),
             ]
         );
     }

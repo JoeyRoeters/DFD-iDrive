@@ -100,7 +100,7 @@ class Main extends AbstractOverviewController
             'distance' => $model->distance ?: '0 KM',
             'score' => $model->score ?: '0.0',
             'actions' => new ActionRenderType(
-                route: 'trip.show',
+                route: 'trip.show.overview',
                 routeParam: ['id' => $model->id],
                 buttonEnum: ActionButtonEnum::ARROW,
             )
