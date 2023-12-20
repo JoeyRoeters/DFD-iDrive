@@ -56,7 +56,8 @@ class TripReviewController extends AbstractViewController
 
 
 
-    public function getGraphData() {
+    public function getGraphData()
+    {
 
     }
 
