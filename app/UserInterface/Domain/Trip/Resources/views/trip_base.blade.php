@@ -25,33 +25,27 @@
                                 class="r-type-inline-l">State</span>
                         </div>
                         <div class="col-2">
-                            <span class="d-block r-type-inline-d">ss</span> <span
+                            <span class="d-block r-type-inline-d">{{$trip->getDateFormatted()}}</span> <span
                                 class="r-type-inline-l">Date</span>
                         </div>
                         <div class="col-2">
-                            <span class="d-block r-type-inline-d">ss</span> <span
+                            <span class="d-block r-type-inline-d">{{$trip->getTimeFormatted()}}</span> <span
                                 class="r-type-inline-l">Time</span>
                         </div>
                         <div class="col-2">
-                            <span class="d-block r-type-inline-d">ss</span> <span
+                            <span class="d-block r-type-inline-d">{{$trip->getDistanceFormatted()}}</span> <span
                                 class="r-type-inline-l">Distance</span>
                         </div>
                         <div class="col-2">
-                            <span class="d-block r-type-inline-d">ss</span> <span
+                            <span class="d-block r-type-inline-d">{{$trip->getScoreFormatted()}}</span> <span
                                 class="r-type-inline-l">Score</span>
-                        </div>
-                        <div class="col-2 d-flex align-items-center justify-content-end">
-                            <button class="btn btn-lg btn-primary">
-                                <a class="text-white"
-                                   href="{{route("devices.mutate.edit", ["id" => '2'])}}">Edit</a>
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+        @yield('tripContent')
 
     </div>
 @endsection

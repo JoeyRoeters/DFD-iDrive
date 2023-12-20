@@ -103,13 +103,21 @@ class Trip extends Model implements SearchableModelInterface
 
     public function getDistanceFormatted(): string
     {
-        return $this?->distance . ' km' ?? '';
+        return is_null($this->distance) ? 'N/A' : $this->distance . ' km';
     }
+
+
+    public function getScoreFormatted(): string
+    {
+        return isset($this->score) ? $this->score : 'N/A';
+    }
+
 
     public function getDateFormatted(): string
     {
-        return $this->start_time?->format('d-m-Y') ?? '';
+        return $this->start_time?->format('d-m-Y') ?? 'N/A';
     }
+
 
     public function user(): BelongsTo
     {
