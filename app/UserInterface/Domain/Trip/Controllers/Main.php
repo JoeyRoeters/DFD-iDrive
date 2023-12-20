@@ -20,7 +20,9 @@ class Main extends AbstractOverviewController
 
     protected function getModelQuery(): Builder
     {
-        return Trip::query();
+        $query = Trip::query();
+        $query->where('user_id', auth()->user()->id);
+        return $query;
     }
 
     protected function pageHeader(): PageHeaderValueOject

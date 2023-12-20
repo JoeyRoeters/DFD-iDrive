@@ -84,7 +84,10 @@ class DeviceController extends AbstractOverviewController
 
     protected function getModelQuery(): Builder
     {
-        return Trip::query();
+        $query = Trip::query();
+        $query->where('user_id', auth()->user()->id);
+        $query->where('device_id', $this->device->id);
+        return $query;
     }
 
     protected function getTableConfiguration(): TableConfiguration

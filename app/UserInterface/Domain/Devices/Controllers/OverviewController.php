@@ -80,7 +80,9 @@ class OverviewController extends AbstractOverviewController
 
     protected function getModelQuery(): Builder
     {
-        return Device::query();
+        $query = Device::query();
+        $query->where('user_id', auth()->user()->id);
+        return $query;
     }
 
 
