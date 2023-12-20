@@ -10,4 +10,3 @@ Route::match(['post', 'get'], '/', [Main::class, 'run'])->name('trip.main');
 Route::get('/{id}/overview', [TripOverviewController::class, 'run'])->name('trip.show.overview');
 
 Route::get('/{id}/review', [TripReviewController::class, 'run'])->name('trip.show.review');
-

@@ -16,7 +16,6 @@ class ButtonValueObject
         private string $color,
         private ?string $confirmMessage = null,
         private ?array $routeParameters = [],
-
     ) {
         $this->id = uniqid();
     }
