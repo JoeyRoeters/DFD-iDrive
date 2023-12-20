@@ -96,9 +96,9 @@ class Main extends AbstractOverviewController
             'device' => $model->device_id,
             'state' => $model->state->getTranslation() ?: 'Unknown',
             'date' => $model->getDateFormatted() ?: 'Unknown',
-            'time' => $model->getTimeFormatted()?: 'Unknown',
-            'distance' => $model->distance?: '0 KM',
-            'score' => $model->score?: '0.0',
+            'time' => $model->getTimeFormatted() ?: 'Unknown',
+            'distance' => $model->distance ?: '0 KM',
+            'score' => $model->score ?: '0.0',
             'actions' => new ActionRenderType(
                 route: 'trip.show',
                 routeParam: ['id' => $model->id],
