@@ -54,4 +54,11 @@ class TripReviewController extends AbstractViewController
         ];
     }
 
+
+
+    public function getGraphData() {
+
+    }
+
+
 }

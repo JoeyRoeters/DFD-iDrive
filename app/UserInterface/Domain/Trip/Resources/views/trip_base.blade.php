@@ -13,6 +13,12 @@
     @vite('app/UserInterface/Domain/Trip/Resources/sass/_trips.scss')
 @endsection
 
+@section('script')
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+@endsection
+
 @section('content')
 
     <div class="container-fluid pt-2">
