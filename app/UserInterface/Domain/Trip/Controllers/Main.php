@@ -54,6 +54,11 @@ class Main extends AbstractOverviewController
                 renderType: RenderTypeEnum::TRIP_DEVICE_LABEL,
             ),
             new Column(
+                key: 'state',
+                label: 'State',
+                renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
+            ),
+            new Column(
                 key: 'date',
                 label: 'Date',
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
@@ -89,10 +94,11 @@ class Main extends AbstractOverviewController
     {
         return [
             'device' => $model->device_id,
-            'date' => $model->getDateFormatted(),
-            'time' => $model->getTimeFormatted(),
-            'distance' => $model->distance,
-            'score' => $model->score,
+            'state' => $model->state->getTranslation() ?: 'Unknown',
+            'date' => $model->getDateFormatted() ?: 'Unknown',
+            'time' => $model->getTimeFormatted()?: 'Unknown',
+            'distance' => $model->distance?: '0 KM',
+            'score' => $model->score?: '0.0',
             'actions' => new ActionRenderType(
                 route: 'trip.show',
                 routeParam: ['id' => $model->id],
