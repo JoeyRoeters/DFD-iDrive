@@ -35,7 +35,7 @@
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
   },
   "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
-    "file": "assets/_trips-d3d7dd17.css",
+    "file": "assets/_trips-8587ddb1.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss"
   },
