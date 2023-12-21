@@ -69,7 +69,7 @@ class ApiTripController extends Controller
             'events.*' => 'required|array|size:3',
             'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
             'events.*.1' => 'required|numeric',
-            'events.*.2' => 'required',
+            'events.*.2' => '',
         ]);
 
         if ($validator->fails()) {
