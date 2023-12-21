@@ -19,5 +19,3 @@ Route::prefix('/{id}')->group(function () {
 
 
 });
-
-
