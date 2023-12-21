@@ -9,7 +9,6 @@ use App\Infrastructure\Laravel\Controller;
 
 class GraphController extends Controller
 {
-
     private string $graphName = '';
     private array $graphData = [];
     private string $graphXName = '';
@@ -45,7 +44,8 @@ class GraphController extends Controller
     }
 
 
-    public function make(){
+    public function make()
+    {
         return view('graph_base', $this->toArray());
     }
 
@@ -340,7 +340,8 @@ class GraphController extends Controller
         return $this;
     }
 
-    private function toArray(){
+    private function toArray()
+    {
         return [
             'graphName' => $this->graphName,
             'graphData' => $this->graphData,

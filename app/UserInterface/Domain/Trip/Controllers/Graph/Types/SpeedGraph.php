@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\View;
 
 class SpeedGraph extends GraphController
 {
-
     public function __construct()
     {
         parent::__construct('speed_graph');
