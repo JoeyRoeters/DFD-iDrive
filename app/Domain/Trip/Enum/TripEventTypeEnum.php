@@ -8,6 +8,8 @@ enum TripEventTypeEnum: String
 {
     use EnumToArray;
 
-    case START = 'start';
+    case START = 'System start';
     case STOP = 'stop';
+    case CROSSED_LINE = 'crossed_line';
+    case COLLISION = 'collision';
 }
