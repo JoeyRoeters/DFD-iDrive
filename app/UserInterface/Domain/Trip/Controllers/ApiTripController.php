@@ -66,9 +66,9 @@ class ApiTripController extends Controller
 
         $validator = Validator::make($request->all(), [
             'events' => 'required|array',
-            'events.*' => 'required|array|size:2',
+            'events.*' => 'required|array|size:3',
             'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
-            'events.*.1' => 'required|date_format:Y-m-d H:i:s',
+            'events.*.1' => 'required|numeric',
             'events.*.2' => 'required',
         ]);
 
@@ -99,9 +99,9 @@ class ApiTripController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
-            'data.*' => 'required|array|size:3',
+            'data.*' => 'required|array|size:4',
             'data.*.*' => 'required',
-            'data.*.0' => 'required|date_format:Y-m-d H:i:s',
+            'data.*.0' => 'required|numeric',
             'data.*.1' => 'required|numeric',
             'data.*.2' => 'required|array|size:3',
             'data.*.3' => 'required|array|size:3',
