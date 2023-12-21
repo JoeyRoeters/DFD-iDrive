@@ -72,10 +72,11 @@ class DeviceController extends AbstractOverviewController
             'tableConfiguration' => $this->getTableConfiguration(),
             'deleteButton'  => ButtonValueObject::make(
                 label: 'Delete',
-                route: route("devices.delete.confirm", ["id" => $request->route('id')]),
+                route: "devices.delete.confirm",
                 icon: 'fa-solid fa-trash',
                 color: 'danger',
                 confirmMessage: "Are you sure you want to delete this device?",
+                routeParameters: ["id" => $request->route('id')]
             ),
             'columns' => array_map(fn (Column $column) => $column->toArray(), $this->getColumns())
         ];
