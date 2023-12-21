@@ -68,7 +68,8 @@ class ApiTripController extends Controller
             'events' => 'required|array',
             'events.*' => 'required|array|size:2',
             'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
-            'events.*.1' => 'required',
+            'events.*.1' => 'required|date_format:Y-m-d H:i:s',
+            'events.*.2' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -78,10 +79,11 @@ class ApiTripController extends Controller
         $events = $request->get('events');
 
         foreach ($events as $eventData) {
-            list($eventType, $eventData) = $eventData;
+            list($eventType, $timestamp, $eventData) = $eventData;
 
             $trip->events()->create([
                 'type' => $eventType,
+                'timestamp' => $timestamp,
                 'data' => $eventData,
             ]);
         }

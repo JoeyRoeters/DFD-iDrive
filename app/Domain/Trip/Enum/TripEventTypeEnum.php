@@ -10,5 +10,4 @@ enum TripEventTypeEnum: String
 
     case START = 'start';
     case STOP = 'stop';
-    case PAUSE = 'pause';
 }
