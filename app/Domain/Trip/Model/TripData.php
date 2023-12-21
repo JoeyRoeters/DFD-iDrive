@@ -37,12 +37,14 @@ class TripData extends Model
         'accelero',
         'gyroscope',
         'speed',
+        'timestamp'
     ];
 
     protected $casts = [
         'accelero' => 'array',
         'gyroscope' => 'array',
         'speed' => 'float',
+        'timestamp' => 'datetime'
     ];
 
     /**
