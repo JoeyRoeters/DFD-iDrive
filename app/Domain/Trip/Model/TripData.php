@@ -7,6 +7,7 @@ use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 
 use Carbon\Carbon;
+
 /**
  * Class TripData
  *
