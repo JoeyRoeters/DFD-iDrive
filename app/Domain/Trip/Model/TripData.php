@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 
+use Carbon\Carbon;
 /**
  * Class TripData
  *
@@ -57,4 +58,11 @@ class TripData extends Model
     {
         return $this->belongsTo(Trip::class);
     }
+
+
+    public function getTimestampAttribute($value)
+    {
+        return Carbon::createFromTimestamp($value->toDateTime()->getTimestamp())->toDateTimeString();
+    }
+
 }

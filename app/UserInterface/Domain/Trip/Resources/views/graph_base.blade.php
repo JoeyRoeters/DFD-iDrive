@@ -5,12 +5,28 @@
     function convertDataArray(inputData) {
         var data = [];
         for (var i = 0; i < inputData.length; i++) {
-            var time = new Date(inputData[i].time).getTime();
-            var speed = inputData[i].speed;
-            data.push({time: time, speed: speed});
+            // Controleer of de tijdreeks gedefinieerd is
+            if (inputData[i].timestamp) {
+                var dateString = inputData[i].timestamp;
+
+                // Extraheren van het gedeelte na de spatie
+                var timeString = dateString.split(" ")[1];
+
+                // Creëer een nieuwe datum met een standaarddatum en de geëxtraheerde tijd
+                var combinedDateString = "2023-01-01 " + timeString;
+                var time = new Date(combinedDateString).getTime();
+
+                var speed = inputData[i].speed;
+                data.push({time: time, speed: speed});
+                console.log(time, speed)
+            } else {
+                console.error("time is undefined for input data at index", i, inputData[i]);
+            }
         }
         return data;
     }
+
+
 
     var root = am5.Root.new("chartdiv");
     root.setThemes([am5themes_Animated.new(root)]);

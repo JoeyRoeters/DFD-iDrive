@@ -32,8 +32,9 @@ class TripReviewController extends AbstractViewController
 
         $this->trip = Trip::find($id)
             ->where('_id', $id)
-            ->where('user_id', $request->user()->id)
+//            ->where('user_id', $request->user()->id) //TODO only for testing
             ->first();
+
     }
 
 
@@ -79,28 +80,22 @@ class TripReviewController extends AbstractViewController
         switch ($dataType) {
             case 'speed':
                 $SpeedGraph = new SpeedGraph();
+
+                $graphData = TripData::where('trip_id', $request->route('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed', 'timestamp', 'trip_id'])
+                    ->toArray();
+
+
+
+                $SpeedGraph->setGraphData($graphData);
                 return $SpeedGraph->render();
 
             default:
                 $data = [];
+                return $data;
         }
     }
 
-    public function getGraphData(Request $request)
-    {
-        $dataType = $request->input('dataType');
-
-
-        switch ($dataType) {
-            case 'speed':
-                $data = $this->getSpeedGraph();
-                break;
-
-            default:
-                $data = [];
-        }
-
-        return response()->json($data);
-    }
 
 }
