@@ -6,31 +6,22 @@
 
 @section('content')
     <div class="homepage-under-construction">
-        <div class="homepage-under-construction_image">
-            <img src="{{ Vite::image('Illustrations/coming_soon.svg') }}" alt="Under Construction">
-        </div>
+        
+        <div class="recent_name">Recent Trips</div>
+        <div class="recent recent1">Trip #1</div>
+        <div class="recent recent2">Trip #2</div>
+        <div class="recent recent3">Trip #3</div>
+        <div class="recent recent4">Trip #4</div>
 
-        <div class="homepage-under-construction_text">
-            <p>
-                This page is under construction. Please check back later
-            </p>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-10 col-sm-12 blue">
-            <h1 class="text-center text-warning">Text test</h1>
-            </div>
-
-            <div class="col-2 col-sm-12 red">
-                        
-<h1>Text test</h1>
-            </div>
-
+        <div class="review_name">Case Reviews</div>
+        <div class="review card1">Speed</div>
+        <div class="review card2">Break</div>
+        <div class="review card3">Gear</div>
+        <div class="review card4">Steering</div>
 
     </div>
+
+    
 
 </div>
 @endsection

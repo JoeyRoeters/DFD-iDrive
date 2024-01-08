@@ -20,14 +20,94 @@
     img {
         width: 400px;
     }
-}
 
-.red {
-    background-color: red;
-    
-}
+    .recent_name{
+        color: #000000;
+        position: absolute;
+        top: 270px;
+        left: 200px;
+        font-size: 30px;
+        font-weight: 600;
+   }
 
-.blue {
-    background-color: blue;
-    
+   .recent  {
+        width: 345px;
+        height: 180px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        padding: 15px;
+        color: #000000;
+        display: flex;
+        cursor: pointer;
+   }
+
+   .recent1{
+        position: absolute;
+        top: 325px;
+        left: 195px;
+   }
+
+   .recent2{
+        position: absolute;
+        top: 325px;
+        left: 555px;
+    }
+
+    .recent3{
+        position: absolute;
+        top: 520px;
+        left: 195px;
+   }
+
+   .recent4{
+        position: absolute;
+        top: 520px;
+        left: 555px;
+    }
+
+    .review_name{
+        color: #000000;
+        position: absolute;
+        top: 270px;
+        left: 1105px;
+        font-size: 30px;
+        font-weight: 600;
+   }
+
+   .review  {
+        width: 345px;
+        height: 180px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        padding: 15px;
+        color: #000000;
+        display: flex;
+        cursor: pointer;
+   }
+
+   .card1{
+        position: absolute;
+        top: 325px;
+        left: 1100px;
+   }
+
+   .card2{
+        position: absolute;
+        top: 325px;
+        left: 1460px;
+    }
+
+    .card3{
+        position: absolute;
+        top: 520px;
+        left: 1100px;
+   }
+
+   .card4{
+        position: absolute;
+        top: 520px;
+        left: 1460px;
+    }
+
+
 }
