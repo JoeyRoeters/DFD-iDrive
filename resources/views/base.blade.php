@@ -5,7 +5,7 @@
         <div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
         <div class="d-flex align-items-center justify-content-around">
             <div class="header_img"><img src="https://i.imgur.com/hczKIze.jpg" alt=""></div>
-            <div class="header_name ml-1">Hello, {{ Auth::user()?->name ?? "John Doe" }} </div>
+            <div class="header_name ml-1">Hello, {{ Auth::user()?->firstname . " " . Auth::user()?->lastname ?? "John Doe" }} </div>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -26,16 +26,14 @@
                     <i class="fa-regular fa-road"></i>
                     <span class="nav_name">Trips</span>
                 </a>
-                <a href="#" class="nav_link">
+                <a href="{{route("devices.overview")}}" class="nav_link">
                     <i class="fa-regular fa-webhook"></i>
                     <span class="nav_name">Devices</span>
-                </a>
-                <a href="#" class="nav_link">
                 </a>
             </div>
             <div>
                 <hr>
-                <a href="#" class="nav_link">
+                <a href="{{ route('logout') }}" class="nav_link">
                     <i class='fa-regular fa-arrow-right-from-bracket'></i>
                     <span class="nav_name" style="margin-left: 3px;">Sign Out</span>
                 </a>

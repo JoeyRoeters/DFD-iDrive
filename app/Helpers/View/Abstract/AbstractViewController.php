@@ -52,7 +52,7 @@ abstract class AbstractViewController extends Controller
      *
      * @return array<string, mixed>
      */
-    abstract protected function appendViewData(): array;
+    abstract protected function appendViewData(Request $request): array;
 
     /**
      * @param Request $request
@@ -69,7 +69,7 @@ abstract class AbstractViewController extends Controller
         return view(
             $this->view(),
             $this->defaultViewData(),
-            $this->appendViewData()
+            $this->appendViewData($request)
         );
     }
 }
