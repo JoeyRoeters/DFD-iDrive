@@ -54,7 +54,7 @@ export default class Column {
 
     renderColoredNumber0_100(data, type, row) {
         if (type === 'display') {
-            return `<span class="text-${data > 50 ? 'success' : 'danger'}">${data}</span>`;
+            return `<span style="font-size: 1.5rem;" class="text-${data > 50 ? 'success' : 'danger'}">${data}</span>`;
         }
         return data;
     }
@@ -73,7 +73,8 @@ export default class Column {
 
     renderTripDeviceLabel(data, type, row) {
         if (type === 'display') {
-            return `<span class="badge badge-${data === 'active' ? 'success' : 'danger'}">${data}</span>`;
+            return `<span class="badge text-bg-primary">${data}</span>`;
+            // return `<span class="badge text-black bg-${data === 'active' ? 'success' : 'danger'}">${data}</span>`;
         }
 
         return data;

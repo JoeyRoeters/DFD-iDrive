@@ -13,12 +13,12 @@
             $button.on('click', () => {
                 let data = @json($button->getSweetAlert());
 
-                data.url = "{{ $button->getRoute() }}";
+                data.url = "{{ route($button->getRoute(), $button->getRouteParameters()) }}";
 
                 SweetAlert.fire(data);
             })
         } else {
-            $("a[data-id={{ $button->getRandomId() }}]").attr("href", "{{ $button->getConfirmMessage() === null ? route($button->getRoute()) : $button->getRoute() }}" );
+            $("a[data-id={{ $button->getRandomId() }}]").attr("href", "{{ $button->getConfirmMessage() === null ? route($button->getRoute(), $button->getRouteParameters()) : $button->getRoute() }}" );
         }
     });
 </script>

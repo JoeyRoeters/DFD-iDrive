@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 abstract class AbstractViewController extends Controller
 {
+    protected Request $request;
+
     /**
      * @return array<string, mixed>
      */
@@ -25,6 +27,7 @@ abstract class AbstractViewController extends Controller
      */
     protected function loadData(Request $request): void
     {
+        $this->request = $request;
     }
 
     /**

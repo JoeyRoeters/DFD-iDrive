@@ -21,6 +21,7 @@ use MongoDB\Laravel\Relations\HasOne;
  * @property int $trip_number
  * @property string $user_id
  * @property string $device_id
+ * @property TripStateEnum $state
  * @property Carbon $start_time
  * @property Carbon $end_time
  * @property float $distance
@@ -97,18 +98,26 @@ class Trip extends Model implements SearchableModelInterface
 
     public function getTimeFormatted(): string
     {
-        return $this->start_time?->format('H:i') ?? '' . ' - ' . $this->end_time?->format('H:i') ?? '';
+        return ($this->start_time ? $this->start_time->format('H:i') : '') . ' - ' . ($this->end_time ? $this->end_time->format('H:i') : '');
     }
 
     public function getDistanceFormatted(): string
     {
-        return $this?->distance . ' km' ?? '';
+        return is_null($this->distance) ? 'N/A' : $this->distance . ' km';
     }
+
+
+    public function getScoreFormatted(): string
+    {
+        return isset($this->score) ? $this->score : 'N/A';
+    }
+
 
     public function getDateFormatted(): string
     {
-        return $this->start_time?->format('d.m.Y') ?? '';
+        return $this->start_time?->format('d-m-Y') ?? 'N/A';
     }
+
 
     public function user(): BelongsTo
     {

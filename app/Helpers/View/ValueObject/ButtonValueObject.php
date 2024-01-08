@@ -15,6 +15,7 @@ class ButtonValueObject
         private string $icon,
         private string $color,
         private ?string $confirmMessage = null,
+        private ?array $routeParameters = [],
     ) {
         $this->id = uniqid();
     }
@@ -57,6 +58,26 @@ class ButtonValueObject
     public function setRoute(string $route): ButtonValueObject
     {
         $this->route = $route;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+
+    public function getRouteParameters(): ?array
+    {
+        return $this->routeParameters;
+    }
+
+    /**
+     * @param array|null $routeParameters
+     * @return ButtonValueObject
+     */
+
+    public function setRouteParameters(?array $routeParameters): ButtonValueObject
+    {
+        $this->routeParameters = $routeParameters;
         return $this;
     }
 
@@ -132,8 +153,8 @@ class ButtonValueObject
         return $this;
     }
 
-    public static function make(string $label, string $route, string $icon, string $color = 'primary', ?string $confirmMessage = null): self
+    public static function make(string $label, string $route, string $icon, string $color = 'primary', ?string $confirmMessage = null, ?array $routeParameters = []): self
     {
-        return new self($label, $route, $icon, $color, $confirmMessage);
+        return new self($label, $route, $icon, $color, $confirmMessage, $routeParameters);
     }
 }
