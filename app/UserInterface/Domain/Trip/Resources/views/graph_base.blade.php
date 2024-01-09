@@ -4,27 +4,39 @@
 
     function convertDataArray(inputData) {
         var data = [];
-        for (var i = 0; i < inputData.length; i++) {
-            // Controleer of de tijdreeks gedefinieerd is
-            console.log(inputData[i])
-            if (inputData[i].timestamp) {
-                var dateString = inputData[i].timestamp;
-                console.log(dateString)
-                // Extraheren van het gedeelte na de spatie
 
+        // Buitenste lus om door de hoofdarray te gaan
+        for (var j = 0; j < inputData.length; j++) {
+            var currentArray = inputData[j];
+            var convertedData = [];
 
-                // Creëer een nieuwe datum met een standaarddatum en de geëxtraheerde tijd
-                var time = new Date(dateString).getTime();
+            // Binnenste lus om door elke subarray te gaan
+            for (var i = 0; i < currentArray.length; i++) {
+                var currentItem = currentArray[i];
 
-                var speed = inputData[i].speed;
-                data.push({time: time, speed: speed});
-                console.log(time, speed)
-            } else {
-                console.error("time is undefined for input data at index", i, inputData[i]);
+                if (currentItem.timestamp) {
+                    var dateString = currentItem.timestamp;
+                    var time = new Date(dateString).getTime();
+
+                    if (currentItem.speed !== undefined) {
+                        var speed = currentItem.speed;
+                        convertedData.push({ time: time, speed: speed });
+                    } else {
+                        console.error("Speed is undefined for input data at index", i, currentItem);
+                    }
+                } else {
+                    console.error("Timestamp is undefined for input data at index", i, currentItem);
+                }
             }
+
+            // Voeg de geconverteerde data toe aan de hoofddata-array
+            data.push(convertedData);
         }
+
         return data;
     }
+
+
 
 
 
@@ -36,7 +48,7 @@
         panY: false,
         wheelX: "{{ $zoomEnabled ? 'panX' : 'none' }}",
         wheelY: "{{ $zoomEnabled ? 'zoomX' : 'none' }}",
-        paddingLeft: 0 // Of een andere standaardwaarde
+        paddingLeft: 0 // Or another default value
     }));
 
     var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
@@ -44,7 +56,7 @@
 
     var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
         baseInterval: {
-            timeUnit: "millisecond", // Of een andere waarde gebaseerd op $xAxisFormat
+            timeUnit: "millisecond", // Or another value based on $xAxisFormat
             count: 1
         },
         renderer: am5xy.AxisRendererX.new(root, {}),
@@ -55,20 +67,45 @@
         renderer: am5xy.AxisRendererY.new(root, {})
     }));
 
-    var series = chart.series.push(am5xy.LineSeries.new(root, {
+    // Process the data
+    var graphData = convertDataArray(@json($graphData));
+    var data1 = graphData[0];
+    var data2 = graphData.length > 1 ? graphData[1] : [];
+
+    let colors = @json($colors);
+
+
+    var series1 = chart.series.push(am5xy.LineSeries.new(root, {
         name: "{{ $graphName }}",
         xAxis: xAxis,
         yAxis: yAxis,
+        stroke: am5.color(colors[0]),
         valueYField: "speed",
         valueXField: "time",
         tooltip: am5.Tooltip.new(root, {
             labelText: "{{ $tooltipFormat }}"
         })
     }));
+    series1.data.setAll(data1);
+
+    if (data2.length > 0) {
+        var series2 = chart.series.push(am5xy.LineSeries.new(root, {
+            name: "{{ $graphName }}", // Update this if you have a specific name for the second dataset
+            xAxis: xAxis,
+            yAxis: yAxis,
+            stroke: am5.color(colors[1]),
+            valueYField: "speed",
+            valueXField: "time",
+            tooltip: am5.Tooltip.new(root, {
+                labelText: "{{ $tooltipFormat }}" // Update if different for the second dataset
+            })
+        }));
+        series2.data.setAll(data2);
+    }
 
     var scrollbar = am5xy.XYChartScrollbar.new(root, {
-        orientation: "horizontal", // Of een andere standaardwaarde
-        height: 50 // Of een andere standaardwaarde
+        orientation: "horizontal",
+        height: 50
     });
     chart.set("scrollbarX", scrollbar);
 
@@ -85,19 +122,30 @@
         renderer: am5xy.AxisRendererY.new(root, {})
     }));
 
-    var sbseries = scrollbar.chart.series.push(am5xy.LineSeries.new(root, {
+    var sbseries1 = scrollbar.chart.series.push(am5xy.LineSeries.new(root, {
         xAxis: sbxAxis,
         yAxis: sbyAxis,
+        stroke: am5.color(colors[0]),
         valueYField: "speed",
         valueXField: "time"
     }));
+    sbseries1.data.setAll(data1);
 
-    var data = convertDataArray(@json($graphData));
-    console.log(data)
-    series.data.setAll(data);
-    sbseries.data.setAll(data);
+    if (data2.length > 0) {
+        var sbseries2 = scrollbar.chart.series.push(am5xy.LineSeries.new(root, {
+            xAxis: sbxAxis,
+            yAxis: sbyAxis,
+            stroke: am5.color(colors[1]),
+            valueYField: "speed",
+            valueXField: "time"
+        }));
+        sbseries2.data.setAll(data2);
+    }
 
-    series.appear(1000);
+    series1.appear(1000);
+    if (data2.length > 0) {
+        series2.appear(1000);
+    }
     chart.appear(1000, 100);
 
 </script>

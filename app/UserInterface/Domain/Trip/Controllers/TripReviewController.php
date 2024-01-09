@@ -94,9 +94,8 @@ class TripReviewController extends AbstractViewController
 
                 $graphData = TripData::where('trip_id', $request->route('id'))
                 ->select('speed', 'timestamp')->get()->toArray();
-                $speed_brakeGraph->setGraphData($graphData);
 
-                dd($speed_brakeGraph->getGraphData());
+                $speed_brakeGraph->setGraphData([$graphData, $graphData]);
 
                 return $speed_brakeGraph->render();
 
