@@ -34,11 +34,13 @@ class TripEvent extends Model
     protected $fillable = [
         'trip_id',
         'type',
+        'timestamp'
     ];
 
     protected $casts = [
         'data' => 'array',
         'type' => TripEventTypeEnum::class,
+        'timestamp' => 'datetime'
     ];
 
     /**

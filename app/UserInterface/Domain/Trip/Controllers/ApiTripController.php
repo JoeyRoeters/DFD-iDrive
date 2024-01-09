@@ -66,9 +66,10 @@ class ApiTripController extends Controller
 
         $validator = Validator::make($request->all(), [
             'events' => 'required|array',
-            'events.*' => 'required|array|size:2',
+            'events.*' => 'required|array|size:3',
             'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
-            'events.*.1' => 'required',
+            'events.*.1' => 'required|numeric',
+            'events.*.2' => '',
         ]);
 
         if ($validator->fails()) {
@@ -78,10 +79,11 @@ class ApiTripController extends Controller
         $events = $request->get('events');
 
         foreach ($events as $eventData) {
-            list($eventType, $eventData) = $eventData;
+            list($eventType, $timestamp, $eventData) = $eventData;
 
             $trip->events()->create([
                 'type' => $eventType,
+                'timestamp' => $timestamp,
                 'data' => $eventData,
             ]);
         }
@@ -97,11 +99,12 @@ class ApiTripController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
-            'data.*' => 'required|array|size:3',
+            'data.*' => 'required|array|size:4',
             'data.*.*' => 'required',
-            'data.*.0' => 'required|array|size:3',
-            'data.*.1' => 'required|array|size:3',
-            'data.*.2' => 'required|numeric',
+            'data.*.0' => 'required|numeric',
+            'data.*.1' => 'required|numeric',
+            'data.*.2' => 'required|array|size:3',
+            'data.*.3' => 'required|array|size:3',
         ]);
 
         if ($validator->fails()) {
@@ -113,12 +116,13 @@ class ApiTripController extends Controller
 
         // Create data entries for the trip
         foreach ($dataEntries as $dataEntry) {
-            list($accelero, $gyroscope, $speed) = $dataEntry;
+            list($timestamp, $speed, $accelero, $gyroscope) = $dataEntry;
 
             $trip->data()->create([
+                'timestamp' => $timestamp,
+                'speed' => $speed,
                 'accelero' => $accelero,
                 'gyroscope' => $gyroscope,
-                'speed' => $speed,
             ]);
         }
 
