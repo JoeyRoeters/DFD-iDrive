@@ -6,15 +6,15 @@
         var data = [];
         for (var i = 0; i < inputData.length; i++) {
             // Controleer of de tijdreeks gedefinieerd is
+            console.log(inputData[i])
             if (inputData[i].timestamp) {
                 var dateString = inputData[i].timestamp;
-
+                console.log(dateString)
                 // Extraheren van het gedeelte na de spatie
-                var timeString = dateString.split(" ")[1];
+
 
                 // Creëer een nieuwe datum met een standaarddatum en de geëxtraheerde tijd
-                var combinedDateString = "2023-01-01 " + timeString;
-                var time = new Date(combinedDateString).getTime();
+                var time = new Date(dateString).getTime();
 
                 var speed = inputData[i].speed;
                 data.push({time: time, speed: speed});

@@ -39,15 +39,17 @@ class TripData extends Model
         'accelero',
         'gyroscope',
         'speed',
-        'time'
+        'timestamp'
     ];
 
     protected $casts = [
         'accelero' => 'array',
         'gyroscope' => 'array',
         'speed' => 'float',
-        'time' => 'datetime'
+        'timestamp' => 'datetime'
     ];
+
+
 
     /**
      * Get the trip that owns the data.
@@ -57,12 +59,6 @@ class TripData extends Model
     public function trip(): BelongsTo
     {
         return $this->belongsTo(Trip::class);
-    }
-
-
-    public function getTimestampAttribute($value)
-    {
-        return Carbon::createFromTimestamp($value->toDateTime()->getTimestamp())->toDateTimeString();
     }
 
 }

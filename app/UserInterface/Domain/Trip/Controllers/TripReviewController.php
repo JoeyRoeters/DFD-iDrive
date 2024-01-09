@@ -8,9 +8,11 @@ use App\Domain\Trip\Model\TripData;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
+use App\UserInterface\Domain\Trip\Controllers\Graph\Types\BrakingGraph;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\SpeedGraph;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TripReviewController extends AbstractViewController
 {
@@ -34,7 +36,6 @@ class TripReviewController extends AbstractViewController
             ->where('_id', $id)
 //            ->where('user_id', $request->user()->id) //TODO only for testing
             ->first();
-
     }
 
 
@@ -71,7 +72,6 @@ class TripReviewController extends AbstractViewController
     }
 
 
-
     public function getGraph(Request $request)
     {
         $dataType = $request->input('graph');
@@ -86,10 +86,19 @@ class TripReviewController extends AbstractViewController
                     ->get(['speed', 'timestamp', 'trip_id'])
                     ->toArray();
 
-
-
                 $SpeedGraph->setGraphData($graphData);
                 return $SpeedGraph->render();
+
+            case "speed_braking":
+                $speed_brakeGraph = new BrakingGraph();
+
+                $graphData = TripData::where('trip_id', $request->route('id'))
+                ->select('speed', 'timestamp')->get()->toArray();
+                $speed_brakeGraph->setGraphData($graphData);
+
+                dd($speed_brakeGraph->getGraphData());
+
+                return $speed_brakeGraph->render();
 
             default:
                 $data = [];
