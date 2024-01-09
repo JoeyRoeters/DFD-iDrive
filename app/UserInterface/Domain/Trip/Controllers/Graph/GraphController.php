@@ -18,13 +18,26 @@ class GraphController extends Controller
     private ValueType $yValueType;
     private AxisFormat $xAxisFormat;
     private AxisFormat $yAxisFormat;
-    private string $tooltipFormat = '';
+    private array $tooltipFormat = [];
     private array $colors = [];
     private bool $legendDisplay = false;
     private array $responsiveOptions = [];
     private array $axisLabels = [];
     private bool $dataLabelsEnabled = false;
     private bool $zoomEnabled = false;
+
+    private string $timeUnitInterval = 'minute';
+
+    public function getTimeUnitInterval(): string
+    {
+        return $this->timeUnitInterval;
+    }
+
+    public function setTimeUnitInterval(string $timeUnitInterval): GraphController
+    {
+        $this->timeUnitInterval = $timeUnitInterval;
+        return $this;
+    }
 
 
     /**
@@ -359,6 +372,7 @@ class GraphController extends Controller
             'axisLabels' => $this->axisLabels,
             'dataLabelsEnabled' => $this->dataLabelsEnabled,
             'zoomEnabled' => $this->zoomEnabled,
+            'timeUnitInterval' => $this->timeUnitInterval,
         ];
     }
 

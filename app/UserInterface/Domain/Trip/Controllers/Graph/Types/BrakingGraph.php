@@ -22,6 +22,7 @@ class BrakingGraph extends GraphController
             ->setYValueType(ValueType::NUMBER)
             ->setXAxisFormat(AxisFormat::LINEAR)
             ->setYAxisFormat(AxisFormat::LINEAR)
+            ->setTooltipFormat([['{speed} km/h'],['{brakepower} %']])
             ->setColors(['#1e88e5', '#e53935']) // Twee kleuren voor twee datasets
             ->setLegendDisplay(true)
             ->setResponsiveOptions([
@@ -62,12 +63,16 @@ class BrakingGraph extends GraphController
                     ],
                 ],
             ])
-            ->setAxisLabels([
-                'x' => 'Time',
-                'y' => 'Speed',
-            ])
+            ->setAxisLabels([[
+                'x' => 'timestamp',
+                'y' => 'speed',
+            ],[
+                'x' => 'timestamp',
+                'y' => 'brakepower',
+            ]])
             ->setDataLabelsEnabled(false)
             ->setZoomEnabled(true)
+            ->setTimeUnitInterval("millisecond")
             ->setGraphData([]);
     }
 

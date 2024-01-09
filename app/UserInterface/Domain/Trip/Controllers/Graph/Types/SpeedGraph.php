@@ -22,7 +22,7 @@ class SpeedGraph extends GraphController
             ->setYValueType(ValueType::NUMBER)
             ->setXAxisFormat(AxisFormat::LINEAR)
             ->setYAxisFormat(AxisFormat::LINEAR)
-            ->setTooltipFormat('{x} km/h')
+            ->setTooltipFormat(['{speed} km/h'])
             ->setColors(['#1e88e5'])
             ->setLegendDisplay(false)
             ->setResponsiveOptions([
@@ -51,12 +51,13 @@ class SpeedGraph extends GraphController
                     ],
                 ],
             ])
-            ->setAxisLabels([
-                'x' => 'Time',
-                'y' => 'Speed',
-            ])
+            ->setAxisLabels([[
+                'x' => 'timestamp',
+                'y' => 'speed',
+            ]])
             ->setDataLabelsEnabled(false)
             ->setZoomEnabled(true)
+            ->setTimeUnitInterval("minute")
             ->setGraphData(TripData::select('speed', 'time')->get()->toArray());
     }
 

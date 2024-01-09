@@ -92,10 +92,20 @@ class TripReviewController extends AbstractViewController
             case "speed_braking":
                 $speed_brakeGraph = new BrakingGraph();
 
-                $graphData = TripData::where('trip_id', $request->route('id'))
-                ->select('speed', 'timestamp')->get()->toArray();
+                $dbData = TripData::where('trip_id', $request->route('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed', 'timestamp', "accelero"])
+                    ->toArray();
 
-                $speed_brakeGraph->setGraphData([$graphData, $graphData]);
+
+                $graphData = array_map(function ($record) {
+                    return [
+                        'speed' => $record['speed'],
+                        'timestamp' => strtotime($record['timestamp'])
+                    ];
+                }, $dbData);
+
+                $speed_brakeGraph->setGraphData([$graphData, $this->calculateBrakePower($dbData)]);
 
                 return $speed_brakeGraph->render();
 
@@ -103,6 +113,35 @@ class TripReviewController extends AbstractViewController
                 $data = [];
                 return $data;
         }
+    }
+
+    private function calculateBrakePower($data)
+    {
+        $remKrachtData = [];
+
+        foreach ($data as $record) {
+            if (isset($record['accelero']) && is_array($record['accelero'])) {
+                // Bereken de magnitude van de accelerometer vector
+                $x = $record['accelero'][0];
+                $y = $record['accelero'][1];
+                $z = $record['accelero'][2];
+                $magnitude = sqrt($x * $x + $y * $y + $z * $z);
+
+                // Stel een drempelwaarde in voor remdetectie
+                $drempelwaarde = 10; // Pas deze waarde aan op basis van je specifieke behoeften
+
+                // Controleer of de magnitude boven de drempelwaarde ligt
+                $remkracht = $magnitude > $drempelwaarde ? $magnitude : 0;
+
+                // Voeg de remkracht toe aan de data, samen met de tijd
+                $remKrachtData[] = [
+                    'timestamp' => strtotime($record['timestamp']), // Converteert tijd naar een timestamp
+                    'brakepower' => $remkracht
+                ];
+            }
+        }
+
+        return $remKrachtData;
     }
 
 

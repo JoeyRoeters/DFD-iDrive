@@ -2,38 +2,91 @@
 
 <script>
 
-    function convertDataArray(inputData) {
+    function convertDataArray(inputData, xyFieldValues) {
         var data = [];
 
-        // Buitenste lus om door de hoofdarray te gaan
-        for (var j = 0; j < inputData.length; j++) {
-            var currentArray = inputData[j];
-            var convertedData = [];
-
-            // Binnenste lus om door elke subarray te gaan
-            for (var i = 0; i < currentArray.length; i++) {
-                var currentItem = currentArray[i];
-
-                if (currentItem.timestamp) {
-                    var dateString = currentItem.timestamp;
-                    var time = new Date(dateString).getTime();
-
-                    if (currentItem.speed !== undefined) {
-                        var speed = currentItem.speed;
-                        convertedData.push({ time: time, speed: speed });
-                    } else {
-                        console.error("Speed is undefined for input data at index", i, currentItem);
-                    }
-                } else {
-                    console.error("Timestamp is undefined for input data at index", i, currentItem);
-                }
+        // Controleer of inputData een 2D-array of 1D-array is
+        if (Array.isArray(inputData[0])) {
+            // 2D-array, verwerk elke subarray
+            for (var j = 0; j < inputData.length; j++) {
+                data.push(convertSingleArray(inputData[j], xyFieldValues[j]));
             }
-
-            // Voeg de geconverteerde data toe aan de hoofddata-array
-            data.push(convertedData);
+        } else {
+            // 1D-array, verwerk als enkele array
+            data.push(convertSingleArray(inputData, xyFieldValues[0]));
         }
 
         return data;
+    }
+
+    function convertSingleArray(currentArray, xyFieldValue) {
+        var convertedData = [];
+
+        var xAxisLabel = xyFieldValue['x'];
+        var yAxisLabel = xyFieldValue['y'];
+
+        for (var i = 0; i < currentArray.length; i++) {
+            var currentItem = currentArray[i];
+
+            if (currentItem.timestamp) {
+                var dateString = currentItem.timestamp;
+                var time = new Date(dateString).getTime();
+
+                if (currentItem[yAxisLabel] !== undefined) {
+                    var yValue = currentItem[yAxisLabel];
+                    convertedData.push({ timestamp: time, [yAxisLabel]: yValue });
+                } else {
+                    console.error(yAxisLabel + " is undefined for input data at index", i, currentItem);
+                }
+            } else {
+                console.error("Timestamp is undefined for input data at index", i, currentItem);
+            }
+        }
+
+        return convertedData;
+    }
+    function convertDataArray(inputData, xyFieldValues) {
+        var data = [];
+
+        // Controleer of inputData een 2D-array of 1D-array is
+        if (Array.isArray(inputData[0])) {
+            // 2D-array, verwerk elke subarray
+            for (var j = 0; j < inputData.length; j++) {
+                data.push(convertSingleArray(inputData[j], xyFieldValues[j]));
+            }
+        } else {
+            // 1D-array, verwerk als enkele array
+            data.push(convertSingleArray(inputData, xyFieldValues[0]));
+        }
+
+        return data;
+    }
+
+    function convertSingleArray(currentArray, xyFieldValue) {
+        var convertedData = [];
+
+        var xAxisLabel = xyFieldValue['x'];
+        var yAxisLabel = xyFieldValue['y'];
+
+        for (var i = 0; i < currentArray.length; i++) {
+            var currentItem = currentArray[i];
+
+            if (currentItem.timestamp) {
+                var dateString = currentItem.timestamp;
+                var time = new Date(dateString).getTime();
+
+                if (currentItem[yAxisLabel] !== undefined) {
+                    var yValue = currentItem[yAxisLabel];
+                    convertedData.push({ timestamp: time, [yAxisLabel]: yValue });
+                } else {
+                    console.error(yAxisLabel + " is undefined for input data at index", i, currentItem);
+                }
+            } else {
+                console.error("Timestamp is undefined for input data at index", i, currentItem);
+            }
+        }
+
+        return convertedData;
     }
 
 
@@ -51,12 +104,14 @@
         paddingLeft: 0 // Or another default value
     }));
 
+    var tooltip = @json($tooltipFormat);
+
     var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
     cursor.lineY.set("visible", false);
 
     var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
         baseInterval: {
-            timeUnit: "millisecond", // Or another value based on $xAxisFormat
+            timeUnit: "{{ $timeUnitInterval }}",
             count: 1
         },
         renderer: am5xy.AxisRendererX.new(root, {}),
@@ -67,12 +122,18 @@
         renderer: am5xy.AxisRendererY.new(root, {})
     }));
 
+    var xyFieldValues = @json($axisLabels)
+
+
     // Process the data
-    var graphData = convertDataArray(@json($graphData));
+    var graphData = convertDataArray(@json($graphData), xyFieldValues);
     var data1 = graphData[0];
     var data2 = graphData.length > 1 ? graphData[1] : [];
 
-    let colors = @json($colors);
+    var colors = @json($colors);
+
+
+
 
 
     var series1 = chart.series.push(am5xy.LineSeries.new(root, {
@@ -80,10 +141,10 @@
         xAxis: xAxis,
         yAxis: yAxis,
         stroke: am5.color(colors[0]),
-        valueYField: "speed",
-        valueXField: "time",
+        valueYField: xyFieldValues[0]["y"],
+        valueXField: xyFieldValues[0]["x"],
         tooltip: am5.Tooltip.new(root, {
-            labelText: "{{ $tooltipFormat }}"
+            labelText: tooltip[0]
         })
     }));
     series1.data.setAll(data1);
@@ -94,10 +155,10 @@
             xAxis: xAxis,
             yAxis: yAxis,
             stroke: am5.color(colors[1]),
-            valueYField: "speed",
-            valueXField: "time",
+            valueYField: xyFieldValues[1]["y"],
+            valueXField: xyFieldValues[1]["x"],
             tooltip: am5.Tooltip.new(root, {
-                labelText: "{{ $tooltipFormat }}" // Update if different for the second dataset
+                labelText: tooltip[1] // Update if different for the second dataset
             })
         }));
         series2.data.setAll(data2);
@@ -126,8 +187,8 @@
         xAxis: sbxAxis,
         yAxis: sbyAxis,
         stroke: am5.color(colors[0]),
-        valueYField: "speed",
-        valueXField: "time"
+        valueYField: xyFieldValues[0]["y"],
+        valueXField: xyFieldValues[0]["x"],
     }));
     sbseries1.data.setAll(data1);
 
@@ -136,8 +197,8 @@
             xAxis: sbxAxis,
             yAxis: sbyAxis,
             stroke: am5.color(colors[1]),
-            valueYField: "speed",
-            valueXField: "time"
+            valueYField: xyFieldValues[1]["y"],
+            valueXField: xyFieldValues[1]["x"],
         }));
         sbseries2.data.setAll(data2);
     }
