@@ -57,7 +57,7 @@ class SpeedGraph extends GraphController
             ]])
             ->setDataLabelsEnabled(false)
             ->setZoomEnabled(true)
-            ->setTimeUnitInterval("minute")
+            ->setTimeUnitInterval("millisecond")
             ->setGraphData(TripData::select('speed', 'time')->get()->toArray());
     }
 

@@ -34,7 +34,7 @@ class TripReviewController extends AbstractViewController
 
         $this->trip = Trip::find($id)
             ->where('_id', $id)
-//            ->where('user_id', $request->user()->id) //TODO only for testing
+            ->where('user_id', $request->user()->id)
             ->first();
     }
 
@@ -86,7 +86,8 @@ class TripReviewController extends AbstractViewController
                     ->get(['speed', 'timestamp', 'trip_id'])
                     ->toArray();
 
-                $SpeedGraph->setGraphData($graphData);
+
+                $SpeedGraph->setGraphData($this->formatTimeStamp($graphData));
                 return $SpeedGraph->render();
 
             case "speed_braking":
@@ -97,15 +98,7 @@ class TripReviewController extends AbstractViewController
                     ->get(['speed', 'timestamp', "accelero"])
                     ->toArray();
 
-
-                $graphData = array_map(function ($record) {
-                    return [
-                        'speed' => $record['speed'],
-                        'timestamp' => strtotime($record['timestamp'])
-                    ];
-                }, $dbData);
-
-                $speed_brakeGraph->setGraphData([$graphData, $this->calculateBrakePower($dbData)]);
+                $speed_brakeGraph->setGraphData([$this->formatTimeStamp($dbData), $this->calculateBrakePower($dbData)]);
 
                 return $speed_brakeGraph->render();
 
@@ -115,27 +108,36 @@ class TripReviewController extends AbstractViewController
         }
     }
 
+    private function formatTimeStamp(array $data){
+        $formattedData = [];
+        foreach ($data as $record){
+            $formattedData[] = [
+                'speed' => $record['speed'],
+                'timestamp' => strtotime($record['timestamp'])
+            ];
+        }
+        return $formattedData;
+
+    }
+
+
     private function calculateBrakePower($data)
     {
         $remKrachtData = [];
 
         foreach ($data as $record) {
             if (isset($record['accelero']) && is_array($record['accelero'])) {
-                // Bereken de magnitude van de accelerometer vector
                 $x = $record['accelero'][0];
                 $y = $record['accelero'][1];
                 $z = $record['accelero'][2];
                 $magnitude = sqrt($x * $x + $y * $y + $z * $z);
 
-                // Stel een drempelwaarde in voor remdetectie
-                $drempelwaarde = 10; // Pas deze waarde aan op basis van je specifieke behoeften
+                $drempelwaarde = 10;
 
-                // Controleer of de magnitude boven de drempelwaarde ligt
                 $remkracht = $magnitude > $drempelwaarde ? $magnitude : 0;
 
-                // Voeg de remkracht toe aan de data, samen met de tijd
                 $remKrachtData[] = [
-                    'timestamp' => strtotime($record['timestamp']), // Converteert tijd naar een timestamp
+                    'timestamp' => strtotime($record['timestamp']),
                     'brakepower' => $remkracht
                 ];
             }

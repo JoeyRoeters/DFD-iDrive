@@ -29,7 +29,7 @@ class TripOverviewController extends AbstractViewController
 
         $this->trip = Trip::find($id)
             ->where('_id', $id)
-//            ->where('user_id', $request->user()->id) //TODO only for testing
+            ->where('user_id', $request->user()->id)
             ->first();
     }
 
