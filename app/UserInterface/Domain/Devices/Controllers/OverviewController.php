@@ -3,20 +3,29 @@
 namespace App\UserInterface\Domain\Devices\Controllers;
 
 use App\Domain\Device\Model\Device;
+use App\Domain\Shared\Interface\BreadCrumbInterface;
+use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
+use App\Domain\Shared\ValueObject\RouteValueObject;
 use App\Domain\Trip\Model\Trip;
+use App\Domain\User\Model\User;
 use App\Helpers\Overview\AbstractOverviewController;
 use App\Helpers\Overview\Column\Enum\ActionButtonEnum;
 use App\Helpers\Overview\Column\Enum\RenderTypeEnum;
 use App\Helpers\Overview\Column\ValueObject\ActionRenderType;
 use App\Helpers\Overview\Column\ValueObject\Column;
+use App\Helpers\Overview\Column\ValueObject\MultiActionRenderType;
+use App\Helpers\Overview\Table\Interface\EmptyTableViewInterface;
+use App\Helpers\Overview\Table\ValueObject\EmptyViewValueObject;
 use App\Helpers\Overview\Table\ValueObject\TableConfiguration;
 use App\Helpers\Overview\Traits\FeedModelDataTrait;
+use App\Helpers\View\Enum\ButtonSizeEnum;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
-class OverviewController extends AbstractOverviewController
+class OverviewController extends AbstractOverviewController implements BreadCrumbInterface, EmptyTableViewInterface
 {
     use FeedModelDataTrait;
 
@@ -25,15 +34,20 @@ class OverviewController extends AbstractOverviewController
      */
     protected function pageHeader(): PageHeaderValueOject
     {
+        $buttons = [];
+        if (!$this->isEmpty()) {
+            $buttons[] = new ButtonValueObject(
+                label: 'Add Device',
+                route: new RouteValueObject('devices.mutate.new'),
+                icon: 'fa-solid fa-plus',
+                size: ButtonSizeEnum::LARGE
+            );
+        }
         return new PageHeaderValueOject(
             title: 'Devices',
-            buttons: [
-                ButtonValueObject::make('Add new', 'devices.mutate.new', 'fa-solid fa-plus', "success"),
-            ]
+            buttons: $buttons
         );
     }
-
-
 
     protected function getTableConfiguration(): TableConfiguration
     {
@@ -66,14 +80,14 @@ class OverviewController extends AbstractOverviewController
                 renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'show',
-                label: 'Show',
-                renderType: RenderTypeEnum::ACTION_BUTTON,
+                key: 'trips',
+                label: 'Trips',
+                renderType: RenderTypeEnum::INLINE_COLUMN_NAME_WITH_TEXT,
             ),
             new Column(
-                key: 'edit',
-                label: 'Edit',
-                renderType: RenderTypeEnum::ACTION_BUTTON,
+                key: 'actions',
+                label: 'Actions',
+                renderType: RenderTypeEnum::MULTI_ACTION_BUTTON,
             ),
         ];
     }
@@ -82,6 +96,9 @@ class OverviewController extends AbstractOverviewController
     {
         $query = Device::query();
         $query->where('user_id', auth()->user()->id);
+
+        //REMOVE
+//        $query->where('is_active', true);
         return $query;
     }
 
@@ -96,20 +113,46 @@ class OverviewController extends AbstractOverviewController
             'name' => $model->name,
             'lastActive' => $model->getDateFormatted() ?: 'Never',
             'type' => $model->type?->getLabel() ?: 'Unknown',
-            'show' => new ActionRenderType(
-                route: 'devices.show',
-                buttonEnum: ActionButtonEnum::BUTTON,
-                routeParam: ['id' => $model->id],
-                label: 'Show',
-                color: 'primary',
+            'trips' => $model->getTotalTrips(),
+            'actions' => new MultiActionRenderType(
+                actions: [
+                    new ActionRenderType(
+                        route: 'devices.show',
+                        buttonEnum: ActionButtonEnum::ARROW,
+                        routeParam: ['id' => $model->id],
+                    )
+                ]
             ),
-            'edit' => new ActionRenderType(
-                route: 'devices.mutate.edit',
-                buttonEnum: ActionButtonEnum::BUTTON,
-                routeParam: ['id' => $model->id],
-                label: 'Edit',
-                color: 'success',
-            )
         ];
+    }
+
+    public function getBreadCrumb(Request $request): BreadCrumbValueObject
+    {
+        return new BreadCrumbValueObject(
+            title: 'Devices',
+            route: new RouteValueObject('devices.overview'),
+            parentClass: \App\UserInterface\Domain\Homepage\Controllers\Main::class,
+        );
+    }
+
+    public function isEmpty(): bool
+    {
+        /** @var $user User */
+        return !auth()->user()->hasDevices();
+    }
+
+    public function getEmptyViewValueObject(): EmptyViewValueObject
+    {
+        return new EmptyViewValueObject(
+            title: 'Add your first device',
+            description: "Your device list is empty. Kickstart your journey by adding your first device. Connect now and let the discoveries begin!",
+            image: 'resources/images/Illustrations/missing_device.svg',
+            buttonValueObject: new ButtonValueObject(
+                label: 'Add Device',
+                route: new RouteValueObject('devices.mutate.new'),
+                icon: 'fa-solid fa-plus',
+                size: ButtonSizeEnum::LARGE
+            )
+        );
     }
 }

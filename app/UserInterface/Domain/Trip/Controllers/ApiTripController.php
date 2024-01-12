@@ -24,8 +24,7 @@ class ApiTripController extends Controller
 
         $trip = new Trip([
             'user_id' => $user->id,
-            'device_id' => $device->id,
-            'trip_number' => $user->trips()->count() + 1,
+            'device_id' => $device->id
         ]);
 
         $trip->save();

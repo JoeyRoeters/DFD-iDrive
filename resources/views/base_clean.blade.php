@@ -8,7 +8,8 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+{{--    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />--}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
     <meta name="_token" content="{{ csrf_token() }}">
     <!-- Styles -->
     <style>
@@ -24,7 +25,7 @@
 
     @yield('head')
 </head>
-<body id="body-pd">
+<body class="body">
     @yield('body')
 </body>
 
