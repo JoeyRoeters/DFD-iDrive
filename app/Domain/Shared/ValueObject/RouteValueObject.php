@@ -10,8 +10,7 @@ class RouteValueObject
         private string $name,
         private array $parameters = [],
         private bool $absolute = false,
-    )
-    {
+    ) {
     }
 
     /**

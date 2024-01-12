@@ -98,7 +98,7 @@ class OverviewController extends AbstractOverviewController implements BreadCrum
         $query->where('user_id', auth()->user()->id);
 
         //REMOVE
-//        $query->where('is_active', true);
+        //        $query->where('is_active', true);
         return $query;
     }
 

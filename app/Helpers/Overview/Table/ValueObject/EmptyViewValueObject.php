@@ -7,14 +7,12 @@ use Illuminate\Support\Facades\Vite;
 
 class EmptyViewValueObject
 {
-
     public function __construct(
         private string $title,
         private string $description,
         private ?string $image = null,
         private ?ButtonValueObject $buttonValueObject = null,
-    )
-    {
+    ) {
     }
 
     /**

@@ -8,16 +8,14 @@ class GuideValueObject
         private string $title,
         private ?string $description,
         private array $items,
-    )
-    {
+    ) {
     }
 
     public static function make(
         string $title,
         ?string $description,
         array $items,
-    ): self
-    {
+    ): self {
         return new self(
             title: $title,
             description: $description,

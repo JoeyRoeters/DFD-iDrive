@@ -11,8 +11,7 @@ class GuideItemValueObject
         private string $title,
         private ?string $description = null,
         private ?ButtonValueObject $button = null,
-    )
-    {
+    ) {
     }
 
     public static function make(
@@ -20,8 +19,7 @@ class GuideItemValueObject
         string $title,
         ?string $description = null,
         ?ButtonValueObject $button = null,
-    ): self
-    {
+    ): self {
         return new self(
             icon: $icon,
             title: $title,

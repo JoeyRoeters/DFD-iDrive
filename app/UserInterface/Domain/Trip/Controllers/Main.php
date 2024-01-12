@@ -40,7 +40,7 @@ class Main extends AbstractOverviewController implements BreadCrumbInterface, Em
         $query = Trip::query();
         $query->where('user_id', auth()->user()->id);
         $query->where('state', TripStateEnum::FINISHED->value);
-//        $query->where('is_active', true);
+        //        $query->where('is_active', true);
 
         $query->orderBy('number', 'desc');
 

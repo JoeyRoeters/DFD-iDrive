@@ -11,8 +11,7 @@ class BreadCrumbValueObject
         private string $title,
         private RouteValueObject $route,
         private ?string $parentClass = null,
-    )
-    {
+    ) {
         if ($this->parentClass) {
             $reflection = new \ReflectionClass($this->parentClass);
             if (!$reflection->implementsInterface(BreadCrumbInterface::class)) {

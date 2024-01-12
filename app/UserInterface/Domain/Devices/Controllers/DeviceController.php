@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use MongoDB\Laravel\Eloquent\Model;
 
-class DeviceController extends AbstractViewController implements  BreadCrumbInterface
+class DeviceController extends AbstractViewController implements BreadCrumbInterface
 {
     protected Device $device;
 
@@ -99,7 +99,7 @@ class DeviceController extends AbstractViewController implements  BreadCrumbInte
 
     }
 
-    private function getSetupGuideSimulator() : array
+    private function getSetupGuideSimulator(): array
     {
         $apiToken = auth()->user()->getApiToken($this->device);
 
