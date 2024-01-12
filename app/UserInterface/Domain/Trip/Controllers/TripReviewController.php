@@ -108,9 +108,10 @@ class TripReviewController extends AbstractViewController
         }
     }
 
-    private function formatTimeStamp(array $data){
+    private function formatTimeStamp(array $data)
+    {
         $formattedData = [];
-        foreach ($data as $record){
+        foreach ($data as $record) {
             $formattedData[] = [
                 'speed' => $record['speed'],
                 'timestamp' => strtotime($record['timestamp'])
