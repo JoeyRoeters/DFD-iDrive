@@ -19,8 +19,7 @@ class TripProfileParser extends AbstractTripStatisticParser
 
     public function __construct(
         private Trip $trip,
-    )
-    {
+    ) {
         parent::__construct($trip);
 
         $this->speedProfile = $this->getTripStatistic(TripStatisticParserEnum::SPEED_PROFILE);

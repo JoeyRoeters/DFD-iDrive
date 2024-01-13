@@ -10,8 +10,7 @@ class ProfileEventValueObject
         private TripEventEnum $event,
         private int $distance,
         private mixed $value,
-    )
-    {
+    ) {
     }
 
     /**

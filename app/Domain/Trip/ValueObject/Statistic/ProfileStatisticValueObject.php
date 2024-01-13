@@ -8,8 +8,7 @@ class ProfileStatisticValueObject
         private string $title,
         private string $value,
         private ?string $unit = null,
-    )
-    {
+    ) {
     }
 
     /**

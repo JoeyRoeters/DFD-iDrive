@@ -13,8 +13,7 @@ abstract class AbstractTripStatisticParser
 
     public function __construct(
         private Trip $trip,
-    )
-    {
+    ) {
         $this->tripStatistics = $this->trip->statistics()->get();
     }
 

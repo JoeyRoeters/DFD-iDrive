@@ -15,8 +15,7 @@ class ProfileValueObject
         private string $title,
         private array $statistics,
         private array $events = [],
-    )
-    {
+    ) {
     }
 
     /**
