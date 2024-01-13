@@ -4,7 +4,7 @@ namespace App\UserInterface\Domain\Trip\Controllers;
 
 use App\Domain\Api\Exception\ApiValidationException;
 use App\Domain\Api\Exception\NoAccessException;
-use App\Domain\Trip\Enum\TripEventTypeEnum;
+use App\Domain\Trip\Enum\TripEventEnum;
 use App\Domain\Trip\Enum\TripStateEnum;
 use App\Domain\Trip\Exception\TripNotFoundExecption;
 use App\Domain\Trip\Jobs\PostTripJob;
@@ -66,7 +66,7 @@ class ApiTripController extends Controller
         $validator = Validator::make($request->all(), [
             'events' => 'required|array',
             'events.*' => 'required|array|size:3',
-            'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
+            'events.*.0' => 'required|string|in:' . implode(',', TripEventEnum::values()),
             'events.*.1' => 'required|numeric',
             'events.*.2' => '',
         ]);

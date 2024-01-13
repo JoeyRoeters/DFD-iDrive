@@ -7,7 +7,7 @@
 @extends('base')
 
 @section('head')
-    @vite('app/UserInterface/Domain/Devices/Resources/sass/_trips.scss')
+    @vite('app/UserInterface/Domain/Trip/Resources/sass/_trips.scss')
 @endsection
 
 @section('content')
@@ -41,7 +41,7 @@
                                     <div class="badge">
                                         <div class="badge-value fs-4">
                                             <i class="fa-regular fa-trophy-star"></i>
-                                            <span>{{ $trip->getScoreFormatted() }}</span>
+                                            <span>{{ $trip->getScoreFormatted() }} / 10</span>
                                         </div>
                                         <div class="badge-label fs-6">
                                             <span>Score</span>
@@ -64,12 +64,14 @@
 
                 <div class="separator"></div>
 
-                <ul  class="nav nav-tabs text-black" id="single-view-content-pages">
+                <ul class="nav nav-tabs text-black" id="single-view-content-pages">
                     <li class="nav-item">
-                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
+                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview"
+                           type="button" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="case-review-tab" data-bs-toggle="tab" data-bs-target="#case-review" type="button" role="tab" aria-controls="case-review" aria-selected="false">Case review</a>
+                        <a class="nav-link" id="case-review-tab" data-bs-toggle="tab" data-bs-target="#case-review"
+                           type="button" role="tab" aria-controls="case-review" aria-selected="false">Case review</a>
                     </li>
                 </ul>
             </div>
@@ -77,11 +79,13 @@
 
         <div id="trip-tabs" class="row mb-3 p-0">
             <div class="tab-content text-black p-0" id="myTabContent">
-                <div class="tab-pane fade show active text-black" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                    @include('trip_overview')
+                <div class="tab-pane fade show active text-black" id="overview" role="tabpanel"
+                     aria-labelledby="overview-tab">
+                    @include('ProfileComponents/profile_tab')
                 </div>
-                <div class="tab-pane fade text-black" id="case-review" role="tabpanel" aria-labelledby="case-review-tab">
-{{--                    @include('trip_review')--}}
+                <div class="tab-pane fade text-black" id="case-review" role="tabpanel"
+                     aria-labelledby="case-review-tab">
+                    {{--                    @include('trip_review')--}}
                 </div>
             </div>
         </div>

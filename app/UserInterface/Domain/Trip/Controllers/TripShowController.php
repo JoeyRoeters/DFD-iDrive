@@ -2,13 +2,13 @@
 
 namespace App\UserInterface\Domain\Trip\Controllers;
 
-use App\Domain\Device\Model\Device;
 use App\Domain\Shared\Interface\BreadCrumbInterface;
 use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
 use App\Domain\Shared\ValueObject\RouteValueObject;
+use App\Domain\Trip\Helper\TripProfileParser;
 use App\Domain\Trip\Model\Trip;
+use App\Domain\Trip\ValueObject\Statistic\ProfileValueObject;
 use App\Helpers\View\Abstract\AbstractViewController;
-use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use Illuminate\Http\Request;
 
@@ -47,6 +47,7 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
     {
         return [
             'trip' => $this->trip,
+            'profiles' => TripProfileParser::getProfiles($this->trip),
         ];
     }
 

@@ -146,7 +146,7 @@ class Main extends AbstractOverviewController implements BreadCrumbInterface, Em
     {
         /** @var \App\Domain\User\Model\User $user */
         $user = auth()->user();
-        if (!$user->hasActiveDevices()) {
+        if ($user->hasActiveDevices()) {
             return new EmptyViewValueObject(
                 title: 'Your Journey Awaits',
                 description: "Your travel log is just waiting to be filled. Start driving and your trips will automatically appear here, ready for you to explore and analyze. When you're ready, hit the road and we'll take care of the rest",

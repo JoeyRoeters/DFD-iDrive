@@ -63,6 +63,7 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'lastname',
         'email',
         'password',
+        'last_active',
         'api_key'
     ];
 

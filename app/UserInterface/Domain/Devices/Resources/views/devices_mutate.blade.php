@@ -8,7 +8,7 @@
     <div class="container pt-4">
         <div class="row">
             <div class="col-9 mx-auto">
-                <div class="card">
+                <div class="card p-2">
 
                     @if(isset($device))
                         <h3 class="pb-1">Edit device</h3>

@@ -3,7 +3,7 @@
 namespace App\Domain\Trip\Model;
 
 use App\Domain\Shared\Exception\MissingOwnershipException;
-use App\Domain\Trip\Enum\TripEventTypeEnum;
+use App\Domain\Trip\Enum\TripEventEnum;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
@@ -42,7 +42,7 @@ class TripEvent extends Model
 
     protected $casts = [
         'data' => 'array',
-        'type' => TripEventTypeEnum::class,
+        'type' => TripEventEnum::class,
         'timestamp' => 'datetime'
     ];
 

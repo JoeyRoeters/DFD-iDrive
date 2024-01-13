@@ -79,7 +79,7 @@ class MutateController extends AbstractViewController implements BreadCrumbInter
 
         SweetAlert::createSuccess("Device $type!");
 
-        return redirect()->route('devices.overview');
+        return redirect()->route('devices.show', ['id' => $device->id]);
     }
 
     public function getBreadCrumb(Request $request): BreadCrumbValueObject

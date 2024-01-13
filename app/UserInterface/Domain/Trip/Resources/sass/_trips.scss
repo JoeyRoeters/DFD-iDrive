@@ -5,4 +5,20 @@
         margin: 0;
         color: var(--color-gray-500);
     }
+
+    #overview-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        padding: 2rem 1rem;
+
+        .profile {
+            width: 250px;
+
+            &:not(:last-child) {
+                border-right: 1px solid var(--color-gray-300);
+            }
+        }
+    }
 }
