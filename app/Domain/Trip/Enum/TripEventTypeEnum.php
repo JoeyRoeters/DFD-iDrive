@@ -12,4 +12,6 @@ enum TripEventTypeEnum: String
     case STOP = 'System End';
     case CROSSED_LINE = 'crossed_line';
     case COLLISION = 'collision';
+    case SPEEDING = 'speeding'
+    case HARSH_BRAKING = 'harsh braking'
 }
