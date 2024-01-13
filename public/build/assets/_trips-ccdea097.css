@@ -1,0 +1,1 @@
+#trip-tabs{width:100%}#trip-tabs p{margin:0;color:var(--color-gray-500)}#trip-tabs #overview-wrapper{display:flex;justify-content:space-between;flex-wrap:nowrap;flex-direction:row;padding:2rem 1rem}#trip-tabs #overview-wrapper .profile{width:250px}#trip-tabs #overview-wrapper .profile:not(:last-child){border-right:1px solid var(--color-gray-300)}
