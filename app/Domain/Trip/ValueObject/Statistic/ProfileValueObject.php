@@ -9,7 +9,7 @@ class ProfileValueObject
     /**
      * @param string $title
      * @param ProfileStatisticValueObject[] $statistics
-     * @param TripStatisticParserEnum $parser
+     * @param ProfileEventValueObject $parser
      */
     public function __construct(
         private string $title,
@@ -35,10 +35,10 @@ class ProfileValueObject
     }
 
     /**
-     * @return TripStatisticParserEnum
+     * @return ProfileEventValueObject[]
      */
-    public function getParser(): TripStatisticParserEnum
+    public function getEvents(): array
     {
-        return $this->parser;
+        return $this->events;
     }
 }

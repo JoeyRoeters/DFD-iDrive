@@ -15,7 +15,7 @@ enum SeverityEnum: String
 
     public function getSeverityLevel(): int
     {
-        return match ($this->value) {
+        return match ($this) {
             self::LOW => 1,
             self::MEDIUM => 2,
             self::HIGH => 3,

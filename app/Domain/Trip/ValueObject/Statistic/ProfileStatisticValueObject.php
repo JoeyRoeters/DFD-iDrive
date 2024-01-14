@@ -6,7 +6,7 @@ class ProfileStatisticValueObject
 {
     public function __construct(
         private string $title,
-        private string $value,
+        private int $value,
         private ?string $unit = null,
     ) {
     }
@@ -24,7 +24,18 @@ class ProfileStatisticValueObject
      */
     public function getValue(): string
     {
-        return $this->value;
+        $value = $this->value;
+        if ($value < 10 && $this->unit !== 'km/h') {
+            $value = '0' . $value;
+        } elseif ($value < 100 && $this->unit === 'km/h') {
+            if ($value < 10) {
+                $value = '0' . $value;
+            }
+
+            $value = '0' . $value;
+        }
+
+        return $value;
     }
 
     /**

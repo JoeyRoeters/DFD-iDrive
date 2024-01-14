@@ -16,8 +16,163 @@
         .profile {
             width: 250px;
 
-            &:not(:last-child) {
+            .separator {
                 border-right: 1px solid var(--color-gray-300);
+                height: 80%;
+                position: absolute;
+                top: 10%;
+                margin-left: -34px;
+                width: 1px;
+            }
+
+            .statistics-container {
+                max-height: 125px;
+                height: 125px;
+                background-color: var(--color-quinary-color);
+                border-radius: 0.5rem;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 7px 20px;
+                display: flex;
+                justify-content: space-evenly;
+                padding-left: 1rem;
+
+                flex-direction: column;
+
+                .statistic {
+                    display: flex;
+                    align-items: center;
+
+                    &-title-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        flex-direction: column;
+
+                        .statistic-title {
+                            font-size: 1.25rem;
+                            font-weight: 500;
+                        }
+
+                        .statistic-unit {
+                            font-size: 0.75rem;
+                            font-weight: 400;
+                            color: var(--color-gray-500);
+                        }
+                    }
+
+                    &-value-wrapper {
+                        background: var(--color-white);
+                        width: 70px;
+                        height: 30px;
+                        margin-right: 1rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+
+                        .statistic-value {
+                            margin-top: 3px;
+                            font-size: 1.25rem;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+
+            .timeline-container {
+                width: 100%;
+                height: 500px;
+                margin-top: 4rem;
+                margin-bottom: 2rem;
+                .timeline {
+                    position: relative;
+                    height: 500px;
+
+                    .timeline-bar {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 1.5rem;
+                        height: 500px;
+                        width: 7.5px;
+                        background-color: var(--color-primary-color);
+
+
+                        &-inner {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: -16px;
+                            width: 40px;
+                            height: 20px;
+                            background-color: var(--color-primary-color);
+                            border-radius: 0.5rem;
+                            text-align: center;
+                            color: var(--color-white);
+                            font-size: 0.75rem;
+                            z-index: 1;
+                            font-weight: 700;
+
+                            &.top {
+                                top: -20px;
+                            }
+
+                            &.bottom {
+                                top: 100.1%;
+                            }
+
+                            &.center {
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+                        }
+                    }
+
+                    .event {
+                        position: absolute;
+                        top: 0;
+                        left: 1.5rem;
+                        display: flex;
+                        width: 225px;
+                        align-items: center;
+
+                        &-marker {
+                            width: 7.5px;
+                            height: 15px;
+                            border-radius: 0.5rem;
+
+                            &.low {
+                                background-color: #81E7BD;
+                            }
+
+                            &.medium {
+                                background-color: #FFD500;
+                            }
+
+                            &.high {
+                                background-color: #FF5E57;
+                            }
+                        }
+
+                        &-content {
+                            margin-left: 1rem;
+                            display: flex;
+                            flex-direction: column;
+
+                            &-title {
+                                font-size: 0.75rem;
+                                font-weight: 700;
+                                line-height: 1rem;
+                            }
+
+                            &-subtitle {
+                                margin-top: -0.25em;
+                                font-size: 0.7rem;
+                                font-weight: 400;
+                                color: var(--color-gray-500);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

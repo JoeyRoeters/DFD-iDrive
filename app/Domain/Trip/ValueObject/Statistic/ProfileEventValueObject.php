@@ -21,14 +21,24 @@ class ProfileEventValueObject
         return $this->event->getEventTitle($this->getValue());
     }
 
-    public function getSubtitle(): string
+    public function getSubtitle(): ?string
     {
         return $this->event->getEventSubtitle($this->getValue());
     }
 
+    public function hasSubtitle(): bool
+    {
+        return $this->getSubtitle() !== null;
+    }
+
     public function getSeverity(): string
     {
-        return $this->event->getEventSeverity()->value;
+        return $this->event->getEventSeverity($this->getValue())->value;
+    }
+
+    public function getSeverityLevel(): int
+    {
+        return $this->event->getEventSeverity($this->getValue())->getSeverityLevel();
     }
 
     /**
@@ -37,6 +47,16 @@ class ProfileEventValueObject
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    /**
+     * @param int $distance
+     * @return ProfileEventValueObject
+     */
+    public function setDistance(int $distance): ProfileEventValueObject
+    {
+        $this->distance = $distance;
+        return $this;
     }
 
     /**
