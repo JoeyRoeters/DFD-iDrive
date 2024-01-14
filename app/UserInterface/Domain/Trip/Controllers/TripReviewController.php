@@ -3,6 +3,9 @@
 namespace App\UserInterface\Domain\Trip\Controllers;
 
 use App\Domain\Device\Model\Device;
+use App\Domain\Shared\Interface\BreadCrumbInterface;
+use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
+use App\Domain\Shared\ValueObject\RouteValueObject;
 use App\Domain\Trip\Model\Trip;
 use App\Domain\Trip\Model\TripData;
 use App\Helpers\View\Abstract\AbstractViewController;
@@ -14,10 +17,9 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class TripReviewController extends AbstractViewController
+class TripReviewController extends AbstractViewController implements BreadCrumbInterface
 {
     protected Trip $trip;
-
 
     /**
      * @inheritdoc
@@ -27,7 +29,7 @@ class TripReviewController extends AbstractViewController
         return 'trip_review';
     }
 
-    protected function loadData(Request $request): void
+    public function loadData(Request $request): void
     {
         parent::loadData($request);
         $id = $request->route('id');
@@ -42,8 +44,7 @@ class TripReviewController extends AbstractViewController
     protected function pageHeader(): PageHeaderValueOject
     {
         return new PageHeaderValueOject(
-            title: 'Trip',
-            subtitle: "Review",
+            title: 'Trip #' . $this->trip->number,
             buttons: [
                 ButtonValueObject::make('Go back', 'trip.main', 'fa-solid fa-backward'),
                 ButtonValueObject::make(
@@ -60,6 +61,12 @@ class TripReviewController extends AbstractViewController
                     "success",
                     routeParameters: ['id' => $this->trip->id]
                 ),
+                new ButtonValueObject(
+                    label: 'Overview',
+                    route: new RouteValueObject('trip.show.overview', ['id' => $this->trip->id]),
+                    icon: 'fa-solid fa-file',
+                    color: 'success',
+                )
             ]
         );
     }

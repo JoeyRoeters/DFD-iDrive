@@ -1,11 +1,12 @@
 //src/app.scss
 
-@import 'variables';
 @import "~bootstrap/scss/bootstrap";
+@import 'variables';
 @import "~datatables/css/dataTables.bootstrap5.min.css";
 
 @import "./helpers/*.scss";
 @import 'utilities/*.scss';
+@import 'pages/*.scss';
 
 @import 'root';
 @import 'base';

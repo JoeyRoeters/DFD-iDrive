@@ -2,12 +2,15 @@
 
 namespace App\UserInterface\Domain\Homepage\Controllers;
 
+use App\Domain\Shared\Interface\BreadCrumbInterface;
+use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
+use App\Domain\Shared\ValueObject\RouteValueObject;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use Illuminate\Http\Request;
 
-class Main extends AbstractViewController
+class Main extends AbstractViewController implements BreadCrumbInterface
 {
     /**
      * @inheritdoc
@@ -24,9 +27,7 @@ class Main extends AbstractViewController
     {
         return new PageHeaderValueOject(
             title: 'Homepage',
-            buttons: [
-                ButtonValueObject::make('Magic button', 'homepage', 'fa-solid fa-wand-magic-sparkles'),
-            ]
+            buttons: []
         );
     }
 
@@ -38,4 +39,11 @@ class Main extends AbstractViewController
         return [];
     }
 
+    public function getBreadCrumb(Request $request): BreadCrumbValueObject
+    {
+        return new BreadCrumbValueObject(
+            title: 'Dashboard',
+            route: new RouteValueObject('homepage')
+        );
+    }
 }

@@ -9,6 +9,7 @@ use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -62,6 +63,7 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
         'lastname',
         'email',
         'password',
+        'last_active',
         'api_key'
     ];
 
@@ -114,5 +116,25 @@ class User extends AuthenticateUser implements Authenticatable, MustVerifyEmail,
     public function getApiToken(Device $device): string
     {
         return ApiTokenUtils::generateToken($this->api_key, $device->_id);
+    }
+
+    public function hasDevices(): bool
+    {
+        return $this->devices()->count() > 0;
+    }
+
+    public function hasPendingDevices(): bool
+    {
+        return $this->devices()->where('last_active', null)->count() > 0;
+    }
+
+    public function getPendingDevices(): Collection
+    {
+        return $this->devices()->where('last_active', null)->get();
+    }
+
+    public function hasActiveDevices(): bool
+    {
+        return $this->devices()->where('last_active', '!=', null)->count() > 0;
     }
 }

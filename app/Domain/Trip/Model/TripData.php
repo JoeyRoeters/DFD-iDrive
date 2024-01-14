@@ -2,6 +2,7 @@
 
 namespace App\Domain\Trip\Model;
 
+use App\Domain\Shared\Exception\MissingOwnershipException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
@@ -35,6 +36,8 @@ use Carbon\Carbon;
  */
 class TripData extends Model
 {
+    protected $primaryKey = '_id';
+
     protected $fillable = [
         'trip_id',
         'accelero',
@@ -51,6 +54,18 @@ class TripData extends Model
     ];
 
 
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($tripData) {
+            if ($tripData->trip_id === null) {
+                throw new MissingOwnershipException('Trip id is required');
+            }
+        });
+    }
 
     /**
      * Get the trip that owns the data.

@@ -1,0 +1,81 @@
+.dfd-stepper {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+
+    > :not(:last-child):before {
+        content: "";
+        position: relative;
+        top: 3.75rem;
+        left: 1.6rem;
+        align-self: stretch;
+        transform: scaleY(0.80);
+        transform-origin: top;
+        border-right: 5px solid lightgrey;
+    }
+
+    .dfd-step {
+        display: flex;
+        justify-content: flex-start;
+
+        &.has-button {
+            &:before {
+                transform: scaleY(0.85);
+            }
+        }
+
+        &:not(:first-child) {
+            margin-top: 2.75rem;
+        }
+
+        .bullet {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            margin-right: 1rem;
+            background-color: var(--color-primary-color);
+            border-radius: 50%;
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: 900;
+            }
+        }
+
+        .dfd-label {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+
+            span {
+                font-size: 1rem;
+                font-weight: 500;
+
+                @at-root a {
+                    color: var(--color-primary-color);
+                }
+
+                &.title {
+                    margin-top: -0.25em;
+                    margin-bottom: 0.25em;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    color: var(--color-gray-700);
+                }
+
+                &.description {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: var(--color-gray-500);
+                }
+            }
+        }
+    }
+}
+

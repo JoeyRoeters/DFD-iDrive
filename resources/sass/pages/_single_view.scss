@@ -1,0 +1,102 @@
+#single-view-wrapper {
+    padding: 0 2rem;
+    justify-content: center;
+    min-width: 100%;
+
+    .row:not(:first-child) {
+        margin-top: 2rem;
+    }
+
+    .card {
+        width: 100%;
+        box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+        padding: 3em 5em;
+    }
+
+    #single-view-header {
+        width: 100%;
+
+        .card {
+            padding: 2rem 2rem 0 2rem;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-gray-100);
+            border-radius: 10%;
+            padding: 1rem;
+
+            i {
+                font-size: 4rem;
+                padding: 0.5rem 10rem;
+                color: var(--color-tertiary-color);
+            }
+        }
+
+        .details {
+            padding: 0 0.9rem;
+
+            .name {
+                h3 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin: 0;
+                }
+
+                p {
+                    margin: 0;
+                    color: var(--color-gray-500);
+                }
+            }
+
+            .badges {
+                margin-top: 0.475rem;
+
+                .badge {
+                    border: 1px dashed var(--color-gray-300);
+                    padding: 0.5rem 1rem;
+                    border-radius: .475rem !important;
+                    min-width: 125px;
+                    margin: 0.5rem 0;
+                    color: black;
+                    text-align: left;
+                    font-size: 1rem;
+
+                    .badge-value {
+                        i {
+                            margin-right: 0.5rem;
+                        }
+
+                        font-size: 1.25rem;
+                    }
+
+                    .badge-label {
+                        font-weight: 200;
+                        margin: 0;
+                        margin-top: 0.3rem;
+                        color: var(--color-gray-500);
+                    }
+                }
+            }
+        }
+
+        #single-view-content-pages {
+            margin-top: 0;
+
+            .nav-link {
+                border: 0;
+                font-weight: 600;
+                padding: 0.5rem 0;
+                margin: 0 1rem;
+                color: var(--color-gray-500);
+
+                &.active {
+                    color: var(--color-primary-color);
+                    border-bottom: 2px solid var(--color-primary-color);
+                }
+            }
+        }
+    }
+}
