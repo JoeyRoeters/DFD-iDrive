@@ -10,6 +10,12 @@
     @vite('app/UserInterface/Domain/Trip/Resources/sass/_trips.scss')
 @endsection
 
+@section('script')
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+@endsection
+
 @section('content')
 
     <div id="single-view-wrapper" class="container">
@@ -85,7 +91,7 @@
                 </div>
                 <div class="tab-pane fade text-black" id="case-review" role="tabpanel"
                      aria-labelledby="case-review-tab">
-                    {{--                    @include('trip_review')--}}
+                    @include('trip_review')
                 </div>
             </div>
         </div>

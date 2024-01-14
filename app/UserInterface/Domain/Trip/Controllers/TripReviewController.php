@@ -11,74 +11,15 @@ use App\Domain\Trip\Model\TripData;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
+use App\Infrastructure\Laravel\Controller;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\BrakingGraph;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\SpeedGraph;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class TripReviewController extends AbstractViewController implements BreadCrumbInterface
+class TripReviewController extends Controller
 {
-    protected Trip $trip;
-
-    /**
-     * @inheritdoc
-     */
-    protected function view(): string
-    {
-        return 'trip_review';
-    }
-
-    public function loadData(Request $request): void
-    {
-        parent::loadData($request);
-        $id = $request->route('id');
-
-        $this->trip = Trip::find($id)
-            ->where('_id', $id)
-            ->where('user_id', $request->user()->id)
-            ->first();
-    }
-
-
-    protected function pageHeader(): PageHeaderValueOject
-    {
-        return new PageHeaderValueOject(
-            title: 'Trip #' . $this->trip->number,
-            buttons: [
-                ButtonValueObject::make('Go back', 'trip.main', 'fa-solid fa-backward'),
-                ButtonValueObject::make(
-                    'Case review',
-                    'trip.show.review',
-                    'fa-solid fa-list-check',
-                    "secondary",
-                    routeParameters: ['id' => $this->trip->id]
-                ),
-                ButtonValueObject::make(
-                    'Overview',
-                    'trip.show.overview',
-                    'fa-solid fa-file',
-                    "success",
-                    routeParameters: ['id' => $this->trip->id]
-                ),
-                new ButtonValueObject(
-                    label: 'Overview',
-                    route: new RouteValueObject('trip.show.overview', ['id' => $this->trip->id]),
-                    icon: 'fa-solid fa-file',
-                    color: 'success',
-                )
-            ]
-        );
-    }
-
-    protected function appendViewData(Request $request): array
-    {
-        return [
-            'trip' => $this->trip,
-        ];
-    }
-
-
     public function getGraph(Request $request)
     {
         $dataType = $request->input('graph');
