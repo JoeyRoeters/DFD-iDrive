@@ -27,13 +27,50 @@
             }
         }
     }
-
 }
 
-.r-type-inline-d {
-    font-size: 1.5rem;
+#datatable_wrapper {
+    .page-item {
+        &:not(#datatable_previous, #datatable_next) {
+            a {
+                background-color: var(--color-secondary-color);
+                border-color: var(--color-secondary-color);
+
+                &:hover {
+                    background-color: var(--color-secondary-color-hover);
+                    border-color: var(--color-secondary-color-hover);
+                }
+            }
+        }
+
+    }
 }
 
-.r-type-inline-l {
-    color: grey;
-}
+    .dt-badge-number-wrapper {
+        display: inline-block;
+        background-color: var(--color-tertiary-color);
+        color: white;
+        border-radius: 50%;
+        padding: 0.5em;
+        font-size: 1.5em;
+        font-weight: bold;
+        width: 3em;
+        height: 3em;
+
+        .number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 0.75em;
+        }
+    }
+
+    .r-type-inline-d {
+        font-size: 1.5rem;
+    }
+
+    .r-type-inline-l {
+        color: grey;
+        text-overflow: ellipsis;
+    }

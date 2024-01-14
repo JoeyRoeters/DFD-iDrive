@@ -10,6 +10,7 @@ class Column
         private string $key,
         private string $label,
         private RenderTypeEnum $renderType = RenderTypeEnum::TEXT,
+        private ?int $width = null,
     ) {
     }
 
@@ -67,11 +68,30 @@ class Column
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getWidth(): ?int
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param int|null $width
+     * @return Column
+     */
+    public function setWidth(?int $width): Column
+    {
+        $this->width = $width;
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
             'label' => $this->getLabel(),
-            'renderType' => $this->getRenderType()->getType()
+            'renderType' => $this->getRenderType()->getType(),
+            'width' => $this->getWidth(),
         ];
     }
 

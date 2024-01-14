@@ -33,7 +33,16 @@ class DataTable {
             },
             serverSide: true,
             deferRender: true,
-            bLengthChange: false
+            bLengthChange: false,
+            createdRow: (row, data, dataIndex) => {
+                const columns = this.columns.filter(column => column.hasWidth());
+                columns.forEach(column => {
+                    const index = this.columns.indexOf(column);
+                    const width = column.getWidth();
+
+                    $('td:eq(' + index + ')', row).attr('colspan', width);
+                });
+            },
         });
     }
 }

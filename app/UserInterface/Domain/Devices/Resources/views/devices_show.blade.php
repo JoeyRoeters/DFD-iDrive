@@ -11,69 +11,78 @@
 @endsection
 
 @section('content')
-
-    <div class="container-fluid pt-2">
-        <div class="row">
-            <div class="col-11 mx-auto">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-4">
-                            <span class="d-block r-type-inline-d">{{$device->name}}</span> <span
-                                class="r-type-inline-l">Name</span>
+    <div id="single-view-wrapper" class="container">
+        <div id="single-view-header" class="row">
+            <div class="card">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-2 icon">
+                            <i class="fa-solid fa-{{ $device->type->value === 'sim' ? "computer" : "car" }}"></i>
                         </div>
-                        <div class="col-2">
-                        <span class="d-block r-type-inline-d">
-                            @if($device->lastActive)
-                                {{ $device->lastActive }}
-                            @else
-                                never
-                            @endif
-                            </span>
-                            <span class="r-type-inline-l">Last Seen</span>
-                        </div>
-                        <div class="col-2">
-                            <span class="d-block r-type-inline-d">{{$device->type}}</span> <span
-                                class="r-type-inline-l">Model</span>
-                        </div>
-                        <div class="col-2 d-flex align-items-center justify-content-end">
-                            <button class="btn btn-lg btn-primary">
-                                <a class="text-white"
-                                   href="{{route("devices.mutate.edit", ["id" => $device->id])}}">Edit</a>
-                            </button>
-                        </div>
-                        <div class="col-2 d-flex align-items-center justify-content-start">
-                            @include('components.button_value_object', ['button' => $deleteButton])
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row pt-3">
-            <div class="col-11 mx-auto">
-                <div class="card">
-                    <h3>Device endpoints</h3>
-                    <div class="row">
-                        <div class="col-5">
-                            <label for="password" class="form-label">Device token</label>
-                            <div class="input-group" id="show_hide_password">
-                                <input type="text" value="{{$api_token}}" class="form-control" id="api_token">
+                        <div class="col-10 details">
+                            <div class="row">
+                                <div class="col-12 name">
+                                    <h3>{{ $device->name }}</h3>
+                                    <p>{{ $device->getLastActiveFormatted() }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 badges">
+                                    <div class="badge">
+                                        <div class="badge-value fs-4">
+                                            <i class="fa-regular fa-car"></i>
+                                            <span>{{ $device->type->getLabel() }}</span>
+                                        </div>
+                                        <div class="badge-label fs-6">
+                                            <span>Device type</span>
+                                        </div>
+                                    </div>
+                                    <div class="badge">
+                                        <div class="badge-value fs-4">
+                                            <i class="fa-regular fa-road"></i>
+                                            <span>{{ $device->trips()->count() }}</span>
+                                        </div>
+                                        <div class="badge-label fs-6">
+                                            <span>Total  trips</span>
+                                        </div>
+                                    </div>
+                                    <div class="badge">
+                                        <div class="badge-value fs-4">
+                                            <i class="fa-regular fa-gauge-simple-high"></i>
+                                            <span>{{ $device->getTotalKilometers() }}</span>
+                                        </div>
+                                        <div class="badge-label fs-6">
+                                            <span>Total  KM's</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
+                <div class="separator"></div>
+
+                <ul  class="nav nav-tabs text-black" id="single-view-content-pages">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="endpoints-tab" data-bs-toggle="tab" data-bs-target="#endpoints" type="button" role="tab" aria-controls="endpoints" aria-selected="false">Setup</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="trip-history-tab" data-bs-toggle="tab" data-bs-target="#trip-history" type="button" role="tab" aria-controls="trip-history" aria-selected="false">Trip history</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="row pt-3 pb-3">
-            <div class="col-11 mx-auto">
-                <div class="card">
-                    <h3>Device history</h3>
+        <div id="device-tabs" class="row mb-3 p-0">
+            <div class="tab-content text-black p-0" id="myTabContent">
+                <div class="card tab-pane fade show active text-black" id="endpoints" role="tabpanel" aria-labelledby="endpoints-tab">
+                    @include("components/stepper")
+                </div>
+                <div class="tab-pane fade text-black" id="trip-history" role="tabpanel" aria-labelledby="trip-history-tab">
                     @include("overview/data_tables_clean")
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

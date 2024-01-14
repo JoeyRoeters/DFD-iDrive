@@ -72,7 +72,18 @@ class RouteServiceProvider extends ServiceProvider
         $apiRouteFile = $directory . '/api.php';
 
         if (file_exists($webRouteFile)) {
-            Route::middleware('web')
+            $middleware = ['web'];
+
+            $unAuthenticatedDomains = [
+                'auths'
+            ];
+
+            if (!in_array($directoryName, $unAuthenticatedDomains)) {
+                $middleware[] = 'auth';
+                $middleware[] = 'verified';
+            }
+
+            Route::middleware($middleware)
                 ->prefix($directoryName)
                 ->group($webRouteFile);
         }

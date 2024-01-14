@@ -2,6 +2,7 @@
 
 namespace App\Helpers\View\Abstract;
 
+use App\Domain\Shared\Interface\BreadCrumbInterface;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use App\Infrastructure\Laravel\Controller;
 use Illuminate\Contracts\View\View;
@@ -15,17 +16,38 @@ abstract class AbstractViewController extends Controller
     /**
      * @return array<string, mixed>
      */
-    private function defaultViewData(): array
+    protected function defaultViewData(): array
     {
         return [
-            'pageHeader' => $this->pageHeader()
+            'pageHeader' => $this->pageHeader(),
+            'breadCrumbs' => $this->getBreadCrumbs(),
         ];
+    }
+
+    private function getBreadCrumbs(): ?array
+    {
+        if (!$this instanceof BreadCrumbInterface) {
+            return null;
+        }
+
+        $breadCrumbs = [];
+
+        $breadCrumb = $this->getBreadCrumb(request());
+        while ($breadCrumb?->hasParentClass()) {
+            $breadCrumbs[] = $breadCrumb;
+
+            $breadCrumb = $breadCrumb->getParentBreadCrumb();
+        }
+
+        $breadCrumbs[] = $breadCrumb;
+
+        return array_reverse($breadCrumbs);
     }
 
     /**
      * @param Request $request
      */
-    protected function loadData(Request $request): void
+    public function loadData(Request $request): void
     {
         $this->request = $request;
     }

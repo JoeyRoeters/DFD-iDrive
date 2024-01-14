@@ -1,3 +1,25 @@
-.card {
-    padding: 3em 5em;
+#single-view-wrapper {
+    #device-tabs {
+        width: 100%;
+
+        p {
+            margin: 0;
+            color: var(--color-gray-500);
+        }
+
+        #trip-history {
+            #datatable_wrapper {
+                margin-top: 0;
+                padding: 0;
+
+                thead {
+                    display: none;
+                }
+
+                .row {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }

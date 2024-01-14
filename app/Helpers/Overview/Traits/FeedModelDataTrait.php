@@ -3,6 +3,7 @@
 namespace App\Helpers\Overview\Traits;
 
 use App\Domain\Shared\Interface\SearchableModelInterface;
+use App\Domain\Shared\Interface\SearchableModelStringInterface;
 use App\Domain\Trip\Model\Trip;
 use App\Helpers\Overview\Table\Enum\TableDataRequestEnum;
 use App\Helpers\Overview\Table\ValueObject\TableDataRequest;
@@ -31,6 +32,10 @@ trait FeedModelDataTrait
                     $query->orWhere($field, 'LIKE', "%{$search}%");
                 }
             });
+        }
+
+        if ($model instanceof SearchableModelStringInterface && !empty($search)) {
+            $query->where('search', 'LIKE', "%{$search}%");
         }
 
         $models = $query->getModels();
