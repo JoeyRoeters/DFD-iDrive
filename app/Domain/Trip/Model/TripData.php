@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
 
+use Carbon\Carbon;
+
 /**
  * Class TripData
  *
@@ -17,6 +19,7 @@ use MongoDB\Laravel\Relations\BelongsTo;
  * @property array $accelero
  * @property array $gyroscope
  * @property float $speed
+ * @property \Illuminate\Support\Carbon $time
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  *
@@ -50,6 +53,8 @@ class TripData extends Model
         'timestamp' => 'datetime'
     ];
 
+
+
     /**
      * Boot the model.
      */
@@ -71,4 +76,5 @@ class TripData extends Model
     {
         return $this->belongsTo(Trip::class);
     }
+
 }
