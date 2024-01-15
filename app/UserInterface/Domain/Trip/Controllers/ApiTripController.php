@@ -98,7 +98,7 @@ class ApiTripController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
-            'data.*' => 'required|array|size:4',
+            'data.*' => 'required|array|size:5',
             'data.*.*' => 'required',
             'data.*.0' => 'required|numeric',
             'data.*.1' => 'required|numeric',
