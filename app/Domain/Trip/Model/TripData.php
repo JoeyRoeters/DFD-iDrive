@@ -19,6 +19,7 @@ use Carbon\Carbon;
  * @property array $accelero
  * @property array $gyroscope
  * @property float $speed
+ * @property float $speed_limit
  * @property \Illuminate\Support\Carbon $time
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -43,6 +44,7 @@ class TripData extends Model
         'accelero',
         'gyroscope',
         'speed',
+        'speed_limit',
         'timestamp'
     ];
 
@@ -50,6 +52,7 @@ class TripData extends Model
         'accelero' => 'array',
         'gyroscope' => 'array',
         'speed' => 'float',
+        'speed_limit' => 'float',
         'timestamp' => 'datetime'
     ];
 

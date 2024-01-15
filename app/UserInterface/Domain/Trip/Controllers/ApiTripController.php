@@ -98,12 +98,13 @@ class ApiTripController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
-            'data.*' => 'required|array|size:4',
+            'data.*' => 'required|array|size:5',
             'data.*.*' => 'required',
             'data.*.0' => 'required|numeric',
             'data.*.1' => 'required|numeric',
             'data.*.2' => 'required|array|size:3',
             'data.*.3' => 'required|array|size:3',
+            'data.*.4' => 'numeric',
         ]);
 
         if ($validator->fails()) {
@@ -115,13 +116,14 @@ class ApiTripController extends Controller
 
         // Create data entries for the trip
         foreach ($dataEntries as $dataEntry) {
-            list($timestamp, $speed, $accelero, $gyroscope) = $dataEntry;
+            list($timestamp, $speed, $accelero, $gyroscope, $speed_limit) = $dataEntry;
 
             $trip->data()->create([
                 'timestamp' => $timestamp,
                 'speed' => $speed,
                 'accelero' => $accelero,
                 'gyroscope' => $gyroscope,
+                'speed_limit' => $speed_limit,
             ]);
         }
 

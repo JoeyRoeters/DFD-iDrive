@@ -28,6 +28,18 @@ class GraphController extends Controller
 
     private string $timeUnitInterval = 'minute';
 
+    private array $dotData = [];
+
+    public function getDotData(): array
+    {
+        return $this->dotData;
+    }
+
+    public function setDotData(array $dotData): void
+    {
+        $this->dotData = $dotData;
+    }
+
     public function getTimeUnitInterval(): string
     {
         return $this->timeUnitInterval;
@@ -373,6 +385,7 @@ class GraphController extends Controller
             'dataLabelsEnabled' => $this->dataLabelsEnabled,
             'zoomEnabled' => $this->zoomEnabled,
             'timeUnitInterval' => $this->timeUnitInterval,
+            'dotData' => $this->dotData,
         ];
     }
 

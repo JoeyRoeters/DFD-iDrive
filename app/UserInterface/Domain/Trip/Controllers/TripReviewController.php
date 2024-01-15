@@ -6,14 +6,17 @@ use App\Domain\Device\Model\Device;
 use App\Domain\Shared\Interface\BreadCrumbInterface;
 use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
 use App\Domain\Shared\ValueObject\RouteValueObject;
+use App\Domain\Trip\Helper\TripProfileParser;
 use App\Domain\Trip\Model\Trip;
 use App\Domain\Trip\Model\TripData;
+use App\Domain\Trip\Model\TripEvent;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use App\Infrastructure\Laravel\Controller;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\BrakingGraph;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\SpeedGraph;
+use App\UserInterface\Domain\Trip\Controllers\Graph\Types\WarningGraph;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -48,6 +51,28 @@ class TripReviewController extends Controller
                 $speed_brakeGraph->setGraphData([$this->formatTimeStamp($dbData), $this->calculateBrakePower($dbData)]);
 
                 return $speed_brakeGraph->render();
+
+            case "warnings":
+                $warningGraph = new WarningGraph();
+
+                $trip_events = TripEvent::whereTripId($request->input('id'))->get([])->toArray();
+                $trip_events = array_map(function ($event) {
+                    $event['timestamp'] = strtotime($event['timestamp']);
+                    return $event;
+                }, $trip_events);
+
+                $dbData = TripData::where('trip_id', $request->input('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed', 'timestamp', "accelero"])
+                    ->toArray();
+
+                $warningGraph->setGraphData([$this->formatTimeStamp($dbData), $this->calculateBrakePower($dbData)]);
+                $warningGraph->setDotData($trip_events);
+
+
+                return $warningGraph->render();
+
+
 
             default:
                 $data = [];
