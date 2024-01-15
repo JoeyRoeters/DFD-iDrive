@@ -20,6 +20,12 @@ class ApiDeviceController extends Controller
 {
     public function testConnection(Request $request): JsonResponse
     {
+        $device = $request->get('device');
+
+        $device->last_active = Carbon::now();
+        $device->save();
+
+
         return new JsonResponse([
             'success' => true,
             'message' => 'Connection established'

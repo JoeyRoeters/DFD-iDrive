@@ -88,7 +88,7 @@ export default class Column {
                 text = '0';
             } else if (data == 100) {
                 text = '10';
-            } else if (data !== null) {
+            } else if (data !== null && data !== 'N/A') {
                 if (data.length > 2) {
                     data = data.replace(/^(.)(.)/, '$1.$2');
                 }

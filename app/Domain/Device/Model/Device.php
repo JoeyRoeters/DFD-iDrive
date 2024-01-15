@@ -21,7 +21,7 @@ use MongoDB\Laravel\Relations\HasMany;
  * @property string $user_id
  * @property string $name
  * @property DeviceTypeEnum $type
- * @property Carbon $lastActive
+ * @property Carbon $last_active
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read User $user
@@ -44,7 +44,7 @@ class Device extends Model implements SearchableModelInterface
         'number',
         'name',
         'type',
-        'lastActive',
+        'last_active',
         'created_at',
         'updated_at'
     ];
@@ -55,7 +55,7 @@ class Device extends Model implements SearchableModelInterface
         'number' => 'int',
         'name' => 'string',
         'type' => DeviceTypeEnum::class,
-        'lastActive' => 'datetime',
+        'last_active' => 'datetime',
     ];
 
     public static function getSearchableFields(): array
@@ -64,7 +64,7 @@ class Device extends Model implements SearchableModelInterface
             'user_id',
             'name',
             'type',
-            'lastActive',
+            'last_active',
         ];
     }
 
@@ -84,7 +84,7 @@ class Device extends Model implements SearchableModelInterface
 
     public function getDateFormatted(): string
     {
-        return $this->lastActive?->format('d.m.Y') ?? '';
+        return $this->last_active?->format('d.m.Y') ?? '';
     }
 
     public function getLastActiveFormatted(): string
@@ -95,19 +95,19 @@ class Device extends Model implements SearchableModelInterface
 
         return sprintf(
             "last seen on %s at %s",
-            $this->lastActive->format('d.m.Y'),
-            $this->lastActive->format('H:i')
+            $this->last_active->format('d.m.Y'),
+            $this->last_active->format('H:i')
         );
     }
 
     public function isSetup(): bool
     {
-        return $this->lastActive !== null;
+        return $this->last_active !== null;
     }
 
     public function getTimeFormatted(): string
     {
-        return $this->lastActive?->format('H:i') ?? '';
+        return $this->last_active?->format('H:i') ?? '';
     }
 
     public function user(): BelongsTo

@@ -1,18 +1,16 @@
-<div class="col-11 mx-auto">
-    <div class="card mt-2">
-        <div class="row">
-            <div class="col-3 border-right">
-                <select id="chart_type" class="form-control">
-                    <option selected="selected" value="speed">Speed</option>
-                    <option value="speed_braking">Speed & Braking</option>
-                    <option value="warnings">Speed, braking & Warnings</option>
-                </select>
-            </div>
-            <div class="col-9">
-                <div id="unloadedChart"></div>
-                <div class="m-auto text-center p-10" id="loading">
-                    <i class="fa-regular fa-spin fa-2xl fa-spinner-scale"></i>
-                </div>
+<div class="card mt-2">
+    <div class="row">
+        <div class="col-3 border-right">
+            <select id="chart_type" class="form-control">
+                <option selected="selected" value="speed">Speed</option>
+                <option value="speed_braking">Speed & Braking</option>
+                <option value="warnings">Speed, braking & Warnings</option>
+            </select>
+        </div>
+        <div class="col-9">
+            <div id="unloadedChart"></div>
+            <div class="m-auto text-center p-10" id="loading">
+                <i class="fa-regular fa-spin fa-2xl fa-spinner-scale"></i>
             </div>
         </div>
     </div>
