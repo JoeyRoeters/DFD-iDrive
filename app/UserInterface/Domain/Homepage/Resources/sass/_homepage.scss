@@ -1,5 +1,5 @@
 .homepage-under-construction {
-    margin-top: 7.5rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -21,38 +21,18 @@
         width: 25rem;
     }
 
-    .card_name{
-        color: #000000;
-        position: absolute;
-        top: 4.6875rem;
-        left: 12.5rem;
-        font-size: 1.875rem;
-        font-weight: 600;
-   }
+
     .card{
-        width: 101.25rem;
         height: 7.5rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
-        top: -3.125rem;
-        left: -0.9375rem;
         padding: 0.9375rem;
         color: #000000;
         display: flex;
         cursor: pointer;
     }
 
-    .recent_name{
-        color: #000000;
-        position: absolute;
-        top: 16.825rem;
-        left: 12.5rem;
-        font-size: 1.875rem;
-        font-weight: 600;
-   }
-
    .recent  {
-        width: 50rem;
         height: 5rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
@@ -62,42 +42,8 @@
         cursor: pointer;
    }
 
-   .recent1{
-        position: absolute;
-        top: 20.3125rem;
-        left: 12.1875rem;
-   }
-
-   .recent2{
-        position: absolute;
-        top: 26.5625rem;
-        left: 12.1875rem;
-    }
-
-    .recent3{
-        position: absolute;
-        top: 32.8125rem;
-        left: 12.1875rem;
-   }
-
-   .recent4{
-        position: absolute;
-        top: 39.0625rem;
-        left: 12.1875rem;
-    }
-
-    .review_name{
-        color: #000000;
-        position: absolute;
-        top: 16.875rem;
-        left: 67.1875rem;
-        font-size: 1.875rem;
-        font-weight: 600;
-   }
-
    .review  {
-        width: 22.5rem;
-        height: 11.25rem;
+        height: 11rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
         padding: 0.9375rem;
@@ -105,30 +51,4 @@
         display: flex;
         cursor: pointer;
    }
-
-   .speed{
-        position: absolute;
-        top: 20.3125rem;
-        left: 66.875rem;
-   }
-
-   .brake{
-        position: absolute;
-        top: 20.3125rem;
-        left: 9.625rem;
-    }
-
-    .gear{
-        position: absolute;
-        top: 32.8125rem;
-        left: 66.875rem;
-   }
-
-   .steering{
-        position: absolute;
-        top: 32.8125rem;
-        left: 90.625rem;
-    }
-
-
 }
