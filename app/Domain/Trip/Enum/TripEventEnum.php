@@ -22,6 +22,9 @@ enum TripEventEnum: String
     case HARSH_STEERING = 'harsh_steering';
     case INEFFICIENT_STEERING = 'inefficient_steering';
 
+    case SYSTEM_START = "System Start";
+    case SYSTEM_END = "System End";
+
     public function getEventTitle(mixed $value = null): string
     {
         return match ($this) {
@@ -37,6 +40,9 @@ enum TripEventEnum: String
             self::INEFFICIENT_GEAR => 'Inefficient Gear',
             self::HARSH_STEERING => 'Harsh Steering',
             self::INEFFICIENT_STEERING => 'Inefficient Steering',
+            self::SYSTEM_START => 'System Start',
+            self::SYSTEM_END => 'System End',
+
             default => throw new \Exception('Unexpected match value'),
         };
     }
@@ -78,6 +84,8 @@ enum TripEventEnum: String
             self::INEFFICIENT_GEAR => SeverityEnum::MEDIUM,
             self::HARSH_STEERING => SeverityEnum::MEDIUM,
             self::INEFFICIENT_STEERING => SeverityEnum::MEDIUM,
+            self::SYSTEM_START => SeverityEnum::LOW,
+            self::SYSTEM_END => SeverityEnum::LOW,
             default => throw new \Exception('Unexpected match value'),
         };
     }

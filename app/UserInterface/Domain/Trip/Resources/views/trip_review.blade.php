@@ -5,6 +5,7 @@
                 <select id="chart_type" class="form-control">
                     <option selected="selected" value="speed">Speed</option>
                     <option value="speed_braking">Speed & Braking</option>
+                    <option value="warnings">Speed, braking & Warnings</option>
                 </select>
             </div>
             <div class="col-9">

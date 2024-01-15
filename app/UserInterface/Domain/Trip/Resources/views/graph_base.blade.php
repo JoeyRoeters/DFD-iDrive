@@ -34,7 +34,7 @@
 
                 if (currentItem[yAxisLabel] !== undefined) {
                     var yValue = currentItem[yAxisLabel];
-                    convertedData.push({ timestamp: time, [yAxisLabel]: yValue });
+                    convertedData.push({timestamp: time, [yAxisLabel]: yValue});
                 } else {
                     console.error(yAxisLabel + " is undefined for input data at index", i, currentItem);
                 }
@@ -45,53 +45,6 @@
 
         return convertedData;
     }
-    function convertDataArray(inputData, xyFieldValues) {
-        var data = [];
-
-        // Controleer of inputData een 2D-array of 1D-array is
-        if (Array.isArray(inputData[0])) {
-            // 2D-array, verwerk elke subarray
-            for (var j = 0; j < inputData.length; j++) {
-                data.push(convertSingleArray(inputData[j], xyFieldValues[j]));
-            }
-        } else {
-            // 1D-array, verwerk als enkele array
-            data.push(convertSingleArray(inputData, xyFieldValues[0]));
-        }
-
-        return data;
-    }
-
-    function convertSingleArray(currentArray, xyFieldValue) {
-        var convertedData = [];
-
-        var xAxisLabel = xyFieldValue['x'];
-        var yAxisLabel = xyFieldValue['y'];
-
-        for (var i = 0; i < currentArray.length; i++) {
-            var currentItem = currentArray[i];
-
-            if (currentItem.timestamp) {
-                var dateString = currentItem.timestamp;
-                var time = new Date(dateString).getTime();
-
-                if (currentItem[yAxisLabel] !== undefined) {
-                    var yValue = currentItem[yAxisLabel];
-                    convertedData.push({ timestamp: time, [yAxisLabel]: yValue });
-                } else {
-                    console.error(yAxisLabel + " is undefined for input data at index", i, currentItem);
-                }
-            } else {
-                console.error("Timestamp is undefined for input data at index", i, currentItem);
-            }
-        }
-
-        return convertedData;
-    }
-
-
-
-
 
     var root = am5.Root.new("chartdiv");
     root.setThemes([am5themes_Animated.new(root)]);
@@ -131,9 +84,6 @@
     var data2 = graphData.length > 1 ? graphData[1] : [];
 
     var colors = @json($colors);
-
-
-
 
 
     var series1 = chart.series.push(am5xy.LineSeries.new(root, {
@@ -202,6 +152,32 @@
         }));
         sbseries2.data.setAll(data2);
     }
+
+
+    var dotData = @json($dotData);
+
+
+
+    var dotDataConverted = convertSingleArray(dotData, xyFieldValues[2]);
+    var dotDataMap = {};
+    dotDataConverted.forEach(function(dotItem) {
+        dotDataMap[dotItem[xyFieldValues[2]["x"]]] = dotItem.type;
+    });
+
+    series1.bullets.push(function(root, series, dataItem) {
+        var type = dotDataMap[dataItem.dataContext[xyFieldValues[0]["x"]]];
+        if (type) {
+            return am5.Bullet.new(root, {
+                sprite: am5.Circle.new(root, {
+                    radius: 5,
+                    fill: am5.color("#ff0000"),
+                    tooltipText: type
+                })
+            });
+        }
+    });
+
+
 
     series1.appear(1000);
     if (data2.length > 0) {
