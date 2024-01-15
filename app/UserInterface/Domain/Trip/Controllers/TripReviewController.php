@@ -29,11 +29,10 @@ class TripReviewController extends Controller
             case 'speed':
                 $SpeedGraph = new SpeedGraph();
 
-                $graphData = TripData::where('trip_id', $request->route('id'))
+                $graphData = TripData::where('trip_id', $request->input('id'))
                     ->orderBy('timestamp', 'asc')
                     ->get(['speed', 'timestamp', 'trip_id'])
                     ->toArray();
-
 
                 $SpeedGraph->setGraphData($this->formatTimeStamp($graphData));
                 return $SpeedGraph->render();
@@ -41,7 +40,7 @@ class TripReviewController extends Controller
             case "speed_braking":
                 $speed_brakeGraph = new BrakingGraph();
 
-                $dbData = TripData::where('trip_id', $request->route('id'))
+                $dbData = TripData::where('trip_id', $request->input('id'))
                     ->orderBy('timestamp', 'asc')
                     ->get(['speed', 'timestamp', "accelero"])
                     ->toArray();
