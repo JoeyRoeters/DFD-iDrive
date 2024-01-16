@@ -1,7 +1,7 @@
 @extends('auth.base')
 
 @section('head')
-    @vite('app/UserInterface/Domain/Auth/Resources/sass/auth.scss')
+    @vite('app/UserInterface/Domain/Auth/Resources/sass/_auth.scss')
 @endsection
 
 @section('content')

@@ -2,7 +2,8 @@
 
 namespace App\Domain\Trip\Model;
 
-use App\Domain\Trip\Enum\TripEventTypeEnum;
+use App\Domain\Shared\Exception\MissingOwnershipException;
+use App\Domain\Trip\Enum\TripEventEnum;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
@@ -14,7 +15,7 @@ use MongoDB\Laravel\Eloquent\Model;
  *
  * @property-read int $id
  * @property int $trip_id
- * @property string $type
+ * @property TripEventEnum $type
  * @property array $data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -31,6 +32,10 @@ use MongoDB\Laravel\Eloquent\Model;
  */
 class TripEvent extends Model
 {
+    protected $primaryKey = '_id';
+
+    protected $table = 'trip_events';
+
     protected $fillable = [
         'trip_id',
         'type',
@@ -39,9 +44,21 @@ class TripEvent extends Model
 
     protected $casts = [
         'data' => 'array',
-        'type' => TripEventTypeEnum::class,
+        'type' => TripEventEnum::class,
         'timestamp' => 'datetime'
     ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($tripEvent) {
+            if ($tripEvent->trip_id === null) {
+                throw new MissingOwnershipException('Trip id is required');
+            }
+        });
+    }
 
     /**
      * Get the trip that owns the event.

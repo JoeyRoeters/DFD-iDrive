@@ -9,12 +9,12 @@
     box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700");
 
 :root {
     --header-height: 3rem;
     --nav-width: 100px;
-    --body-font: 'Nunito', sans-serif;
+    --body-font: 'Inter', Helvetica sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100;
 }
@@ -26,11 +26,21 @@
 
 
 .page-header {
+    padding: 1rem;
     .button-container {
         display: flex;
         justify-content: flex-end;
         align-items: center;
     }
+
+    .last-seen {
+        font-size: 1rem;
+        color: var(--color-gray-500);
+    }
+}
+
+.content-page {
+    padding: 0 1rem;
 }
 
 .header {
@@ -47,25 +57,30 @@
     z-index: var(--z-fixed);
     transition: 0.5s;
 
-    &_nam
-
     &_toggle {
         color: var(--color-primary-color);
         font-size: 1.5rem;
         cursor: pointer;
     }
 
-    &_img {
-        width: 35px;
-        height: 35px;
-        display: flex;
-        justify-content: center;
-        border-radius: 50%;
-        overflow: hidden;
+}
 
-        img {
-            width: 40px;
-        }
+.header-toggle-wrapper {
+    i {
+        font-size: 1.5rem !important;
+        font-weight: 900;
+    }
+}
+
+#header-logo {
+    display: inline-flex;
+    flex-direction: column;
+
+    span {
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: -0.1rem;
+        color: white;
     }
 }
 
@@ -81,10 +96,10 @@
     z-index: var(--z-fixed);
 
     .nav {
+        position: relative;
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         overflow: hidden;
 
         hr {
@@ -98,6 +113,10 @@
             align-items: center;
             column-gap: 1rem;
             padding: 0.5rem 0 0.5rem 2.5rem;
+
+            &.no-click {
+                cursor: default;
+            }
         }
 
         .nav_logo {
@@ -125,7 +144,7 @@
 
         &_link {
             position: relative;
-            color: var(--color-secondary-color);
+            color: var(--color-white);
             margin-bottom: 1.5rem;
             transition: 0.3s;
 
@@ -134,7 +153,11 @@
             }
 
             &:hover {
-                color: var(--color-white);
+                color: var(--color-secondary-color);
+            }
+
+            &.active {
+                color: var(--color-secondary-color) !important;
             }
         }
     }
@@ -144,7 +167,20 @@
     }
 }
 
-#body-pd {
+.fs-4 {
+    font-size: 1.2rem !important;
+}
+.fs-6 {
+    font-size: 1rem!important
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.body {
     position: relative;
     margin: var(--header-height) 0 0 0;
     padding: 0 1rem;
@@ -160,8 +196,95 @@
     padding-left: calc(var(--nav-width) + 1rem);
 }
 
-.active {
+.page-loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+     div {
+        animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        transform-origin: 40px 40px;
+    }
+     div:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #fff;
+        margin: -4px 0 0 -4px;
+    }
+     div:nth-child(1) {
+        animation-delay: -0.036s;
+    }
+     div:nth-child(1):after {
+        top: 63px;
+        left: 63px;
+    }
+     div:nth-child(2) {
+        animation-delay: -0.072s;
+    }
+     div:nth-child(2):after {
+        top: 68px;
+        left: 56px;
+    }
+     div:nth-child(3) {
+        animation-delay: -0.108s;
+    }
+     div:nth-child(3):after {
+        top: 71px;
+        left: 48px;
+    }
+     div:nth-child(4) {
+        animation-delay: -0.144s;
+    }
+     div:nth-child(4):after {
+        top: 72px;
+        left: 40px;
+    }
+     div:nth-child(5) {
+        animation-delay: -0.18s;
+    }
+     div:nth-child(5):after {
+        top: 71px;
+        left: 32px;
+    }
+     div:nth-child(6) {
+        animation-delay: -0.216s;
+    }
+     div:nth-child(6):after {
+        top: 68px;
+        left: 24px;
+    }
+     div:nth-child(7) {
+        animation-delay: -0.252s;
+    }
+     div:nth-child(7):after {
+        top: 63px;
+        left: 17px;
+    }
+     div:nth-child(8) {
+        animation-delay: -0.288s;
+    }
+     div:nth-child(8):after {
+        top: 56px;
+        left: 12px;
+    }
+    @keyframes lds-roller {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.nav .active {
     color: var(--color-white);
+    cursor: default;
 
     i {
         color: var(--color-white);
@@ -207,15 +330,66 @@
 
     .l-navbar {
         left: 0;
-        padding: 1rem 1rem 0 0;
+        padding: 1rem 1.1rem 0 0;
 
         &_show {
             width: calc(var(--nav-width) + 156px);
         }
     }
 
-    #body-pd {
-        //padding-left: calc(var(--nav-width) + 188px);
+    .body-pd {
+        transition: 0.5s;
+        padding-left: calc(var(--nav-width) + 20px);
+    }
+
+    .body-pd-toggle {
+        padding-left: calc(var(--nav-width) + 130px);
+    }
+}
+
+.nav {
+    .user {
+        padding-left: 30px;
+
+        &_img {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 40px;
+            }
+        }
+
+        &_name {
+            padding-left: 0px;
+        }
+    }
+}
+
+.btn-primary {
+    background-color: var(--color-secondary-color);
+    border-color: var(--color-secondary-color);
+
+    &:hover {
+        background-color: var(--color-secondary-color-hover);
+        border-color: var(--color-secondary-color-hover);
+    }
+}
+
+.btn {
+    font-weight: 500;
+}
+
+a {
+    color: var(--color-tertiary-color);
+    transition: 0.3s;
+
+    &:hover {
+        color: var(--color-tertiary-color-hover);
     }
 }
 

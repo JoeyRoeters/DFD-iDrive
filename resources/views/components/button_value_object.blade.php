@@ -1,24 +1,36 @@
 <div>
-    <a data-id="{{ $button->getRandomId()  }}" class="btn mr-1 btn-{{ $button->getColor() }}">
+    <a data-id="{{ $button->getRandomId()  }}" class="btn mr-1 btn-{{ $button->getColor() }} {{ $button->getSize() }}">
         <i class="{{$button->getIcon() }}"></i>
         <span>{{ $button->getLabel() }}</span>
     </a>
 </div>
 <script>
     window.addEventListener("load",function(event) {
-        const confirmMessage = "{{$button->getConfirmMessage()}}";
-        if (confirmMessage.trim().length > 0) {
-            const $button = $("a[data-id={{ $button->getRandomId() }}]");
+        const $button = $("a[data-id={{ $button->getRandomId() }}]");
 
-            $button.on('click', () => {
-                let data = @json($button->getSweetAlert());
+        $button.on('click', () => {
+            if ({{ $button->hasRoute()  ? "1" : "0" }}) {
+                const uri = "{{ $button->getRouteUri() }}";
+                if ({{ $button->hasConfirmMessage() ? "1" : "0"  }}) {
+                    event.preventDefault();
 
-                data.url = "{{ $button->getRoute() }}";
+                    let data = @json($button->getSweetAlert());
 
-                SweetAlert.fire(data);
-            })
-        } else {
-            $("a[data-id={{ $button->getRandomId() }}]").attr("href", "{{ $button->getConfirmMessage() === null ? route($button->getRoute()) : $button->getRoute() }}" );
-        }
+                    data.url = uri;
+
+                    SweetAlert.fire(data);
+
+                    return;
+                }
+
+                window.location = uri;
+            }
+
+            if ({{ $button->hasJsFunction()  ? "1" : "0" }}) {
+                event.preventDefault();
+
+                {!! $button->getJsFunction() !!};
+            }
+        })
     });
 </script>

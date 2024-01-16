@@ -10,7 +10,7 @@
     "src": "app/UserInterface/Domain/Devices/Resources/js/homepage.js"
   },
   "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss": {
-    "file": "assets/_devices-2fa01f3c.css",
+    "file": "assets/_devices-6800bb8b.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss"
   },
@@ -24,6 +24,11 @@
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
   },
+  "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
+    "file": "assets/_trips-fe4fedc2.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss"
+  },
   "resources/css/app.css": {
     "file": "assets/app-4ed993c7.js",
     "isEntry": true,
@@ -33,21 +38,37 @@
     "file": "assets/coming_soon-0db13ae8.svg",
     "src": "resources/images/Illustrations/coming_soon.svg"
   },
+  "resources/images/Illustrations/empty_trips.svg": {
+    "file": "assets/empty_trips-df9be059.svg",
+    "src": "resources/images/Illustrations/empty_trips.svg"
+  },
+  "resources/images/Illustrations/missing_device.svg": {
+    "file": "assets/missing_device-884ed95c.svg",
+    "src": "resources/images/Illustrations/missing_device.svg"
+  },
+  "resources/images/Illustrations/setup_device.svg": {
+    "file": "assets/setup_device-b3228c16.svg",
+    "src": "resources/images/Illustrations/setup_device.svg"
+  },
   "resources/images/auth/Rectangle5.png": {
     "file": "assets/Rectangle5-d676aca9.png",
     "src": "resources/images/auth/Rectangle5.png"
   },
   "resources/images/logos/logo_red.png": {
-    "file": "assets/logo_red-f4efd83d.png",
+    "file": "assets/logo_red-d1ac6f6b.png",
     "src": "resources/images/logos/logo_red.png"
   },
+  "resources/images/logos/logo_white.png": {
+    "file": "assets/logo_white-5524afd4.png",
+    "src": "resources/images/logos/logo_white.png"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-463b621e.js",
+    "file": "assets/app-c9387955.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-2ece812a.css",
+    "file": "assets/app-a4bbd0ea.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },

@@ -2,9 +2,12 @@
 
 namespace App\Domain\Trip\Model;
 
+use App\Domain\Shared\Exception\MissingOwnershipException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
+
+use Carbon\Carbon;
 
 /**
  * Class TripData
@@ -16,6 +19,8 @@ use MongoDB\Laravel\Relations\BelongsTo;
  * @property array $accelero
  * @property array $gyroscope
  * @property float $speed
+ * @property float $speed_limit
+ * @property \Illuminate\Support\Carbon $time
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  *
@@ -32,11 +37,14 @@ use MongoDB\Laravel\Relations\BelongsTo;
  */
 class TripData extends Model
 {
+    protected $primaryKey = '_id';
+
     protected $fillable = [
         'trip_id',
         'accelero',
         'gyroscope',
         'speed',
+        'speed_limit',
         'timestamp'
     ];
 
@@ -44,8 +52,23 @@ class TripData extends Model
         'accelero' => 'array',
         'gyroscope' => 'array',
         'speed' => 'float',
+        'speed_limit' => 'float',
         'timestamp' => 'datetime'
     ];
+
+
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($tripData) {
+            if ($tripData->trip_id === null) {
+                throw new MissingOwnershipException('Trip id is required');
+            }
+        });
+    }
 
     /**
      * Get the trip that owns the data.
@@ -56,4 +79,5 @@ class TripData extends Model
     {
         return $this->belongsTo(Trip::class);
     }
+
 }

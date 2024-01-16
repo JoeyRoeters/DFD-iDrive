@@ -6,11 +6,13 @@ class PageHeaderValueOject
 {
     /**
      * @param string $title
+     * @param string $subtitle
      * @param ButtonValueObject[] $buttons
      */
     public function __construct(
         private string $title,
-        private array $buttons = []
+        private string $subtitle = "",
+        private array $buttons = [],
     ) {
     }
 
@@ -29,6 +31,25 @@ class PageHeaderValueOject
     public function setTitle(string $title): PageHeaderValueOject
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubtitle(): string
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string $subtitle
+     * @return PageHeaderValueOject
+     */
+
+    public function setSubtitle(string $subtitle): PageHeaderValueOject
+    {
+        $this->subtitle = $subtitle;
         return $this;
     }
 

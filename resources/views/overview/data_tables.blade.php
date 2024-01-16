@@ -6,11 +6,15 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table id="datatable" class="w-100"></table>
+        @if($isEmpty)
+            {!! $emptyViewObject->render() !!}
+        @else
+            <div class="row">
+                <div class="col-12">
+                    <table id="datatable" class="w-100"></table>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 @endsection
 

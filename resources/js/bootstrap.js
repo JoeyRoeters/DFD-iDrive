@@ -32,32 +32,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed")
-    const showNavbar = (toggleId, navId, bodyId, headerId) =>{
-        const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId),
-            bodypd = document.getElementById(bodyId),
-            headerpd = document.getElementById(headerId)
+    const $toggle = $('#header-toggle');
+    const $pageHeader = $('#page-header');
+    const $nav = $('#nav-bar');
+    const $bodypd = $('#content-page');
+    const $headerpd = $('#header');
+    const $headerLogo = $('#header-logo');
 
-// Validate that all variables exist
-        if(toggle && nav && bodypd && headerpd){
-            toggle.addEventListener('click', ()=>{
-// show navbar
-                nav.classList.toggle('show')
-// change icon
-                toggle.classList.toggle('bx-x')
-// add padding to body
-                bodypd.classList.toggle('body-pd')
-// add padding to header
-                headerpd.classList.toggle('body-pd')
-            })
+    $bodypd.css({
+        transition: '0.5s'
+    });
+    $pageHeader.css({
+        transition: '0.5s'
+    });//#1D3557
+
+    $toggle.on('click', ()=>{
+        $nav.toggleClass('show');
+        $headerLogo.toggleClass('show');
+
+        if ($nav.hasClass('show')){
+            $toggle.removeClass('fa-bars');
+            $toggle.addClass('fa-xmark');
+        } else {
+            $toggle.removeClass('fa-xmark');
+            $toggle.addClass('fa-bars');
         }
-    }
 
-    showNavbar('header-toggle','nav-bar','body-pd','header')
+        $pageHeader.toggleClass('body-pd');
+        $bodypd.toggleClass('body-pd');
+        $headerpd.toggleClass('body-pd-toggle');
+    });
 
-    /*===== LINK ACTIVE =====*/
-    const linkColor = document.querySelectorAll('.nav_link')
+    const linkColor = document.querySelectorAll('.nav_link:not(.no-click)')
 
     function colorLink(){
         if(linkColor){
@@ -67,5 +73,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     linkColor.forEach(l=> l.addEventListener('click', colorLink))
 
-    // Your code to run since DOM is loaded and ready
+    $('#single-view-content-pages').find('.nav-link').on('click', function (event) {
+        event.preventDefault();
+        $(this).addClass('active');
+
+        Tab.getInstance(this).show()
+    })
 });

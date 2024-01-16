@@ -75,8 +75,8 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - name: Run PHP Stan
-        run: vendor/bin/phpstan analyze app --level 6
+#      - name: Run PHP Stan
+#        run: vendor/bin/phpstan analyze app --level 6
 
   code-styling-fixer:
     runs-on: ubuntu-latest

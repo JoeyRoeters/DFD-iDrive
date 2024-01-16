@@ -2,6 +2,7 @@
 
 namespace App\Domain\Trip\Model;
 
+use App\Domain\Shared\Exception\MissingOwnershipException;
 use App\Domain\Trip\Enum\TripStatisticParserEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
@@ -31,6 +32,8 @@ use MongoDB\Laravel\Relations\BelongsTo;
  */
 class TripStatistic extends Model
 {
+    protected $primaryKey = '_id';
+
     protected $fillable = [
         'trip_id',
         'parser',
@@ -41,6 +44,18 @@ class TripStatistic extends Model
         'data' => 'array',
         'parser' => TripStatisticParserEnum::class,
     ];
+
+    /**
+     * Boot the model.
+     */
+    protected static function booted()
+    {
+        static::creating(function ($tripStatistic) {
+            if ($tripStatistic->trip_id === null) {
+                throw new MissingOwnershipException('Trip id is required');
+            }
+        });
+    }
 
     /**
      * Get the trip that owns the statistics.

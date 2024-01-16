@@ -4,7 +4,7 @@ namespace App\UserInterface\Domain\Trip\Controllers;
 
 use App\Domain\Api\Exception\ApiValidationException;
 use App\Domain\Api\Exception\NoAccessException;
-use App\Domain\Trip\Enum\TripEventTypeEnum;
+use App\Domain\Trip\Enum\TripEventEnum;
 use App\Domain\Trip\Enum\TripStateEnum;
 use App\Domain\Trip\Exception\TripNotFoundExecption;
 use App\Domain\Trip\Jobs\PostTripJob;
@@ -24,8 +24,7 @@ class ApiTripController extends Controller
 
         $trip = new Trip([
             'user_id' => $user->id,
-            'device_id' => $device->id,
-            'trip_number' => $user->trips()->count() + 1,
+            'device_id' => $device->id
         ]);
 
         $trip->save();
@@ -67,7 +66,7 @@ class ApiTripController extends Controller
         $validator = Validator::make($request->all(), [
             'events' => 'required|array',
             'events.*' => 'required|array|size:3',
-            'events.*.0' => 'required|string|in:' . implode(',', TripEventTypeEnum::values()),
+            'events.*.0' => 'required|string|in:' . implode(',', TripEventEnum::values()),
             'events.*.1' => 'required|numeric',
             'events.*.2' => '',
         ]);
@@ -99,12 +98,13 @@ class ApiTripController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'data' => 'required|array',
-            'data.*' => 'required|array|size:4',
+            'data.*' => 'required|array|size:5',
             'data.*.*' => 'required',
             'data.*.0' => 'required|numeric',
             'data.*.1' => 'required|numeric',
             'data.*.2' => 'required|array|size:3',
             'data.*.3' => 'required|array|size:3',
+            'data.*.4' => 'numeric',
         ]);
 
         if ($validator->fails()) {
@@ -116,13 +116,14 @@ class ApiTripController extends Controller
 
         // Create data entries for the trip
         foreach ($dataEntries as $dataEntry) {
-            list($timestamp, $speed, $accelero, $gyroscope) = $dataEntry;
+            list($timestamp, $speed, $accelero, $gyroscope, $speed_limit) = $dataEntry;
 
             $trip->data()->create([
                 'timestamp' => $timestamp,
                 'speed' => $speed,
                 'accelero' => $accelero,
                 'gyroscope' => $gyroscope,
+                'speed_limit' => $speed_limit,
             ]);
         }
 

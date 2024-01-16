@@ -29,7 +29,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/delete/{id}', [DeleteController::class, 'deleteMessage'])->name('devices.delete.message');
     Route::get('/delete/confirm/{id}', [DeleteController::class, 'deleteDevice'])->name('devices.delete.confirm');
-
-
-
 });
