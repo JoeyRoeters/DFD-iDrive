@@ -64,11 +64,11 @@ class Trip extends Model implements SearchableModelStringInterface
         'state',
         'start_time',
         'end_time',
-        'distance',
         'score',
         'created_at',
         'updated_at',
-        'search'
+        'search',
+        'distance'
     ];
 
     protected $casts = [

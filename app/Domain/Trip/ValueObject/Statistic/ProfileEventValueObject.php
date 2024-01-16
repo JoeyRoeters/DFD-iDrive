@@ -46,7 +46,25 @@ class ProfileEventValueObject
      */
     public function getDistance(): int
     {
-        return $this->distance;
+        // make sure the distance is between 5 and 95 and not 45 - 55; so they do not overlap with the % blocks of timeline
+        $distance = $this->distance;
+        if ($distance > 95) {
+            return 95;
+        }
+
+        if ($distance < 5) {
+            return 5;
+        }
+
+        if ($distance > 45 && $distance < 50) {
+            return 43;
+        }
+
+        if ($distance >= 50 && $distance < 55) {
+            return 57;
+        }
+
+        return $distance;
     }
 
     /**
@@ -65,13 +83,5 @@ class ProfileEventValueObject
     private function getValue(): mixed
     {
         return $this->value;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getUnit(): ?string
-    {
-        return $this->unit;
     }
 }
