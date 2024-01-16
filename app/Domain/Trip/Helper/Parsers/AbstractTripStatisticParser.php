@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Trip\Helper;
+namespace App\Domain\Trip\Helper\Parsers;
 
 use App\Domain\Trip\Enum\TripStatisticParserEnum;
 use App\Domain\Trip\Model\Trip;

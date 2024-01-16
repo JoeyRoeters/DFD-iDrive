@@ -13,35 +13,34 @@ enum TripEventEnum: String
     case COLLISION = 'collision';
     case SPEEDING = 'speeding';
     case HARSH_BRAKING = 'harsh braking';
-    case BREAKING_STOP_SHORT = 'breaking_stop_short';
-    case PERFECECT_BREAK = 'perfect_break';
-    case INEFFICIENT_BREAK = 'inefficient_break';
+    case BREAKING_AND_GAS = 'breaking_and_gas';
     case MISSED_GEAR = 'missed_gear';
-    case PERFECT_GEAR = 'perfect_gear';
-    case INEFFICIENT_GEAR = 'inefficient_gear';
+    case LATE_SHIFT_GEAR = 'late_shift_gear';
+    case MISSED_SHIFT_GEAR = 'missed_shift_gear';
     case HARSH_STEERING = 'harsh_steering';
     case INEFFICIENT_STEERING = 'inefficient_steering';
 
-    case SYSTEM_START = "System Start";
-    case SYSTEM_END = "System End";
+    public function requiredDataField(): array
+    {
+        return match($this) {
+            self::SPEEDING => ['speed', 'speed_limit'],
+            default => [],
+        };
+    }
 
     public function getEventTitle(mixed $value = null): string
     {
         return match ($this) {
-            self::CROSSED_LINE => 'Crossed Line',
-            self::COLLISION => 'Collision',
+            self::CROSSED_LINE => 'Lane departure detected',
+            self::COLLISION => 'Collision detected',
             self::SPEEDING => $this->getSpeedingEventTitle($value),
-            self::HARSH_BRAKING => 'Harsh Braking',
-            self::BREAKING_STOP_SHORT => 'Stop Short',
-            self::PERFECECT_BREAK => 'Perfect Break',
-            self::INEFFICIENT_BREAK => 'Inefficient Break',
-            self::MISSED_GEAR => 'Missed Gear',
-            self::PERFECT_GEAR => 'Perfect Gear',
-            self::INEFFICIENT_GEAR => 'Inefficient Gear',
-            self::HARSH_STEERING => 'Harsh Steering',
-            self::INEFFICIENT_STEERING => 'Inefficient Steering',
-            self::SYSTEM_START => 'System Start',
-            self::SYSTEM_END => 'System End',
+            self::HARSH_BRAKING => 'Abrupt Braking Occurrence',
+            self::BREAKING_AND_GAS => 'Incorrect Throttle and Brake usage',
+            self::LATE_SHIFT_GEAR => 'Delayed Gear engagement',
+            self::MISSED_SHIFT_GEAR => 'Gear Shift Omitted',
+            self::MISSED_GEAR => 'Gear Engagement Omitted',
+            self::HARSH_STEERING => 'Aggressive Steering Maneuver',
+            self::INEFFICIENT_STEERING => 'Suboptimal Steering Maneuver',
 
             default => throw new \Exception('Unexpected match value'),
         };
@@ -50,6 +49,8 @@ enum TripEventEnum: String
     private function getSpeedingEventTitle(mixed $value): string
     {
         $value = $value['speed'] - $value['speed_limit'];
+
+        $value = round($value);
 
         return 'Over the speed limit +' . $value . ' km/h';
     }
@@ -76,28 +77,29 @@ enum TripEventEnum: String
             self::COLLISION => SeverityEnum::HIGH,
             self::SPEEDING => $this->getSpeedSeverity($value),
             self::HARSH_BRAKING => SeverityEnum::MEDIUM,
-            self::BREAKING_STOP_SHORT => SeverityEnum::HIGH,
-            self::PERFECECT_BREAK => SeverityEnum::LOW,
-            self::INEFFICIENT_BREAK => SeverityEnum::MEDIUM,
+            self::BREAKING_AND_GAS => SeverityEnum::HIGH,
+            self::LATE_SHIFT_GEAR => SeverityEnum::MEDIUM,
+            self::MISSED_SHIFT_GEAR => SeverityEnum::MEDIUM,
             self::MISSED_GEAR => SeverityEnum::MEDIUM,
-            self::PERFECT_GEAR => SeverityEnum::LOW,
-            self::INEFFICIENT_GEAR => SeverityEnum::MEDIUM,
             self::HARSH_STEERING => SeverityEnum::MEDIUM,
             self::INEFFICIENT_STEERING => SeverityEnum::MEDIUM,
-            self::SYSTEM_START => SeverityEnum::LOW,
-            self::SYSTEM_END => SeverityEnum::LOW,
             default => throw new \Exception('Unexpected match value'),
         };
     }
 
     private function getSpeedSeverity(mixed $value): SeverityEnum
     {
+        if (!is_array($value) && is_string($value)) {
+            $value = json_decode($value, true);
+        }
+
         $value = $value['speed'] - $value['speed_limit'];
 
         return match (true) {
-            $value > 0 && $value <= 10 => SeverityEnum::LOW,
+            $value > 0 && $value <= 10 => SeverityEnum::MEDIUM,
             $value > 10 && $value <= 20 => SeverityEnum::MEDIUM,
             $value > 20 => SeverityEnum::HIGH,
+            $value < 0 => SeverityEnum::LOW,
             default => throw new \Exception('Unexpected match value'),
         };
     }

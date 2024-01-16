@@ -5,10 +5,10 @@ namespace App\UserInterface\Domain\Trip\Controllers;
 use App\Domain\Shared\Interface\BreadCrumbInterface;
 use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
 use App\Domain\Shared\ValueObject\RouteValueObject;
-use App\Domain\Trip\Helper\TripProfileParser;
+use App\Domain\Trip\Helper\Parsers\TripProfileParser;
+use App\Domain\Trip\Jobs\PostTripJob;
 use App\Domain\Trip\Model\Trip;
 use App\Domain\Trip\Model\TripData;
-use App\Domain\Trip\ValueObject\Statistic\ProfileValueObject;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
 use App\UserInterface\Domain\Trip\Controllers\Graph\Types\BrakingGraph;
@@ -34,7 +34,7 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
 
         $this->trip = Trip::find($id)
             ->where('_id', $id)
-            ->where('user_id', $request->user()->id)
+//            ->where('user_id', $request->user()->id)
             ->first();
     }
 
@@ -48,9 +48,11 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
 
     protected function appendViewData(Request $request): array
     {
+        $psot = new PostTripJob();
+        $psot->handle($this->trip);
         return [
             'trip' => $this->trip,
-            'profiles' => TripProfileParser::getProfiles($this->trip),
+            'profiles' => array_map(fn($parser) => $parser->getProfile(), TripProfileParser::getParsers($this->trip)),
         ];
     }
 
