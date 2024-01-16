@@ -6,33 +6,42 @@
 
 @section('content')
     <div class="homepage-under-construction">
-        <div class="container"> 
+        <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-12">
                     <h4>Current Device</h4>
-                    <div class="row">
-                    <div class="cols-sm-12">
-                            <div class="card">Device name</div>
-                        </div> 
-                    </div>
+
+                    <div class="card">Device name</div>
+
                 </div>
-                <div class="col-sm-6 mt-2">
+            </div>
+
+
+            <div class="row mt-1">
+                <div class="col-6">
                     <h4>Weekly Review</h4>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-xl-6 col-md-12">
                             <div class="review">Speed</div>
-                            <div class="review mt-1">Gear</div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-xl-6 col-md-12">
+                            <div class="review">Gear</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12">
                             <div class="review">Brake</div>
-                            <div class="review mt-1">Steering</div>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <div class="review">Steering</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 mt-2">
+                <div class="col-6">
                     <h4>Recent Trips</h4>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-12">
                             <div class="recent">
                                 <a class="nav-link" href="#">Trip #1</a>
                             </div>
@@ -51,8 +60,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
-    
 @endsection

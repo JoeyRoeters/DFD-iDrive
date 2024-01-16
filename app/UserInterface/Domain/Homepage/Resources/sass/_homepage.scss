@@ -22,7 +22,7 @@
     }
 
 
-    .card{
+    .card {
         height: 7.5rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
@@ -32,7 +32,7 @@
         cursor: pointer;
     }
 
-   .recent  {
+    .recent {
         height: 5rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
@@ -40,9 +40,9 @@
         color: #000000;
         display: flex;
         cursor: pointer;
-   }
+    }
 
-   .review  {
+    .review {
         height: 11rem;
         border-radius: 0.625rem;
         background-color: #ffffff;
@@ -50,5 +50,6 @@
         color: #000000;
         display: flex;
         cursor: pointer;
-   }
+        margin-bottom: 4%;
+    }
 }
