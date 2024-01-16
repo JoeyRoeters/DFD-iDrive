@@ -65,10 +65,11 @@ class ApiTripController extends Controller
 
         $validator = Validator::make($request->all(), [
             'events' => 'required|array',
-            'events.*' => 'required|array|size:3',
+            'events.*' => 'required|array|size:4',
             'events.*.0' => 'required|string|in:' . implode(',', TripEventEnum::values()),
             'events.*.1' => 'required|numeric',
             'events.*.2' => '',
+            'events.*.3' => ''
         ]);
 
         if ($validator->fails()) {
@@ -78,12 +79,13 @@ class ApiTripController extends Controller
         $events = $request->get('events');
 
         foreach ($events as $eventData) {
-            list($eventType, $timestamp, $eventData) = $eventData;
+            list($eventType, $timestamp, $eventData, $eventData2) = $eventData;
 
             $trip->events()->create([
                 'type' => $eventType,
                 'timestamp' => $timestamp,
                 'data' => $eventData,
+                'data2' => $eventData2
             ]);
         }
 
