@@ -40,7 +40,7 @@ class TripEvent extends Model
         'trip_id',
         'type',
         'timestamp',
-        'data'
+        'data',
     ];
 
     protected $casts = [
