@@ -1,0 +1,141 @@
+{
+  "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss": {
+    "file": "assets/_auth-a869e997.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss"
+  },
+  "app/UserInterface/Domain/Devices/Resources/js/homepage.js": {
+    "file": "assets/homepage-129624fe.js",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Devices/Resources/js/homepage.js"
+  },
+  "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss": {
+    "file": "assets/_devices-6800bb8b.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
+    "file": "assets/homepage-aeb3769b.js",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 2.scss": {
+    "file": "assets/_homepage 2-c5f9c697.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss": {
+    "file": "assets/_homepage 2-c5f9c697.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
+    "file": "assets/_homepage-ed0cff5d.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
+  },
+  "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
+    "file": "assets/_trips-fe4fedc2.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/images/Illustrations/coming_soon.svg": {
+    "file": "assets/coming_soon-0db13ae8.svg",
+    "src": "resources/images/Illustrations/coming_soon.svg"
+  },
+  "resources/images/Illustrations/empty_trips.svg": {
+    "file": "assets/empty_trips-df9be059.svg",
+    "src": "resources/images/Illustrations/empty_trips.svg"
+  },
+  "resources/images/Illustrations/missing_device.svg": {
+    "file": "assets/missing_device-884ed95c.svg",
+    "src": "resources/images/Illustrations/missing_device.svg"
+  },
+  "resources/images/Illustrations/setup_device.svg": {
+    "file": "assets/setup_device-b3228c16.svg",
+    "src": "resources/images/Illustrations/setup_device.svg"
+  },
+  "resources/images/auth/logo.svg": {
+    "file": "assets/logo-ed458c51.svg",
+    "src": "resources/images/auth/logo.svg"
+  },
+  "resources/images/auth/preview.svg": {
+    "file": "assets/preview-df78f5d1.svg",
+    "src": "resources/images/auth/preview.svg"
+  },
+  "resources/images/logos/logo_blue.png": {
+    "file": "assets/logo_blue-233d92d1.png",
+    "src": "resources/images/logos/logo_blue.png"
+  },
+  "resources/images/logos/logo_red.png": {
+    "file": "assets/logo_red-d1ac6f6b.png",
+    "src": "resources/images/logos/logo_red.png"
+  },
+  "resources/images/logos/logo_white.png": {
+    "file": "assets/logo_white-5524afd4.png",
+    "src": "resources/images/logos/logo_white.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-c9387955.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-32d9c460.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  },
+  "resources/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-824e7f57.ttf",
+    "src": "resources/webfonts/fa-brands-400.ttf"
+  },
+  "resources/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-5127b133.woff2",
+    "src": "resources/webfonts/fa-brands-400.woff2"
+  },
+  "resources/webfonts/fa-duotone-900.ttf": {
+    "file": "assets/fa-duotone-900-6c0cb98a.ttf",
+    "src": "resources/webfonts/fa-duotone-900.ttf"
+  },
+  "resources/webfonts/fa-duotone-900.woff2": {
+    "file": "assets/fa-duotone-900-73a3f577.woff2",
+    "src": "resources/webfonts/fa-duotone-900.woff2"
+  },
+  "resources/webfonts/fa-light-300.ttf": {
+    "file": "assets/fa-light-300-11a475ce.ttf",
+    "src": "resources/webfonts/fa-light-300.ttf"
+  },
+  "resources/webfonts/fa-light-300.woff2": {
+    "file": "assets/fa-light-300-3b89a6a3.woff2",
+    "src": "resources/webfonts/fa-light-300.woff2"
+  },
+  "resources/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-ba3c4db3.ttf",
+    "src": "resources/webfonts/fa-regular-400.ttf"
+  },
+  "resources/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-9ac06ddb.woff2",
+    "src": "resources/webfonts/fa-regular-400.woff2"
+  },
+  "resources/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-cbb0ea37.ttf",
+    "src": "resources/webfonts/fa-solid-900.ttf"
+  },
+  "resources/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-25b8df94.woff2",
+    "src": "resources/webfonts/fa-solid-900.woff2"
+  },
+  "resources/webfonts/fa-thin-100.ttf": {
+    "file": "assets/fa-thin-100-4976bfaa.ttf",
+    "src": "resources/webfonts/fa-thin-100.ttf"
+  },
+  "resources/webfonts/fa-thin-100.woff2": {
+    "file": "assets/fa-thin-100-c21c52eb.woff2",
+    "src": "resources/webfonts/fa-thin-100.woff2"
+  }
+}
