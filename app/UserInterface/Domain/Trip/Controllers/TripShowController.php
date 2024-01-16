@@ -34,7 +34,7 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
 
         $this->trip = Trip::find($id)
             ->where('_id', $id)
-//            ->where('user_id', $request->user()->id)
+            ->where('user_id', $request->user()->id)
             ->first();
     }
 
