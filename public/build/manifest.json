@@ -20,9 +20,14 @@
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
   },
   "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
-    "file": "assets/_homepage-1008cddc.css",
+    "file": "assets/_homepage-09252892.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_recent_device.scss": {
+    "file": "assets/_recent_device-b591bfdb.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_recent_device.scss"
   },
   "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
     "file": "assets/_trips-fe4fedc2.css",
