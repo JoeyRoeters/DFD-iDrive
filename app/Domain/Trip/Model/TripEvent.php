@@ -39,7 +39,8 @@ class TripEvent extends Model
     protected $fillable = [
         'trip_id',
         'type',
-        'timestamp'
+        'timestamp',
+        'data'
     ];
 
     protected $casts = [
