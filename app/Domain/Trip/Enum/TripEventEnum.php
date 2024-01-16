@@ -12,6 +12,7 @@ enum TripEventEnum: String
     case CROSSED_LINE = 'crossed_line';
     case COLLISION = 'collision';
     case SPEEDING = 'speeding';
+    case TOO_SLOW = 'too_slow';
     case HARSH_BRAKING = 'harsh braking';
     case BREAKING_AND_GAS = 'breaking_and_gas';
     case MISSED_GEAR = 'missed_gear';
