@@ -52,7 +52,7 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
         $psot->handle($this->trip);
         return [
             'trip' => $this->trip,
-            'profiles' => array_map(fn($parser) => $parser->getProfile(), TripProfileParser::getParsers($this->trip)),
+            'profiles' => array_map(fn ($parser) => $parser->getProfile(), TripProfileParser::getParsers($this->trip)),
         ];
     }
 

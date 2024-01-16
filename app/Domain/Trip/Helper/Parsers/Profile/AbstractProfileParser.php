@@ -104,7 +104,7 @@ abstract class AbstractProfileParser
     {
         $events = $this->getEvents();
 
-//        $this->fakeData($events);
+        //        $this->fakeData($events);
 
         return new TimelineValueObject($events);
     }

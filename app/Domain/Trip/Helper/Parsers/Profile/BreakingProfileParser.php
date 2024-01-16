@@ -10,7 +10,6 @@ use App\Domain\Trip\ValueObject\Statistic\ProfileStatisticValueObject;
 
 class BreakingProfileParser extends AbstractProfileParser
 {
-
     protected function getParserEnum(): TripStatisticParserEnum
     {
         return TripStatisticParserEnum::BREAK_PROFILE;

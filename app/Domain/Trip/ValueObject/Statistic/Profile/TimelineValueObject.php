@@ -13,8 +13,7 @@ class TimelineValueObject
 
     public function __construct(
         private Collection $events,
-    )
-    {
+    ) {
         $events = $events->map(function (TripEvent $event) {
             return new ProfileEventValueObject(
                 event: $event->type,

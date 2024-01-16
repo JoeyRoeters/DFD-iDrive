@@ -10,7 +10,6 @@ use App\Domain\Trip\ValueObject\Statistic\ProfileStatisticValueObject;
 
 class GearProfileParser extends AbstractProfileParser
 {
-
     protected function getParserEnum(): TripStatisticParserEnum
     {
         return TripStatisticParserEnum::GEAR_PROFILE;

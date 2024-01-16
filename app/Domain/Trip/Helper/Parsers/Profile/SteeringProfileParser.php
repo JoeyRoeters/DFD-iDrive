@@ -10,7 +10,6 @@ use App\Domain\Trip\ValueObject\Statistic\ProfileStatisticValueObject;
 
 class SteeringProfileParser extends AbstractProfileParser
 {
-
     protected function getParserEnum(): TripStatisticParserEnum
     {
         return TripStatisticParserEnum::STEERING_PROFILE;
