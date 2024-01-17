@@ -5,7 +5,7 @@
     "src": "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss"
   },
   "app/UserInterface/Domain/Devices/Resources/js/homepage.js": {
-    "file": "assets/homepage-aeb3769b.js",
+    "file": "assets/homepage-129624fe.js",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Devices/Resources/js/homepage.js"
   },
@@ -15,7 +15,7 @@
     "src": "app/UserInterface/Domain/Devices/Resources/sass/_devices.scss"
   },
   "app/UserInterface/Domain/Homepage/Resources/js/homepage.js": {
-    "file": "assets/homepage-129624fe.js",
+    "file": "assets/homepage-aeb3769b.js",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
   },
@@ -28,6 +28,11 @@
     "file": "assets/_recent_device-b591bfdb.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_recent_device.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_recent_trip.scss": {
+    "file": "assets/_recent_trip-90e9616b.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_recent_trip.scss"
   },
   "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
     "file": "assets/_trips-fe4fedc2.css",
