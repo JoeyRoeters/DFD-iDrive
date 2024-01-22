@@ -79,6 +79,19 @@ class ApiTripController extends Controller
 
         foreach ($events as $eventData) {
             list($eventType, $timestamp, $eventData) = $eventData;
+            if (!empty($eventData) && is_string($eventData)) {
+                $eventData = json_decode($eventData, true) ?? [];
+            }
+
+            if (!is_array($eventData)) {
+                $eventData = [];
+            }
+
+            $requiredEventdata = TripEventEnum::from($eventType)->requiredDataField();
+            $validator = Validator::make($eventData, array_combine($requiredEventdata, array_fill(0, count($requiredEventdata), 'required')));
+            if ($validator->fails()) {
+                throw new ApiValidationException($validator);
+            }
 
             $trip->events()->create([
                 'type' => $eventType,

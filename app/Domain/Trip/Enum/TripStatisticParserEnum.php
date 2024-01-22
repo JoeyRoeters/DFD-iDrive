@@ -14,22 +14,20 @@ enum TripStatisticParserEnum: String
         return match ($this) {
             self::SPEED_PROFILE => [
                 TripEventEnum::SPEEDING,
+                TripEventEnum::HARSH_BRAKING,
             ],
             self::BREAK_PROFILE => [
                 TripEventEnum::HARSH_BRAKING,
-                TripEventEnum::BREAKING_STOP_SHORT,
-                TripEventEnum::PERFECECT_BREAK,
-                TripEventEnum::INEFFICIENT_BREAK,
+                TripEventEnum::BREAKING_AND_GAS,
             ],
             self::STEERING_PROFILE => [
                 TripEventEnum::HARSH_STEERING,
                 TripEventEnum::INEFFICIENT_STEERING,
-//                TripEventEnum::COLLISION,
             ],
             self::GEAR_PROFILE => [
                 TripEventEnum::MISSED_GEAR,
-                TripEventEnum::PERFECT_GEAR,
-                TripEventEnum::INEFFICIENT_GEAR,
+                TripEventEnum::LATE_SHIFT_GEAR,
+                TripEventEnum::MISSED_SHIFT_GEAR
             ],
             default => throw new \Exception('Unexpected match value'),
         };

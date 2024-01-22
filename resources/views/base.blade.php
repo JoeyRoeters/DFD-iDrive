@@ -9,8 +9,7 @@
         <nav class="nav">
             <div>
                 <div id="header-logo" href="#" class="nav_logo">
-                    <img style="width: 50px" src="{{ Vite::image('logos/logo_white.png') }}" alt="Logo">
-                    <span>VAR</span>
+                    <img style="width: 50px" src="{{ Vite::image('logos/logo_blue.png') }}" alt="Logo">
                 </div>
             </div>
 

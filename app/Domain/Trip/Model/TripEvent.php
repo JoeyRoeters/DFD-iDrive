@@ -17,6 +17,9 @@ use MongoDB\Laravel\Eloquent\Model;
  * @property int $trip_id
  * @property TripEventEnum $type
  * @property array $data
+ * @property int $distance
+ * @property bool $is_processed
+ * @property \Illuminate\Support\Carbon $timestamp
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  *
@@ -26,6 +29,8 @@ use MongoDB\Laravel\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereTripId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereTimestamp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereIsProcessed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereData($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TripEvent whereUpdatedAt($value)
@@ -39,14 +44,32 @@ class TripEvent extends Model
     protected $fillable = [
         'trip_id',
         'type',
-        'timestamp'
+        'timestamp',
+        'distance',
+        'data',
+        'distance_in_km',
+        'is_processed'
     ];
 
     protected $casts = [
-        'data' => 'array',
+        'data' => 'json',
         'type' => TripEventEnum::class,
-        'timestamp' => 'datetime'
+        'distance' => 'integer',
+        'timestamp' => 'datetime',
+        'is_processed' => 'boolean'
     ];
+
+    public function getData(): array
+    {
+        $data = $this->data;
+        if (is_array($data)) {
+            if (array_key_exists(0, $data) && is_string($data[0])) {
+                $data = json_decode($data[0], true);
+            }
+        }
+
+        return $data ?? [];
+    }
 
     /**
      * Boot the model.
@@ -57,7 +80,20 @@ class TripEvent extends Model
             if ($tripEvent->trip_id === null) {
                 throw new MissingOwnershipException('Trip id is required');
             }
+
+            $tripEvent->is_processed = false;
         });
+
+        static::saving(function ($tripEvent) {
+            if ($tripEvent->distance !== null) {
+                $tripEvent->is_processed = true;
+            }
+        });
+    }
+
+    public function isProcessed(): bool
+    {
+        return $this->is_processed;
     }
 
     /**

@@ -1,6 +1,6 @@
 {
   "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss": {
-    "file": "assets/_auth-db8669f8.css",
+    "file": "assets/_auth-a869e997.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Auth/Resources/sass/_auth.scss"
   },
@@ -60,9 +60,17 @@
     "file": "assets/setup_device-b3228c16.svg",
     "src": "resources/images/Illustrations/setup_device.svg"
   },
-  "resources/images/auth/Rectangle5.png": {
-    "file": "assets/Rectangle5-d676aca9.png",
-    "src": "resources/images/auth/Rectangle5.png"
+  "resources/images/auth/logo.svg": {
+    "file": "assets/logo-ed458c51.svg",
+    "src": "resources/images/auth/logo.svg"
+  },
+  "resources/images/auth/preview.svg": {
+    "file": "assets/preview-df78f5d1.svg",
+    "src": "resources/images/auth/preview.svg"
+  },
+  "resources/images/logos/logo_blue.png": {
+    "file": "assets/logo_blue-233d92d1.png",
+    "src": "resources/images/logos/logo_blue.png"
   },
   "resources/images/logos/logo_red.png": {
     "file": "assets/logo_red-d1ac6f6b.png",
@@ -78,7 +86,7 @@
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a4bbd0ea.css",
+    "file": "assets/app-32d9c460.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },

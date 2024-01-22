@@ -1,45 +1,166 @@
-#auth {
-    background: rgb(112,151,206);
-    background: linear-gradient(90deg, rgba(112,151,206,1) 0%, rgba(133,136,196,1) 100%);
+body {
     height: 100vh;
+}
 
-    #imageSide {
-        background-color: #87B5F7;
-        border-radius: 1rem;
-    }
+#auth-right-side {
+    $color-gradient-background-color-1: var(--color-gradient-background-color-1);
+    $color-gradient-background-color-2: var(--color-gradient-background-color-2);
+    background: linear-gradient(120deg, $color-gradient-background-color-1 0%, $color-gradient-background-color-2 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     #logo {
-        height: 100%;
-        width: 100%;
-        object-fit: none;
-        object-position: center center;
+        width: 125px;
     }
 
-    #loginBtn {
-        width: 100%;
-        background-color: #656ED3;
-        z-index: 1;
-        position: relative;
+    #preview {
+        margin-top: 1.25rem;
+        width: 80%;
+    }
+
+    h2 {
+        margin-top: 5rem;
+        color: var(--color-white);
+        font-size: 1.75rem;
+        font-weight: 600;
     }
 
     p {
-        z-index: 1;
+        margin-top: 1rem;
+        color: var(--color-white);
+        text-align: center;
+        width: 400px;
+    }
+}
+
+#auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    .auth-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: var(--color-gray-500);
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .auth-wrapper {
+        padding: 2.5rem;
+        width: 500px;
+    }
+
+    .title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .terms-group {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        input {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: var(--color-primary-color);
+    }
+
+    #loginBtn {
+        background-color: var(--color-primary-color);
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .btn-back {
+        width: 6rem;
+        background-color: var(--color-gray-100);
+        color: var(--color-black);
+    }
+
+    .form-tooltip {
+        color: var(--color-gray-500);
+        font-size: 0.75rem;
+
+    }
+
+    #top-link-wrapper {
         position: relative;
+        top: -25px;
+        color: var(--color-gray-500);
+        text-align: center;
+
+        font-size: 0.85rem;
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary-color);
+        }
     }
 
-    #rectangleLogin {
-        position: absolute;
-        top: 64%;
-        transform: rotate(270deg);
-        right: 1%;
+    #bottom-link-wrapper {
+        margin-top: 1rem;
+        color: var(--color-gray-500);
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary-color);
+        }
     }
 
-    #rectangleRegister{
-        position: absolute;
-        top: 72.7%;
-        transform: rotate(270deg);
-        right: 1%;
+    form {
+        width: 100%;
+    }
+
+    input[type="checkbox"] {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5px;
+        margin-right: 0.5rem;
+        border-radius: 50px;
+        color: red;
 
     }
 
+    .form-outline {
+        margin-top: 1.5rem;
+        width: 100%;
+
+        input {
+            border-radius: 0px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    .forgot-password {
+        margin-top: 1rem;
+        color: var(--color-primary-color);
+        font-size: 0.75rem;
+        font-weight: 600;
+        float: right;
+        text-decoration: none;
+
+
+    }
 }
