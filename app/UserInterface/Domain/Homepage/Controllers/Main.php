@@ -65,6 +65,10 @@ class Main extends AbstractViewController implements BreadCrumbInterface
             $allSpeeds[] = $t->data()->get()->avg('speed');
         }
         $sumspeed = array_sum($allSpeeds);
+        if (count($allSpeeds) == 0) {
+            $data['avg_speed'] = "N/A";
+            return $data;
+        }
         $avgspeed = $sumspeed / count($allSpeeds);
         $rounded = round($avgspeed);
         $data['avg_speed'] = $rounded;

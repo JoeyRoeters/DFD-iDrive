@@ -364,7 +364,9 @@
                     // Update the content of the average speed container
                     document.getElementById('weekly_stats_avg_speed').innerHTML = data.stats.weekly.avg_speed;
                 })
-                .catch(error => console.error('Error fetching average speed:', error));
+                .catch(error => {
+                    document.getElementById('weekly_stats_avg_speed').innerHTML = "N/A";
+                });
         });
     </script>
 
