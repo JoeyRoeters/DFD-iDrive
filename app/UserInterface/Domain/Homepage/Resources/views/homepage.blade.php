@@ -16,19 +16,19 @@
                             <div id="recent-device-header" class="row">
                                 <div class="row">
                                     <div class="col-md-2 col-xs-12 icon">
-                                        <i class="fa-solid fa-{{$device->type->value === 'sim' ? "computer" : "car" }}"></i>
+                                        <i class="fa-solid fa-computer"></i>
                                     </div>
                                     <div class="col-10 details">
                                                 <div class="row">
                                                     <div class="col-xl-4 col-md-12 name">
-                                                        <h4>{{$device->name}}</h4>
-                                                        <p>{{$device->getLastActiveFormatted()}}</p>
+                                                        <h4>{{$device->name ?? ""}}</h4>
+                                                        <p>{{ $device ? $device->getLastActiveFormatted() : 'unknown' }}</p>
                                                     </div>
                                                     <div class="col-xl-7 col-md-12 text-xl-end text-md-start badges">
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-car"></i>
-                                                                <span>{{$device->type->getLabel()}}</span>
+                                                                <span>{{$device ? $device->type->getLabel() : ""}}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Device type</span>
@@ -37,7 +37,7 @@
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-road"></i>
-                                                                <span>{{ $device->trips()->count() }}</span>
+                                                                <span>{{$device ?  $device->trips()->count() : "" }}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Total trips</span>
@@ -46,7 +46,7 @@
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-gauge-simple-high"></i>
-                                                                <span>{{$device->getTotalKilometers()}}</span>
+                                                                <span>{{$device ? $device->getTotalKilometers() : ""}}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Total KM's</span>
@@ -56,8 +56,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                             </div>
                         </div>
 
