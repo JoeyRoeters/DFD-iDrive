@@ -1,0 +1,98 @@
+#recent_trip_wrapper {
+    .page-item {
+        &:not(#datatable_previous, #datatable_next) {
+            a {
+                background-color: var(--color-secondary-color);
+                border-color: var(--color-secondary-color);
+
+                &:hover {
+                    background-color: var(--color-secondary-color-hover);
+                    border-color: var(--color-secondary-color-hover);
+                }
+            }
+        }
+
+    }
+}
+
+.dt-recent-trip-wrapper {
+    display: inline-block;
+    background-color: var(--color-tertiary-color);
+    color: white;
+    border-radius: 50%;
+    padding: 0.5em;
+    font-size: 1.25em;
+    font-weight: bold;
+    width: 2.8em;
+    height: 2.8em;
+
+    .number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 0.75em;
+    }
+}
+
+.r-type-inline-d {
+    font-size: 1.5rem;
+}
+
+.r-type-inline-l {
+    color: grey;
+    text-overflow: ellipsis;
+}
+
+.trip-review-container {
+    max-height: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 1rem;
+    flex-direction: column;
+
+    .trip-review {
+        display: flex;
+        align-items: center;
+        margin-top: 0.25rem;
+
+        &-title-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-direction: column;
+
+
+            .trip-review-title {
+                font-size: 1.25rem;
+                font-weight: 500;
+            }
+
+            .trip-review-unit {
+                font-size: 0.75rem;
+                font-weight: 400;
+                color: var(--color-gray-500);
+            }
+        }
+
+        &-value-wrapper {
+            width: 70px;
+            height: 35px;
+            margin-right: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-tertiary-color);
+            border-radius: 0.25rem;
+
+
+            .trip-review-value {
+                margin-top: 3px;
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: white;
+            }
+        }
+    }
+}

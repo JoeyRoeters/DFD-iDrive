@@ -19,20 +19,20 @@
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/js/homepage.js"
   },
-  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 2.scss": {
-    "file": "assets/_homepage 2-c5f9c697.css",
-    "isEntry": true,
-    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
-  },
-  "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss": {
-    "file": "assets/_homepage 2-c5f9c697.css",
-    "isEntry": true,
-    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage 3.scss"
-  },
   "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss": {
-    "file": "assets/_homepage-ed0cff5d.css",
+    "file": "assets/_homepage-09252892.css",
     "isEntry": true,
     "src": "app/UserInterface/Domain/Homepage/Resources/sass/_homepage.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_recent_device.scss": {
+    "file": "assets/_recent_device-b591bfdb.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_recent_device.scss"
+  },
+  "app/UserInterface/Domain/Homepage/Resources/sass/_recent_trip.scss": {
+    "file": "assets/_recent_trip-90e9616b.css",
+    "isEntry": true,
+    "src": "app/UserInterface/Domain/Homepage/Resources/sass/_recent_trip.scss"
   },
   "app/UserInterface/Domain/Trip/Resources/sass/_trips.scss": {
     "file": "assets/_trips-fe4fedc2.css",

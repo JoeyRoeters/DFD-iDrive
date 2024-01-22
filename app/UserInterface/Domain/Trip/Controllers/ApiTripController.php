@@ -13,6 +13,7 @@ use App\Infrastructure\Laravel\Controller;
 use App\UserInterface\Domain\Shared\Responses\ApiEloquentSucessResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class ApiTripController extends Controller
@@ -50,11 +51,12 @@ class ApiTripController extends Controller
 
         if (isset($data['state']) && $data['state'] === TripStateEnum::FINISHED->value) {
             $data['end_time'] = Carbon::now();
+            $trip->update($data);
 
             PostTripJob::dispatch($trip);
         }
 
-        $trip->update($data);
+
 
         return new ApiEloquentSucessResponse($trip);
     }
@@ -83,20 +85,25 @@ class ApiTripController extends Controller
                 $eventData = json_decode($eventData, true) ?? [];
             }
 
+
             if (!is_array($eventData)) {
                 $eventData = [];
             }
 
             $requiredEventdata = TripEventEnum::from($eventType)->requiredDataField();
-            $validator = Validator::make($eventData, array_combine($requiredEventdata, array_fill(0, count($requiredEventdata), 'required')));
+            $newEventData = json_decode($eventData[0], true);
+
+
+            $validator = Validator::make($newEventData, array_combine($requiredEventdata, array_fill(0, count($requiredEventdata), 'required')));
             if ($validator->fails()) {
+
                 throw new ApiValidationException($validator);
             }
 
             $trip->events()->create([
                 'type' => $eventType,
                 'timestamp' => $timestamp,
-                'data' => $eventData,
+                'data' => $newEventData,
             ]);
         }
 

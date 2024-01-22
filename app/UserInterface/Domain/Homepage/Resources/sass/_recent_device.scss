@@ -1,0 +1,88 @@
+#recent-device-wrapper {
+    padding: 1rem 2rem;
+    min-width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.625rem;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 2px 2.5px;
+
+
+
+    #recent-device-header {
+        width: 100%;
+
+        .card {
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-gray-100);
+            border-radius: 10%;
+            padding: 1rem;
+
+            i {
+                font-size: 3rem;
+                padding: 0.5rem 0.5rem;
+                color: var(--color-tertiary-color);
+            }
+        }
+
+        .details {
+            padding: 0 0.9rem;
+
+            .name {
+                margin-top: 1rem;
+                margin-left: 0.5rem;
+
+                h3 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    margin: 0;
+                }
+
+                p {
+                    font-size: 1rem;
+                    margin: 0;
+                    color: var(--color-gray-500);
+                }
+            }
+
+            .badges {
+                margin-top: 0.5rem;
+
+                .badge {
+                    border: 1px dashed var(--color-gray-300);
+                    padding: 0.5rem 1rem;
+                    border-radius: .475rem !important;
+                    min-width: 125px;
+                    margin: 0.5rem 0;
+                    color: black;
+                    text-align: left;
+                    font-size: 1rem;
+
+                    .badge-value {
+                        i {
+                            margin-right: 0.5rem;
+                        }
+
+                        font-size: 1.25rem;
+                    }
+
+                    .badge-label {
+                        font-weight: 200;
+                        margin: 0;
+                        margin-top: 0.3rem;
+                        color: var(--color-gray-500);
+                    }
+                }
+            }
+        }
+    }
+}
