@@ -48,7 +48,7 @@ class TripShowController extends AbstractViewController implements BreadCrumbInt
 
     protected function appendViewData(Request $request): array
     {
-        $psot = new PostTripJob();
+        $psot = new PostTripJob($this->trip);
         $psot->handle($this->trip);
         return [
             'trip' => $this->trip,

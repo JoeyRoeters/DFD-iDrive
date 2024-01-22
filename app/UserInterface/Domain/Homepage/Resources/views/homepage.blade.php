@@ -16,19 +16,19 @@
                             <div id="recent-device-header" class="row">
                                 <div class="row">
                                     <div class="col-md-2 col-xs-12 icon">
-                                        <i class="fa-solid fa-car"></i>
+                                        <i class="fa-solid fa-{{$device->type->value === 'sim' ? "computer" : "car" }}"></i>
                                     </div>
                                     <div class="col-10 details">
                                                 <div class="row">
-                                                    <div class="col-xl-3 col-md-12 name">
-                                                        <h3>Name</h3>
-                                                        <p>Last view</p>
+                                                    <div class="col-xl-4 col-md-12 name">
+                                                        <h4>{{$device->name}}</h4>
+                                                        <p>{{$device->getLastActiveFormatted()}}</p>
                                                     </div>
-                                                    <div class="col-xl-8 col-md-12 text-xl-end text-md-start badges">
+                                                    <div class="col-xl-7 col-md-12 text-xl-end text-md-start badges">
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-car"></i>
-                                                                <span>Label</span>
+                                                                <span>{{$device->type->getLabel()}}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Device type</span>
@@ -37,7 +37,7 @@
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-road"></i>
-                                                                <span>Trips</span>
+                                                                <span>{{ $device->trips()->count() }}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Total trips</span>
@@ -46,7 +46,7 @@
                                                         <div class="badge">
                                                             <div class="badge-value fs-4">
                                                                 <i class="fa-regular fa-gauge-simple-high"></i>
-                                                                <span>Kilometers</span>
+                                                                <span>{{$device->getTotalKilometers()}}</span>
                                                             </div>
                                                             <div class="badge-label fs-6">
                                                                 <span>Total KM's</span>
@@ -56,11 +56,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                
+
+
                             </div>
                         </div>
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -73,7 +73,10 @@
                                     <h5><div style="font-weight: 600; margin-top: 1rem;">Speed<div></h5>
                                     <div class="trip-review">
                                         <div class="trip-review-value-wrapper">
-                                            <span class="trip-review-value" style="font-size:1.2rem;">000</span>
+                                            <span id="weekly_stats_avg_speed" class="trip-review-value" style="font-size:1.2rem;">
+                                                                <i class="fa-regular fa-spin fa-xl fa-spinner-scale"></i>
+
+                                            </span>
                                         </div>
                                         <div class="trip-review-title-wrapper">
                                             <span class="trip-review-title">Average</span>
@@ -107,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xl-6 col-md-12">
                             <div class="review">
@@ -173,12 +176,12 @@
                         </div>
                         </div>
                     </div>
-               
+
                 <div class="col-xl-6 col-md-12 recent_trip">
                     <h4>Recent Trips</h4>
                     <div class="row">
                         <div class="col-12">
-                            <div class="recent">                                                        
+                            <div class="recent">
                                 <td colspan="2">
                                         <div class="d-flex flex-row justify-content-start align-items-center" style="column-gap: 1rem;">
                                             <div class="dt-recent-trip-wrapper">
@@ -299,7 +302,7 @@
                                         </a>
                                         </div>
                                     </td>
-                            
+
                                 </td>
                             </div>
                             <div class="recent">
@@ -351,5 +354,19 @@
 
 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Make an AJAX request to get average speed
+            fetch('{{ route("stats") }}')
+                .then(response => response.json())
+                .then(data => {
+                    // Update the content of the average speed container
+                    document.getElementById('weekly_stats_avg_speed').innerHTML = data.stats.weekly.avg_speed;
+                })
+                .catch(error => console.error('Error fetching average speed:', error));
+        });
+    </script>
+
 
 @endsection

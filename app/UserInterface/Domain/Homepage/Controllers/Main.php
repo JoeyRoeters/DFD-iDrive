@@ -8,6 +8,7 @@ use App\Domain\Shared\ValueObject\BreadCrumbValueObject;
 use App\Domain\Shared\ValueObject\RouteValueObject;
 use App\Domain\Trip\Jobs\PostTripJob;
 use App\Domain\Trip\Model\Trip;
+use App\Domain\Trip\Model\TripEvent;
 use App\Helpers\View\Abstract\AbstractViewController;
 use App\Helpers\View\ValueObject\ButtonValueObject;
 use App\Helpers\View\ValueObject\PageHeaderValueOject;
@@ -38,14 +39,7 @@ class Main extends AbstractViewController implements BreadCrumbInterface
     /**
      * @inheritdoc
      */
-    protected function appendViewData(Request $request): array
-    {
-        $data['recent_device'] = $this->get_recent_device();
 
-//        dd($data);
-
-        return [];
-    }
 
     public function getBreadCrumb(Request $request): BreadCrumbValueObject
     {
@@ -55,23 +49,35 @@ class Main extends AbstractViewController implements BreadCrumbInterface
         );
     }
 
+    public function get_stats()
+    {
 
-    public function get_recent_device(){
+        $data['weekly'] = $this->get_weekly_review();
 
-
-        $result = Device::whereUserId(Auth::id())->orderBy('created_at', 'desc')->first();
-
-        Trip::whereDeviceId($result->id);
-
-        return Trip::whereUserId(Auth::id())->orderBy('created_at', 'desc')->first();
+        return response()->json(['stats' => $data]);
     }
 
-
-    public function get_weekly_review(){
-
+    public function get_weekly_review()
+    {
+        $allSpeeds = [];
+        $trip = Trip::whereUserId(Auth::id())->get();
+        foreach ($trip as $t) {
+            $allSpeeds[] = $t->data()->get()->avg('speed');
+        }
+        $sumspeed = array_sum($allSpeeds);
+        $avgspeed = $sumspeed / count($allSpeeds);
+        $rounded = round($avgspeed);
+        $data['avg_speed'] = $rounded;
+        return $data;
     }
 
-    public function get_recent_trips(){
+    public function get_recent_trips()
+    {
+    }
 
+    protected function appendViewData(Request $request): array
+    {
+        $data['device'] = Device::whereUserId(Auth::id())->orderBy('created_at', 'desc')->first();
+        return $data;
     }
 }
