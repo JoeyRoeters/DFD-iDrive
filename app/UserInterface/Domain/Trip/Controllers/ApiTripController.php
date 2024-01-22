@@ -50,11 +50,12 @@ class ApiTripController extends Controller
 
         if (isset($data['state']) && $data['state'] === TripStateEnum::FINISHED->value) {
             $data['end_time'] = Carbon::now();
+            $trip->update($data);
 
             PostTripJob::dispatch($trip);
         }
 
-        $trip->update($data);
+
 
         return new ApiEloquentSucessResponse($trip);
     }

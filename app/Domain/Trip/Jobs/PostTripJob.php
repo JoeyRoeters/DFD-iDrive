@@ -18,13 +18,20 @@ class PostTripJob implements ShouldQueue
     use SerializesModels;
 
 
-    public function handle(Trip $trip)
+    public Trip $trip;
+    public function __construct(Trip $trip)
     {
-        $this->processTrip($trip);
+        $this->trip = $trip;
+    }
 
-        $this->processProfiles($trip);
 
-        $this->processEvents($trip);
+    public function handle()
+    {
+        $this->processTrip($this->trip);
+
+        $this->processProfiles($this->trip);
+
+        $this->processEvents($this->trip);
     }
 
     private function processTrip(Trip $trip): void
@@ -33,7 +40,6 @@ class PostTripJob implements ShouldQueue
         $avrageSpeed = $this->getAverageSpeed($trip);
 
         $distance = $duration * $avrageSpeed / 3600;
-
         $trip->update([
             'distance' => $distance
         ]);
