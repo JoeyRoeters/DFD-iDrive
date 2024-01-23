@@ -26,6 +26,8 @@ class GraphController extends Controller
     private bool $dataLabelsEnabled = false;
     private bool $zoomEnabled = false;
 
+    private array $speedLimit = [];
+
     private string $timeUnitInterval = 'minute';
 
     private array $dotData = [];
@@ -38,6 +40,17 @@ class GraphController extends Controller
     public function setDotData(array $dotData): void
     {
         $this->dotData = $dotData;
+    }
+
+    public function getSpeedLimit(): array
+    {
+        return $this->speedLimit;
+    }
+
+    public function setSpeedLimit(array $speedLimit): GraphController
+    {
+        $this->speedLimit = $speedLimit;
+        return $this;
     }
 
     public function getTimeUnitInterval(): string
@@ -386,6 +399,7 @@ class GraphController extends Controller
             'zoomEnabled' => $this->zoomEnabled,
             'timeUnitInterval' => $this->timeUnitInterval,
             'dotData' => $this->dotData,
+            'speedLimit' => $this->speedLimit,
         ];
     }
 

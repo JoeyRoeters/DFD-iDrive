@@ -82,6 +82,10 @@
     var graphData = convertDataArray(@json($graphData), xyFieldValues);
     var data1 = graphData[0];
     var data2 = graphData.length > 1 ? graphData[1] : [];
+    var data3 = convertSingleArray(@json($speedLimit), @json([
+                'x' => 'timestamp',
+                'y' => 'speed_limit',
+            ]))
 
     var colors = @json($colors);
 
@@ -113,6 +117,28 @@
         }));
         series2.data.setAll(data2);
     }
+
+
+
+    if (data3.length > 0) {
+        var series3 = chart.series.push(am5xy.LineSeries.new(root, {
+            name: "{{ $graphName }}", // Update this if you have a specific name for the second dataset
+            xAxis: xAxis,
+            yAxis: yAxis,
+            stroke: "#000000",
+            valueYField: 'speed_limit',
+            valueXField: 'timestamp',
+            tooltip: am5.Tooltip.new(root, {
+                labelText: "{speed_limit} km/h" // Update if different for the second dataset
+            })
+        }));
+        series3.data.setAll(data3);
+    }
+
+
+
+
+
 
     var scrollbar = am5xy.XYChartScrollbar.new(root, {
         orientation: "horizontal",
@@ -183,6 +209,7 @@
     if (data2.length > 0) {
         series2.appear(1000);
     }
+    series3.appear(1000);
     chart.appear(1000, 100);
 
 </script>

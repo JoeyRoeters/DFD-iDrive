@@ -17,7 +17,7 @@ class BreakingProfileParser extends AbstractProfileParser
 
     protected function getProfileTitle(): string
     {
-        return 'Breaking';
+        return 'Braking';
     }
 
     protected function getProfileStatistics(): array

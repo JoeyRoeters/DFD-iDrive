@@ -17,7 +17,7 @@ class SteeringProfileParser extends AbstractProfileParser
 
     protected function getProfileTitle(): string
     {
-        return 'Stearing';
+        return 'Steering';
     }
 
     protected function getProfileStatistics(): array

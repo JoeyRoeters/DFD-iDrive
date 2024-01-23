@@ -69,7 +69,8 @@ class BrakingGraph extends GraphController
             ],[
                 'x' => 'timestamp',
                 'y' => 'brakepower',
-            ]])
+            ]
+                ])
             ->setDataLabelsEnabled(false)
             ->setZoomEnabled(true)
             ->setTimeUnitInterval("millisecond")

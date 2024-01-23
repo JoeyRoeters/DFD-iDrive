@@ -190,25 +190,25 @@
                                                 <span class="r-type-inline-l" style="font-size: 0.75rem;">Device: Test</span>
                                             </div>
                                             <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">12-01-2024</span>
+                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">22-01-2024</span>
                                             <span class="r-type-inline-l" style="font-size: 0.75rem;">Date</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">08:39 - 12:00</span>
+                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">15:25 - 15:26</span>
                                             <span class="r-type-inline-l" style="font-size: 0.75rem;">Time</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">100 km</span>
+                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">1.34 km</span>
                                             <span class="r-type-inline-l" style="font-size: 0.75rem;">Distance</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.3rem; color: rgb(230, 81, 0);">6.0</span>
+                                            <span class="d-block r-type-inline-d" style="font-size: 1.3rem; color: rgb(230, 81, 0);">3.0</span>
                                             <span class="r-type-inline-l" style="font-size: 0.75rem;">Score</span>
                                         </div>
                                     </td>
@@ -217,133 +217,7 @@
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
                                         </div>
-                                    </td>
-                                </td>
-                            </div>
-                            <div class="recent">
-                                <td colspan="2">
-                                        <div class="d-flex flex-row justify-content-start align-items-center" style="column-gap: 1rem;">
-                                            <div class="dt-recent-trip-wrapper">
-                                                <span class="number">#0002</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="d-block r-type-inline-d" style="font-size: 1.075rem; font-weight: 600;">Trip #0002</span>
-                                                <span class="r-type-inline-l" style="font-size: 0.75rem;">Device: Test</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">12-01-2024</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Date</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">08:39 - 12:00</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Time</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">100 km</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Distance</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.3rem; color: rgb(230, 81, 0);">6.0</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Score</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="http://127.0.0.1:8000/trips/65a00a401f73800b760ccd22" class="btn btn-lg btn-primary float-end">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </a>
-                                        </div>
-                                    </td>
-                            </td>
-                            </div>
-                            <div class="recent">
-                                <td colspan="2">
-                                        <div class="d-flex flex-row justify-content-start align-items-center" style="column-gap: 1rem;">
-                                            <div class="dt-recent-trip-wrapper">
-                                                <span class="number">#0003</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="d-block r-type-inline-d" style="font-size: 1.075rem; font-weight: 600;">Trip #0003</span>
-                                                <span class="r-type-inline-l" style="font-size: 0.75rem;">Device: Test</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">12-01-2024</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Date</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">08:39 - 12:00</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Time</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">100 km</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Distance</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.3rem; color: rgb(230, 81, 0);">6.0</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Score</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="http://127.0.0.1:8000/trips/65a00a401f73800b760ccd22" class="btn btn-lg btn-primary float-end">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </a>
-                                        </div>
-                                    </td>
 
-                                </td>
-                            </div>
-                            <div class="recent">
-                                <td colspan="2">
-                                        <div class="d-flex flex-row justify-content-start align-items-center" style="column-gap: 1rem;">
-                                            <div class="dt-recent-trip-wrapper">
-                                                <span class="number">#0004</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                                <span class="d-block r-type-inline-d" style="font-size: 1.075rem; font-weight: 600;">Trip #0004</span>
-                                                <span class="r-type-inline-l" style="font-size: 0.75rem;">Device: Test</span>
-                                            </div>
-                                            <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">12-01-2024</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Date</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">08:39 - 12:00</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Time</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.075rem;">100 km</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Distance</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column">
-                                            <span class="d-block r-type-inline-d" style="font-size: 1.3rem; color: rgb(230, 81, 0);">6.0</span>
-                                            <span class="r-type-inline-l" style="font-size: 0.75rem;">Score</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="http://127.0.0.1:8000/trips/65a00a401f73800b760ccd22" class="btn btn-lg btn-primary float-end">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </a>
-                                        </div>
-                                    </td>
-                                </td>
-                            </div>
                         </div>
                     </div>
                 </div>

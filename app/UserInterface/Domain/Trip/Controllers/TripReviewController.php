@@ -26,7 +26,14 @@ class TripReviewController extends Controller
                     ->get(['speed', 'timestamp', 'trip_id'])
                     ->toArray();
 
-                $SpeedGraph->setGraphData($this->formatTimeStamp($graphData));
+                $speedLimit = TripData::where('trip_id', $request->input('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed_limit', 'timestamp'])
+                    ->toArray();
+
+                $SpeedGraph->setSpeedLimit($this->formatTimeStampLimit($speedLimit));
+
+                $SpeedGraph->setGraphData([$this->formatTimeStamp($graphData)]);
                 return $SpeedGraph->render();
 
             case "speed_braking":
@@ -36,6 +43,15 @@ class TripReviewController extends Controller
                     ->orderBy('timestamp', 'asc')
                     ->get(['speed', 'timestamp', "accelero"])
                     ->toArray();
+
+
+
+                $speedLimit = TripData::where('trip_id', $request->input('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed_limit', 'timestamp'])
+                    ->toArray();
+
+                $speed_brakeGraph->setSpeedLimit($this->formatTimeStampLimit($speedLimit));
 
                 $speed_brakeGraph->setGraphData([$this->formatTimeStamp($dbData), $this->calculateBrakePower($dbData)]);
 
@@ -55,6 +71,12 @@ class TripReviewController extends Controller
                     ->get(['speed', 'timestamp', "accelero"])
                     ->toArray();
 
+                $speedLimit = TripData::where('trip_id', $request->input('id'))
+                    ->orderBy('timestamp', 'asc')
+                    ->get(['speed_limit', 'timestamp'])
+                    ->toArray();
+
+                $warningGraph->setSpeedLimit($this->formatTimeStampLimit($speedLimit));
                 $warningGraph->setGraphData([$this->formatTimeStamp($dbData), $this->calculateBrakePower($dbData)]);
                 $warningGraph->setDotData($trip_events);
 
@@ -75,6 +97,20 @@ class TripReviewController extends Controller
         foreach ($data as $record) {
             $formattedData[] = [
                 'speed' => $record['speed'],
+                'timestamp' => strtotime($record['timestamp'])
+            ];
+        }
+        return $formattedData;
+
+    }
+
+
+    private function formatTimeStampLimit(array $data)
+    {
+        $formattedData = [];
+        foreach ($data as $record) {
+            $formattedData[] = [
+                'speed_limit' => $record['speed_limit'],
                 'timestamp' => strtotime($record['timestamp'])
             ];
         }
