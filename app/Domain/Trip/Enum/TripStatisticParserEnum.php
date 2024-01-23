@@ -14,7 +14,6 @@ enum TripStatisticParserEnum: String
         return match ($this) {
             self::SPEED_PROFILE => [
                 TripEventEnum::SPEEDING,
-                TripEventEnum::HARSH_BRAKING,
             ],
             self::BREAK_PROFILE => [
                 TripEventEnum::HARSH_BRAKING,
